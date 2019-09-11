@@ -1,0 +1,105 @@
+page{
+  background-color: #efeff4;
+}
+.tui-picker-content{
+  padding:0;
+  text-align: center;
+}
+.tui-picker-name{
+  height: 95rpx;
+  line-height: 95rpx;
+}
+.tui-picker-detail{
+  height: 95rpx;
+  line-height: 95rpx;
+  background-color: #fff;
+  font-size: 26rpx;
+  padding: 0;
+  overflow: hidden;
+  color:#222;
+  text-align:left;
+
+}
+
+
+page{
+  background: #f2f2f2;
+  font-size: 30rpx;
+}
+.userinfo{
+  width: 100%;
+  background: #fff;
+}
+.yiban{
+  height: 95rpx;
+  line-height: 95rpx;
+  border-bottom: 1px solid #f2f2f2;
+  display: block;
+  overflow: hidden;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+.yiban input{
+
+  padding-left: 10rpx;
+}
+.fl{
+  float: left;
+  width: 85px;
+}
+.fr{
+  float: right;
+}
+.xuanze{
+  display: block;
+  width: 100%;
+  padding:0 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+ 
+  line-height: 95rpx;
+  border-bottom: 1px solid #f2f2f2;
+}
+.detail{
+  display: block;
+  width: 100%;
+  padding:0 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  height: 95rpx;
+  line-height: 95rpx;
+  border-bottom: 1px solid #f2f2f2;
+}
+.yiban_bottom{
+  display: block;
+  width: 100%;
+  padding:0 20rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  height: 95rpx;
+  line-height: 95rpx;
+  border-bottom: 1px solid #f2f2f2;
+  margin-bottom: 20rpx;
+  padding-bottom: 100rpx;
+}
+/* .save{
+  width: 90%;
+  margin: 0 auto;
+  color: #fff;
+  background: #06bebc;
+  text-align: center;
+  border-radius: 8rpx;
+  padding: 20rpx 0;
+  margin-top:20px;
+
+} */
+.text_input{
+  height: 100%;
+  flex:1;
+  color:#222;
+  font-size: 26rpx;
+}
+.rightRow{
+  height:26rpx;
+  width: 14rpx;
+}

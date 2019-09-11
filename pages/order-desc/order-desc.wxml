@@ -1,0 +1,124 @@
+<!--pages/order-desc/order-desc.wxml-->
+<import src="../public-section/public-section.wxml"/>
+<view class='containers'>
+  <!-- 地址信息 -->
+  <template is="public-address" data="{{address}}"/>
+
+  <view style='' class='goods_list flex-x'>
+    <scroll-view scroll-x="true" class='goods flex-x' >
+      <block wx:for="{{car_goods_list}}" wx:key="{{index}}">
+        <view class='item'>
+          <view class='tip_num'>{{item.goods_number}}</view>
+          <image src='{{item.img.thumb}}' data-index='{{index}}'></image>
+        </view>
+      </block>
+    </scroll-view>
+    <view class='jianshu flex-x'>
+      <text style='color:#888;' bindtap='show_section' data-type='2'>共{{goods_num}}件</text>
+      <image src='../../images/icon-jiantou-r.png' class='row'></image>
+    </view>
+  </view>
+  <view class='content-wrap'>
+    <view class='flex-x section-title'> 
+      <text>配送方式：</text>
+      <text style='color:#eb3546;font-size:26rpx;' wx:if="{{able_isvip}}">可享受会员折扣价</text>
+      <!-- <text style='color:#eb3546;font-size:26rpx;' wx:if="{{able_isvip}}">剩余{{supermarket_day}}次免费预约配送</text> -->
+    </view>
+    <view class='methods flex-x'>
+      <block wx:for="{{ship_mode_list}}" wx:key="{{index}}">
+        <view class="flex-center"><text  class="ship-bs {{ship_index==index?'selected':''}}"  data-index='{{index}}' data-shippingid='{{item.shipping_id}}' data-shippingareaid='{{item.shipping_area_id}}' data-type='{{item.time_list.length>0?"":"0"}}' bindtap='select_ship_mode' data-isvip="{{item.isvip}}">{{item.shipping_area_name}}：{{item.fee}}元</text></view>
+      </block>
+      <view class="flex-center" wx:if="{{ship_mode_list.length && isvip!=1}}"><text class='ship-bs {{ship_index==ship_mode_list.length?"selected":""}}' data-index='{{ship_mode_list.length}}' bindtap='baoyue'>VIP包月折扣</text></view>
+    </view>
+    <!-- 配送时间 -->
+    <view class='flex-x section-title' wx:if="{{ableChooseTime}}"> 
+      <text>配送时间：</text>
+    </view>
+    <view class='methods flex-x' wx:if="{{ableChooseTime}}">
+      <block wx:for="{{time_list}}" wx:key="{{index}}">
+        <view class="flex-center"> <text class='ship-bs {{ship_time_index==index?"selected":""}} ship-time' bindtap='select_ship_time' data-index="{{index}}" >{{item.time_stage}}</text></view>
+      </block>
+      <text style='color:#888;font-size:26rpx;margin:5px 0px 20px 57px;'wx:if="{{time_list.length==0}}" >已超出配送时间</text>
+    </view>
+
+    <view class='hang flex-between' wx:if="{{shipping_id!=8}}">
+      <view>使用代跑券</view>
+      <view class='flex-x' style='justify-content:flex-end;'>
+        <text class='tip_text' wx:if="{{!is_run}}">暂无代跑卷可用</text>
+        <text class='tip_text able_text' wx:else bindtap='show_section' data-type='0' >{{dp_tip}}</text>
+        <image src='../../images/icon-jiantou-r.png' class='row'></image>
+      </view>
+    </view>
+    <!-- <view class='hang flex-between'>
+      <view>可用红包</view>
+      <view class='flex-x' style='justify-content:flex-end;'>
+        <text class='tip_text' wx:if="{{allow_use_bonus==0}}">{{hb_tip}}</text>
+        <text class='tip_text able_text' wx:else bindtap='show_section' data-type='1'>{{hb_tip}}</text>
+        <image src='../../images/icon-jiantou-r.png' class='row' ></image>
+      </view>
+    </view> -->
+    <navigator class='hang flex-between' url="../note/index">
+      <view>备注</view>
+      <view class='flex-x' style='justify-content:flex-end;'>
+        <text class='tip_text note' style='line-height:94rpx;'>{{note || '添加留言'}}</text>
+        <image src='../../images/icon-jiantou-r.png' class='row' ></image>
+      </view>
+    </navigator>
+  </view>
+  <view style='height:20rpx;background:#f2f2f2;'></view>
+  <view class='content-wrap'>
+      <view class='hang flex-between'>
+        <text>商品总价：</text>
+        <text style='float:right;color:#eb3546;'>￥{{sum - money}}</text>
+      </view>
+      <view class='hang flex-between'>
+        <text>配送费：</text>
+        <view style='width:50%;text-align:right;'>
+          <text style='margin-right:15rpx;color:#888;'wx:if="{{hasdiscount && hasdiscount!=1 && !isvip}}">配送费{{hasdiscount * 10 || 0}}折</text>
+          <text style='color:#eb3546;' wx:if="{{isvip}}">￥{{fee || 0}}</text>
+          <text style='color:#eb3546;' wx:else>￥{{fee * hasdiscount || 0}}</text>
+        </view>
+      </view>
+  </view>
+  <view class='go_pay' wx:if="{{paying}}" style='color:#fff;background:#ccc;'>
+      支付中
+  </view>
+  <view bindtap='go_pay' class='go_pay' wx:else>立即支付</view>
+</view>
+
+<!-- 商品展示 -->
+  <view class='carList flex-y'  animation="{{goods_animationData}}">
+    <view class='car_goods_list'>
+      <view class='desc flex-x' wx:for='{{car_goods_list}}' wx:key="{{index}}">
+
+        <view class='goods-img'>
+          <image src='{{item.img.small}}' style='width:160rpx; height:144rpx; border:1px solid #ccc'></image>
+        </view> 
+        <view class='goods-details flex-y' style='margin-left:25rpx;'>
+          <view class='goods-title'>{{item.goods_name}}</view>
+          <view class='item_bottom flex-between'>
+            <view class='prices'>￥{{item.goods_price}}</view>
+          </view> 
+          
+        </view>
+        <view class='more flex-x'>
+              <text class='goods_num'>X{{item.goods_number}}</text>
+          </view>
+      </view>
+    </view>
+  </view>
+  
+<!-- 选择配送方式 -->
+<!-- <template is="public-ship" data="{{ship_animationData,ship_mode_list,ship_index}}"/> -->
+
+<!-- 代跑卷 -->
+<template is="public-dp" data="{{dp_animationData,run_member,dp_index}}"/> 
+
+<!-- 选择红包 -->
+<template is="public-hb" data="{{hb_animationData,hb_list,hb_index}}"/> 
+
+<!-- 背景 -->
+<view class='bg' wx:if="{{is_show || hasvoucher}}" bindtap='bg_click'></view>
+
+<!-- 弹出领劵 -->
+<template is="public-lj" data="{{hasvoucher,voucher}}"/> 

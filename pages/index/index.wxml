@@ -1,0 +1,171 @@
+  <view class="container">
+    <!-- header   -->
+  <view class='news flex-x'> 
+    <view class='news-img'>
+      头条
+    </view>
+    <view class='text'> 
+      <swiper class="" vertical="true" autoplay="true" circular="true" interval="2000" style='height:75rpx;'  >
+        <block wx:for="{{msgList}}"  wx:key="index">
+          <swiper-item >
+            <view class="swiper_item word" data-url='{{item.link}}' data-article_id='{{item.article_id}}' data-type='{{item.method_type}}' bindtap='link'>{{item.title}}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view> 
+    <image src='/images/icon_main_row.png' style='height:28rpx;width:16rpx;'></image>
+  </view>
+  <!-- banner -->
+  <view class='banner'>
+    <swiper class="" vertical="true" autoplay="true" circular="true" interval="2000" style='height:100px;'  >
+          <block wx:for="{{baList}}" wx:key="index">
+            <swiper-item style='height:100%;width:100%'>
+              <image src='{{rootUrl+item.file_url}}' style='height:100%;width:100%'></image>
+            </swiper-item> 
+          </block> 
+      </swiper>
+  </view>
+  <!-- main -->
+  <view class='main {{isFlod?"":"active"}}' animation="{{nav_animation}}">
+    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="19" show-location markers="{{markers}}" style="width: 100%;flex:1;height:100%;width:100% " bindregionchange="bindregionchange" wx:if="{{version==0}}"></map>  
+    <cover-view class='showAddr flex-y' wx:if="{{version==0}}">
+      <cover-view class="showAddrInfo">{{addrInfo ?addrInfo :'正在加载……'}}</cover-view>
+      <cover-image src='/images/icon_addr.png' class='center_icon' bindtap='center'></cover-image >  
+    </cover-view>
+
+    <view style='background:#fff' wx:if="{{showModel.model5 && version}}">
+      <view class='title'><view class=''>优选店铺</view></view>
+      <view class='shopList flex-x' >
+
+        <view class='shop-item flex-y' wx:for="{{s_typeList}}" wx:key="index" data-id='{{item.id}}' data-name='{{item.shop_name}}' bindtap='enterShop'>
+          <view class='shop-pic'>
+            <image src='{{rootUrl + item.shop_logo}}' lazy-load='true'></image>
+          </view>
+          <text class='shop-title note'>{{item.shop_name}}</text>
+        </view>
+        <view class='shop-item flex-y moreShop' wx:if="{{typeList.length>9}}">
+          <view class='shop-pic flex-x' style='width:40px;height:40px;border:none;' >
+            <image src='/images/shopMore.png' style='border-radius:0' bindtap='moreShop' data-type='{{1}}' wx:if="{{isFlod}}"></image>
+            <image src='/images/flod.png' style='border-radius:0' bindtap='moreShop' data-type='{{2}}' wx:elif="{{!isFlod}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view style='background:#fff;margin-top:20rpx' wx:if="{{showModel.model7 && isFlod && version}}">
+      <view class='title'><view class='flex-x'><text>IU窝趣</text><text>MORE ></text></view></view>
+      <view class='shopList ww flex-x' >
+        <view class='shop-item flex-y' wx:for="{{s_typeList}}" wx:key="index" data-id='{{item.id}}' data-name='{{item.shop_name}}' bindtap='enterShop'>
+          <view class='shop-pic'>
+            <image src='{{rootUrl + item.shop_logo}}' lazy-load='true' data-src='{{rootUrl + item.shop_logo}}' catchtap='previewImage'></image>
+          </view>
+          <text class='shop-title note'>{{item.shop_name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <swiper class='pinList {{largeScreen?"largeScreen":"smallScreen"}}' autoplay interval="3000" wx:if="{{isFlod && showModel.model6 && version}}">
+      <block  wx:for="{{tjShop}}" wx:key="{{index}}" >
+        <swiper-item>
+          <view data-id='{{item.id}}' data-name='{{item.shop_name}}' bindtap='enterShop'  class="swiperItem">
+            <view class=''>{{item.shop_name}}</view>
+            <view class='' ><text wx:if="{{item.shop_dec!=''}}">({{item.shop_dec}})</text></view>
+            <view class='pruduct-list flex-x'>
+              
+              <view class='product flex-y' wx:for="{{item.food}}" wx:key="{{index}}" wx:for-item="_item">
+              
+                <view class='product-img' style='margin-bottom:5rpx;'>
+                  <image src='{{rootUrl+_item.food_logo}}' lazy-load='true' data-src='{{rootUrl + _item.food_logo}}' catchtap='previewImage'></image>
+                </view>
+                <view class='name ' style='width:100%'>
+                  <!-- <text>{{item.}}</text> -->
+                  <text class='note'>{{_item.food_name}}</text>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </swiper-item>
+        
+      </block>
+      
+    </swiper>
+  </view>
+  
+  <!-- footer -->
+  <view class='footers flex-x'>  
+    <view class='item flex-y' bindtap='openSecond' wx:if="{{version==1}}">
+      <image src='/images/icon_main_02.png'></image>
+      <text>快递取送</text>
+    </view>
+    <view class='item flex-y' data-index='{{4}}' bindtap='navSwitch' wx:if="{{version==0}}">
+        <image src='/images/icon_qq.png'></image>
+        <text>取快递</text>
+      </view>
+    <view class='item flex-y' data-index='{{6}}' bindtap='navSwitch' wx:if="{{version==0}}">
+      <image src='/images/icon_main_01.png'></image>
+      <text>餐厅预约</text>
+    </view>
+    <view class='item flex-y' data-index='{{2}}' bindtap='navSwitch' wx:if="{{showModel.model1 && version==1}}">
+      <image src='/images/icon_main_03.png'></image>
+      <text>超市代购</text>
+    </view>
+    <view class='item flex-y' data-index='{{7}}' bindtap='navSwitch' wx:if="{{version==0}}">
+      <image src='/images/icon_main_04.png'></image>
+      <text>跑腿</text>
+    </view>
+    <view class='item flex-y' data-index='{{3}}' bindtap='navSwitch' wx:if="{{showModel.model2 && version==1}}">
+      <image src='/images/icon_main_01.png'></image>
+      <text>校内餐厅</text>
+    </view>
+    <view class='secondNav flex-x' animation="{{animationData}}">
+      <view class='item flex-y' data-index='{{4}}' bindtap='navSwitch'>
+        <image src='/images/icon_qq.png'></image>
+        <text>取快递</text>
+      </view>
+      <view class='item flex-y' data-index='{{5}}' bindtap='navSwitch' >
+        <image src='/images/icon_jq.png'></image>
+        <text>寄快递</text>
+      </view>
+      <view class='item flex-y' bindtap='closeSccond'>
+        <image src='/images/icon_closeRow.png'></image>
+      </view>
+    </view>
+  </view>
+  
+</view>
+
+<image src='/images/index_order.png' class='order' catchtap='order' wx:if="{{version==1}}"></image>
+<image src='/images/index_center.png' class='center' catchtap='center'></image >
+<image src='/images/youhui.png' class='youhui' catchtap='youhui'wx:if="{{is_lingka}}"></image >
+
+<!-- 灰色背景 -->
+<view class='bg' wx:if="{{hasvoucher}}"></view>
+<!-- 弹出领劵 -->
+  <view class='dpjWrap' wx:if="{{hasvoucher}}">
+    <view  class='close'>
+        <image src='/images/close.png' catchtap='closevoucher'/>
+      </view>
+    <view class='voucher' >
+      <view class='voucherTitle'>恭喜您收到一个代跑劵</view>
+      <view class='contentWrap flex-x'>
+        <view class='flex-y  tro'>
+          <view>{{voucher.name}}</view>
+          <view wx:if="{{voucher.is_type==0}}">无时间限制</view>
+          <view wx:if="{{voucher.is_type==1}}">有限期：{{voucher.useendtime}}</view>
+          <view wx:if="{{voucher.run_type==0}}">无限制，可通用</view>
+          <view wx:if="{{voucher.run_type==3}}">仅限于超市代购</view>
+          <view wx:if="{{voucher.run_type==1}}">仅用于快递跑腿</view>
+          <view wx:if="{{voucher.run_type==2}}">仅用于餐饮外卖跑腿</view>
+
+        </view>
+      </view>
+      <view class='lookMore'  bindtap='viewJl'>查看领取记录>></view>
+    </view>
+  </view>
+
+  <view class='initAn flex-y' wx:if="{{init}}" animation='{{initAn}}'>
+    <image src='/images/init.gif'></image>
+    <text>初始化中...</text>
+  </view>

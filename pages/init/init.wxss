@@ -1,0 +1,61 @@
+/* pages/init/init.wxss */
+page,body{
+  height: 100%;
+  width: 100%;
+
+}
+.content{
+  overflow: hidden;
+}
+.logo{
+  height: 250px;
+  width: auto;
+  margin-top: 40%;
+}
+.logo image{
+  height: 100%;
+  width: 100%;
+}
+.btn{
+  height:80rpx;
+  width:370rpx;
+  text-align:center;
+  line-height:80rpx;
+  color:#222;
+  border:2px solid #222;
+  border-radius:5px;
+  margin:0 auto;
+  margin-bottom:35rpx;
+  font-size: 28rpx;
+}
+.school_btn{
+  border-color:#06BEBC;
+  color:#fff;
+  background:#06BEBC;
+
+}
+
+/* school_Wrap */
+.school_Wrap{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom:0;
+  transform: translateX(100%);
+  z-index: 100;
+  background: #fff;
+}
+.header{
+  justify-content: space-between;
+}
+.city-btn{
+  justify-content: flex-start;
+}
+.city-btn image{
+  height:35rpx;
+  width:35rpx;
+
+}

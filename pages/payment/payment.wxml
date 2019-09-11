@@ -1,0 +1,65 @@
+<import src="../public-section/public-section.wxml"/>
+
+<view class='container'>
+  <template is="public-address" data="{{address}}"/>
+  <view class='top_nav flex-x'>
+    <block wx:for="{{typeList}}" wx:key="{{index}}">
+      <view class='item {{typeIndex == index ? "active" :""}}' data-minmoney='{{item.mini_mony}}' data-index='{{index}}' data-id='{{item.id}}' bindtap='selectPayType' >
+        <image src='{{item.pay_img}}' class='img'></image>
+        <text class='nav_text'>{{item.payname}}</text>
+      </view>   
+    </block>
+  </view>
+  
+  <!-- 缴费金额 -->
+  <view class='floor flex-between need-info' style=''>
+    <text>缴费金额</text>
+    <input bindinput='money' style='flex:1;text-align:right' placeholder='请输入缴费金额' value='{{money}}' type='number'></input>  
+  </view>
+
+  <view class='detail_info'>
+    <view class='flex-x detail_addr'> 
+      <text>备注信息：</text>
+      <image src='../../images/icon-down.png' class='down_row'></image>
+    </view>
+    <textarea class='text_color input_div' placeholder='需要注意的事项' bindinput='pay_note' ></textarea> 
+    <view class='floor flex-between'>
+      <text>配送费</text>
+      <view class='conditions flex-end'>
+        ￥{{fee}}
+      </view>
+      <image src='../../images/icon-jiantou-r.png' class='row'></image>
+    </view>
+
+    <!-- 代跑卷 -->
+    <view class='floor flex-between' style='border-bottom:none'>
+      <text>代跑卷</text>
+      <view class='conditions '>
+        <text class='tip_text text_color' wx:if="{{!is_run}}" data-type='0' >暂无可用</text>
+        <text class='tip_text able_text' wx:else bindtap='show_section' data-type='0' >{{dp_tip}}</text>
+      </view>
+      <image src='../../images/icon-jiantou-r.png' class='row'></image>    
+    </view>
+  </view>
+  <!-- 底部 -->
+  <view class='bottom_pay flex-between'>
+    <view>
+      <text class=''>合计：</text>
+      <text class='price'>￥</text>
+      <text class='fee price'>{{fee + (money || 0)}}</text>
+      <text wx:if="{{run_id}}" class='price' style='font-size:9pt;margin-left:30rpx;'>已使用代跑卷</text>
+    </view>
+    <view class='go_pay flex-center' bindtap='go_pay'>
+      去支付
+    </view>
+  </view>
+</view>
+
+<!-- 代跑卷 -->
+<template is="public-dp" data="{{dp_animationData,run_member,dp_index}}"/> 
+
+<!-- 灰色背景 -->
+<view class='bg' wx:if="{{is_show || hasvoucher}}" bindtap='bg_click'></view>
+
+<!-- 弹出领劵 -->
+<template is="public-lj" data="{{hasvoucher,voucher}}"/> 

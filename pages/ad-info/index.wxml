@@ -1,0 +1,29 @@
+
+<view class='lists'>
+    <view class="section flex-x">
+      <text>姓名：</text><input placeholder="填写姓名" auto-focus name="userName" bindinput='userName'/>
+    </view>
+    <view class="section flex-x">
+      <text>性别：</text>
+      <radio-group class="radio-group" bindchange="radioChange" name="userSex" style="text-align:right;flex:1">
+        <label class="radio" wx:for="{{items}}">
+            <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+        </label>
+      </radio-group>
+    </view>
+    <view class="section flex-x">
+      <text>联系方式：</text><input placeholder="请输入手机号" name="userPhone" bindinput='userPhone' type='number'/>
+    </view>
+    <view class="section flex-x" wx:if='{{adInfo.user_money}}'>
+      <text>商家收费：</text><text class='enroll_money price'>{{adInfo.user_money}}元</text>
+    </view>
+    <view class="section flex-x" wx:if='{{adInfo.enroll_money}}'>
+      <text>预约费：</text><text class='enroll_money price'>{{adInfo.enroll_money}}元</text>
+    </view>
+    <view class="section flex-x" wx:if='{{adInfo.adver_preferential}}'>
+      <text>优惠：</text><text class='enroll_money price'>报名成功即送{{adInfo.adver_preferential}}天免费预约配送服务</text>
+    </view>
+</view>
+<view class='footer'>
+    <view bindtap='submit' class='sbt'>提交</view>
+</view>

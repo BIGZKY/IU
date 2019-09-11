@@ -1,0 +1,82 @@
+<!--index.wxml-->
+<view class='header'>
+  
+</view>
+<view class='lists'>
+  <block wx:for="{{taskList}}" wx:key="{{index}}">
+    <view class='list'>       
+        <view class='top'>
+          <view class='fl'>
+            <text style='color:#06bebc;' wx:if="{{item.order_type ==1 || item.order_type ==4}}">[快递]</text>
+            <text style='color:#06bebc;'  wx:if="{{item.order_type==0 || item.order_type==3}}">[超市]</text>
+            <text style='color:#06bebc;' wx:if="{{item.order_type==2}}">[店铺]</text>
+            <text style='margin-left:10rpx;'>{{item.order_sn}}</text>  
+          </view>
+          <view class='fr'>{{item.add_time}}</view>
+          <view style='clear:both'></view>
+        </view>
+
+         <!-- 快递 -->
+        <view class='content'  wx:if="{{item.order_type ==1 || item.order_type ==4}}">
+          <view class='buy_list'>
+            <view class='details'>订单详情：</view>
+            <view class='word'>{{item.postscript}}</view>
+          </view>
+        </view>
+
+        <!-- 店铺 -->
+        <view class='content' wx:if="{{item.order_type ==2}}">
+          <view class='buy_list'>
+            <view class='buy'>
+              <view class='pro spe fl'>购买商品</view>
+              <view class='zongjia spe fl'>数量</view>
+            </view>
+            <block wx:for="{{item.restaurant}}" wx:key="{{index}}">
+              <view class='buy googs'>
+                <view class='pro fl'>{{item.tagName}}</view>
+                <view class='account fl'>X{{item.num}}</view>
+              </view>
+            </block>
+          </view>
+          <!-- <view class='more' wx:if="{{item.goods.length>4}}">查看更多</view> -->
+          <view class='zhifu'><text style='margin-right:10rpx;'>合计:</text>￥<text style='font-size:36rpx;'>{{item.goods_amount}}</text></view>
+          <view class="page-section-title">
+            <text>服务要求：</text>
+            <text class='text_color'>暂无要求</text>
+          </view>
+        </view>
+        <!-- 商超 -->
+        <view class='content' wx:if="{{item.order_type==0 || item.order_type==3}}">
+          <view class='buy_list'>
+            <view class='buy'>
+              <view class='pro spe fl'>购买商品</view>
+              <view class='account spe fl'>数量</view>
+              <view class='zongjia spe fl'>单价</view>
+            </view>
+            <block wx:for="{{item.goods}}" wx:key="{{index}}">
+              <view class='buy googs'>
+                <view class='pro fl'>{{item.goods_name}}</view>
+                <view class='account fl'>X{{item.goods_number}}</view>
+                <view class='zongjia fl'>￥{{item.goods_price}}</view>
+              </view>
+            </block>
+          </view>
+          <!-- <view class='more' wx:if="{{item.goods.length>4}}">查看更多</view> -->
+          <view class='zhifu'><text style='margin-right:10rpx;'>合计:</text>￥<text style='font-size:36rpx;'>{{item.goods_amount}}</text></view>
+          <view class="page-section-title">
+            <text>服务要求：</text>
+            <text class='text_color'>暂无要求</text>
+          </view>
+        </view>
+        
+        <!-- <view class='btn' data-id='{{item.order_id}}' style='background:#41B035' wx:if="{{item.express_status==5 && !is_jishi}}">已完成</view>
+        <view class='btn' bindtap='receiveOrder' data-id='{{item.order_id}}' wx:if="{{item.express_status!=5 && !is_jishi}}" data-index='{{index}}'>完成订单</view> -->
+        <view class='btn' bindtap='robbing' data-id='{{item.express_id}}' wx:if="{{is_jishi}}" data-index='{{index}}'>抢单</view>
+        <!-- <view class='btn' bindtap='receiveOrder' data-id='{{item.order_id}}' wx:if="{{is_jishi}}" data-index='{{index}}'>已抢单</view> -->
+        
+    </view>
+  </block>
+  <view class='noData_tip' wx:if="{{noData || taskList.length==0}}">
+    没有订单哦^_^
+  </view>
+</view>

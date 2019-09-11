@@ -1,0 +1,34 @@
+<!--pages/order-management/order-management.wxml-->
+<view style='background:#f2f2f2;' class='container'>
+  <view class="swiper-tab flex-x" wx:if="{{taskType}}">
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="{{1}}" bindtap="tabNav" >预约单</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}} " data-current="{{2}}" bindtap="tabNav">即时单</view>
+  </view>
+  <view class='spec_delivery_wrap flex-x' >
+    <block wx:for="{{spec_delivery_list}}" wx:key="{{index}}">
+      <navigator class='spec_delivery_item' url='../spec-detail/index?id={{item.region_id}}&zs_type={{currentTab}}'>
+        <view class='flex-x'>
+          <image src='/images/icon_go_addr.png'></image>
+          <text>{{item.region_name}}</text>
+        </view>
+        <view class='flex-x'>
+          <image src='/images/icon_wait_receive.png'></image>
+          <text>{{item.nums}}单待配送</text>
+        </view>
+      </navigator>
+    </block>
+    <view class='noData_tip' wx:if="{{noData}}">
+      还没有订单哦^_^
+    </view>
+  </view>
+
+</view>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+<view class='delivery flex-between' wx:for="{{delivery}}" wx:key="{{index}}" bindtap='chooseType' data-index='{{index}}'>
+  <!-- <view>
+    <image src='{{rootUrl + item.delivery_img}}'></image>
+    <text>{{item.delivery_name}}</text>
+  </view>
+  <text>{{}}</text> -->
+  <image src='{{rootUrl + item.delivery_img}}'></image>
+  <text>{{item.delivery_name}}</text>
+</view>

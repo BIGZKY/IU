@@ -1,0 +1,29 @@
+<!--pages/show-card/index.wxml-->
+<view class='container'>
+  <view class='card_img'>
+    <image src='/images/daipaoka.png'></image>
+  </view>
+  <view class='mian_section'>
+    <view class='remainder floor flex-between'>
+      <view class='remainder-num flex-y'>
+        <text class=''>剩余天数</text>
+        <text style='margin-top:15rpx;font-size:32rpx;'>2</text>
+      </view>
+      <view class='flex-x'>
+        <text>充值</text>
+        <image src='/images/icon-jiantou-r.png' class='row'></image>
+      </view>
+    </view>
+
+    <!-- 红包 -->
+     <view class=' floor flex-between' style=''>
+      <view class='remainder-num flex-y'>
+        <text class=''>红包</text>
+      </view>
+      <view class='flex-x'>
+        <text class='text_color'>暂无红包</text>
+        <image src='/images/icon-jiantou-r.png' class='row'>{{user_money}}</image>                        
+      </view>
+    </view> 
+  </view>
+</view>

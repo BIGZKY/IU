@@ -1,0 +1,77 @@
+<view class='container'>
+
+
+  <view class='content-wrap'>
+    <block wx:for="{{taskList}}" wx:key="{{index}}">
+      <!-- item start -->
+      <view class='task-item'>
+        <!-- item头部 -->
+        <view class='task-item-header flex-between'>
+          <view class='publish-info flex-x'>
+            <view><text>订单编号: </text><text style='margin-left:10rpx;'>{{item.order_sn}}</text></view>
+            
+          </view>
+          <view><text style='color:#888'>{{item.add_time}}</text></view>
+          <!-- task 状态 -->
+        </view>
+        <!-- task 内容 -->
+        <view class='task-info flex-x'>
+          <view class='task-pic flex-y'>
+            <image src='{{item.avatar_img}}'></image>
+            <text>{{item.user_name}}</text>
+          </view>
+          <!-- task 详细内容 -->
+          <view class='task-detail-info flex-y'>
+            <view>
+              <text>任务: </text>
+              <text style='margin-left:10rpx;'>送{{item.goods_type}}</text>
+              </view>
+              <view>
+              <text>服务要求: </text>
+              <text style='margin-left:10rpx;' class='note' wx:if="{{item.remark}}">{{item.remark}}</text>
+              <text style='margin-left:10rpx;color:#888' wx:else>无要求</text>
+            </view>
+            <view>
+              <text>佣金: </text> 
+              <text style='margin-left:10rpx;'>￥{{item.shipping_fee}}</text>
+            </view>
+          </view>
+
+        </view>
+        <!-- 距离显示 -->
+        <view class='distance-wrap flex-between'>
+          <!-- 起点 -->
+          <view class='startAddr flex-y' bindtap='mapView' data-loglat='{{item.service_address_longlat}}'>
+            <view class='flex-x'>
+              <image src='/images/icon_addr.png' class='distance-icon'></image>
+              <text class='addr'>{{item.shipment_address+item.shipment_detail_address}}</text>
+            </view>
+            <!-- <view class='distance'>距您{{item.d}}km</view> -->
+          </view>
+          <!-- 链接线 -->
+          <view class='link flex-center'>
+            <view class='line'></view>
+            <image src='/images/icon-riding.png'></image>
+            <view class='line'></view>
+          </view>
+          <!-- 终点 -->
+          <view class='endAddr flex-y' bindtap='mapView' data-loglat='{{item.shipment_address_longlat}}'>
+            <view class='flex-x'>
+              <image src='/images/icon-endAddr.png' class='distance-icon'></image>
+              <text class='addr'>{{item.service_address+item.service_detail_address}}</text>
+            </view>
+            <!-- <view class='distance'>距取件地{{item.distance_detail}}km</view> -->
+          </view>
+        </view>
+        <!-- task  操作 -->
+        <navigator class='opreation flex-x' url='../robbing/index?id={{item.order_id}}&express_id={{item.express_id}}'>
+          <text class='robbing' wx:if="{{item.status == 0}}">去抢单</text>
+          <text class='robbing' wx:if="{{item.status==1 || item.status==2}}">进行中</text>
+          <text class='robbing' wx:if="{{item.status==5}}">已完成</text>
+        </navigator>
+      </view>
+      <!-- item over -->
+    </block>
+    
+  </view>
+</view>

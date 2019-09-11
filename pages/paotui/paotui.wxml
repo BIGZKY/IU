@@ -1,0 +1,50 @@
+<view class='all'>
+
+<view class='finish'>
+<view class='finish-img'>
+<image src='/images/finish.png' style='width:60rpx; height:60rpx;'></image>
+</view>
+<view class='finish-test'>
+<view>已完成</view>
+<view>感谢使用短跑</view>
+</view>
+</view>
+
+<view class='title'>物品信息:</view>
+<view>
+<view class='wenjian'>
+<text>文件</text>
+<text style='margin-left:20rpx;'>小于5KG</text>
+</view>
+<view class='xinxi'>
+<image src='/images/fa.png' style='width:68rpx;height:68rpx;'></image>
+<view class='fl'>
+<view>二号院4号楼2单元1601</view>
+<view style='margin-top:8rpx;'>小杨：125545548</view>
+</view>
+</view>
+<view class='xinxi'>
+<image src='/images/shou.png' style='width:68rpx;height:68rpx;'></image>
+<view class='fl' style='border-bottom:none;'>
+<view>二号院4号楼2单元1601</view>
+<view style='margin-top:8rpx;'>小杨：125545548</view>
+</view>
+</view>
+</view>
+
+<view class='title'>支付信息:</view>
+<view class='fee'>
+配送费：
+<text class='fr'>￥2</text>
+</view>
+<view class='fee'>
+总计：￥2
+<text class='fr'>实付：<text style='color:#fb1a1a'>￥2</text></text>
+</view>
+<view class='title'>配送信息:</view>
+<view class='fee'>期望时间：立即取件</view>
+<view class='fee'>配送骑手：小王</view>
+<view class='title'>订单信息:</view>
+<view class='fee'>订单号码:12345888</view>
+<view class='fee' style='border-bottom:none;'>下单时间:2015-12-26    12：38</view>
+</view>

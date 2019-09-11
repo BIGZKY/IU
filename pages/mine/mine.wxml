@@ -1,0 +1,95 @@
+<!--pages/mine/mine.wxml-->
+<import src="../public-section/public-section.wxml"/>
+<view class='top flex-x' style='background:#06bebc'>
+  <view class='tx'>
+    <image src="{{avatarUrl}}"></image>
+  </view>
+  <view class='name'>
+    <text>{{nickName}}</text>
+    <view class='userType flex-between'>
+      <image src='/images/icon_vip.png' wx:if="{{isvip}}"></image>
+      <image src='/images/icon_default.png' wx:else></image>
+      <text wx:if="{{isvip}}">VIP会员</text>
+      <text wx:else>普通用户</text>
+    </view>
+
+  </view>
+  <view class='dpj' style='flex:1'>
+    <navigator class='flex-x' url='../per_cen/dpj/index' hover-class='none'>
+      <image src='/images/icon_youhui.png '></image>
+      <text>代跑卷</text>
+    </navigator>
+    
+  </view>
+</view>
+
+<view class="section">
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item" >
+      <view class='section_content'>{{userInfo.tadaynum || 0}}单</view>
+      <view class='section_title'>今日完成订单  </view>
+    </view>
+    <view class="flex-item">
+      <view class='section_content'>￥{{userInfo.user_money || 0}}</view>
+      <view class='section_title'>账号余额</view>
+    </view>
+    <view class="flex-item">
+      <view class='section_content'>￥{{userInfo.tadaymoney || 0}}</view>
+      <view class='section_title'>今日获得收益</view>
+    </view>
+  </view>
+</view>
+<view class='bianji flex-x'  bindtap='showModel'>
+  <image src='/images/bianji.png' style='width:32rpx;height:32rpx;'></image>
+  <text>编辑个人资料</text>
+</view>
+<!-- <view class='bianji flex-x' wx:else bindtap='complete'>
+  <image src='/images/icon_complete.png' style='width:32rpx;height:32rpx;'></image>
+  <text>完成</text>
+</view> -->
+<view class='infos'>
+  <view class='info flex-between'>
+    <text>联系方式</text>
+    <text class='fr'>{{userInfo.apply_phone}}</text>
+  </view>
+
+  <form bind:submit="robbing" report-submit="true">
+    <button formType="submit" class='info flex-between' hover-class='none'>
+      <text>我要抢单</text>
+    </button>
+  </form>
+  <!-- <navigator class='info flex-between' url='../order-management/order-management'>
+    <text>我要抢单</text>
+  </navigator> -->
+    <form bind:submit="myrobbing" report-submit="true">
+      <button formType="submit"  class='info flex-between' hover-class='none'>
+        <text>我的接单</text>
+      </button>
+    </form>
+   <!-- <navigator class='info flex-x' url='../myRobbing/index'>
+    <text>我的接单</text>
+  </navigator> -->
+  <navigator class='info flex-between' url='../workManagement/index' wx:if="{{is_zs}}">
+    <text>工作计划</text>
+  </navigator>
+  <navigator class='info flex-between' url='../tixian/index'>
+    <text>余额提现</text>
+  </navigator>
+  <navigator class='info flex-between' url='./deliveryWait/index' hover-class='none'>
+    <text>快递单</text>
+    <!-- <text style='margin-right:30rpx;color:#e82324'>1</text> -->
+  </navigator>
+</view>
+<view class='inputModel' wx:if='{{showModel}}'>
+  <form bindsubmit="formSubmit">
+    <text class='model-title'>编辑资料</text>
+    <input class='model-body' placeholder='输入手机号' value='{{receipt_code}}' name="phone"></input>
+    <view class='model-footer'>
+      <button class='text_color' bindtap='cancle'>取消</button>
+      <button class='price' formType="submit">完成</button>
+    </view>
+  </form>
+</view>
+<template is="public-ctrl" data="{{opt_animationData,o_animationData}}"/>
+
+<view class='bg' wx:if='{{showModel}}'></view>

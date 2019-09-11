@@ -1,0 +1,5 @@
+<!--pages/note/index.wxml-->
+<textarea placeholder='请输入备注留言' class='textarea' bindinput='bindinput' value='{{note}}' maxlength="50"></textarea>
+<text class='text_num'>{{text_num || 0}}/50</text>
+
+<view class='save' bindtap='save'>保存</view>

@@ -1,0 +1,71 @@
+<view class='wrap'>
+	<view>
+		<view class='date-show flex-center'>
+			<view class='lt-arrow flex-center' bindtap='lastMonth'>
+				<image src='/images/icon-jiantou-r.png' mode='aspectFit'></image>
+			</view>
+			{{year}}年{{month}}月
+			<view class='rt-arrow flex-center' bindtap='nextMonth'>
+				<image src='/images/icon-jiantou-r.png' mode='aspectFit'></image>
+			</view>
+		</view>
+	</view>
+	<view class='header'>
+		<view wx:for='{{date}}' class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}' wx:key="{{index}}">{{item}}<view></view></view>
+	</view>
+	<view class='date-box'>
+		<view wx:for='{{dateArr}}' class='{{isToday == item.isToday ? "nowDay" : ""}}' data-date='{{item.isToday}}'  wx:key="{{index}}">			
+			<view class='date-head'>
+				<view bindtap='dateClick' data-d='{{item.dateNum}}' data-date='{{item.isToday}}'>{{item.dateNum}}</view>
+			</view>
+		</view>
+	</view>
+
+
+  <!-- 工作时间选择 -->
+  <view class='workManage flex-x'>
+    <image src='/images/workTime.png'></image><text style='flex:1'>工作时间安排</text>
+  </view>
+  <view class='manageList'>
+      <view class='date' style='color:#06bebc;font-weight:600;'>今日安排</view>
+      <view class='time flex-x'>
+        <block wx:for="{{todayObj.plan_obj}}"  wx:key="{{index}}" >
+          <view class='time_item flex-center'>
+            <text class='{{item.isPass?"":"on"}}'>{{item.time}}</text>
+          </view>
+        </block>
+        <view class='time_item flex-center' wx:if="{{!todayObj}}"><text style='background:#fff;color:#555;'>无工作安排</text></view>
+      </view>
+    </view>
+  <block wx:for="{{workTimeList}}" wx:key="{{index}}">
+    <view class='manageList'>
+      <view class='date'>{{item.date_plan}}</view>
+      <view class='time flex-x'>
+        <block wx:for="{{item.plan_obj}}"  wx:key="{{index}}">
+          <view class='time_item flex-center'>
+            <text class='{{item.isPass?"":"on"}}'>{{item.time}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  
+  </block>
+</view>
+
+<!-- 选择工作时间 -->
+<view class='workWrap flex-y' wx:if="{{t}}"> 
+  <view class='title'>
+    选择工作时间
+  </view>
+  <view class='timeSection flex-x'> 
+    
+    <block wx:for="{{timeList}}" wx:key="{{index}}">
+      <view class='{{item.isChoose?"on":""}}' bindtap='chooseTime' data-index='{{index}}' data-time='{{item.time}}'>{{item.time}}</view>
+    </block>
+  </view>
+  <view class='option flex-x'>
+    <view bindtap='cancle'>取消</view>
+    <view class='price' bindtap='confirm'>确定</view>
+  </view>
+</view>
+<view class='bg'  bindtap='bg_click' wx:if="{{t}}"></view>

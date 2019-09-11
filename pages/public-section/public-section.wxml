@@ -1,0 +1,123 @@
+<!-- 地址信息 -->
+<template name="public-address">
+  <view class='address flex-between'>
+    <text style='width:15%'>送至：</text>
+    <navigator class='flex-x address_select' url='../address_list/index?type=2' wx:if="{{address}}"  hover-class='none'>
+      <view class='flex-x' style='justify-content:flex-end;margin-bottom:10rpx;'>
+        <text>{{address.consignee}}</text>
+        <text style='margin-left:40rpx;'>{{address.mobile}}</text>
+      </view>
+      <text  class=''>{{address.address+address.address_info}}</text>
+    </navigator>
+    <navigator  wx:else url='../address_list/index?type=2' hover-class='none' style='flex:1;text-align:right;color:#888;padding:10rpx 0;'>添加收货地址</navigator>
+    
+    <image src='../../images/icon-jiantou-r.png' class='row'></image>
+  </view>
+</template>
+
+<!-- 底部去支付 -->
+<template name="public-footer">
+  <view class='bottom_pay flex-between'>
+    <view>
+      <text class=''>配送费：</text>
+      <text class='price'>￥</text>
+      <!-- 快递 -->
+      <text class='fee price' wx:if="{{footerType==0 && num ==1 && able_isvip}}">{{fee}}</text>  
+      <text class='fee price' wx:elif="{{footerType==0 && num ==1}}">{{fee * hasdiscount}}</text>  
+      <text class='fee price' wx:elif="{{footerType==0 && num >1}}">{{ money }}</text>  
+      <text class='fee price' wx:elif="{{footerType==1 && able_isvip}}">{{addMoney + fee || 0}}</text>
+      <text class='fee price' wx:else="{{footerType==1}}">{{addMoney + fee * hasdiscount || 0}}</text>
+      <text wx:if="{{run_id}}" class='price' style='font-size:9pt;margin-left:30rpx;'>已使用代跑劵</text>
+      <!-- <text wx:if="{{able_isvip}}" class='price' style='font-size:9pt;margin-left:30rpx;'>会员折扣价</text> -->
+      <text wx:if="{{(!run_id || !able_isvip) && !isvip && hasdiscount && hasdiscount != 1}}" class='price' style='font-size:9pt;margin-left:30rpx;'>配送费{{hasdiscount *10 }}折</text>
+    </view>
+    <view class='go_pay flex-center' wx:if="{{paying}}" style='color:#fff;background:#ccc;'>
+      支付中
+    </view>
+    <view class='go_pay flex-center' bindtap='go_pay' wx:else> 
+      立即支付
+    </view>
+
+  </view>
+</template>
+
+<!-- 选择代跑卷 -->
+<template name="public-dp">
+  <view class='dp_section section' animation="{{dp_animationData}}">
+    <block wx:for="{{run_member}}" wx:key="{{index}}">
+
+      <view class='dpitem flex-x {{dp_index==index?"dpSelected":""}}' bindtap='receive_dp' data-index='{{index}}' data-money='{{item.name}}' data-id='{{item.id}}'>
+          <view class='dpitem-left'>
+            {{item.name}}
+          </view>
+          <view class='dpitem-right'>
+            <view class='flex-y dpitem-right-t'>
+              <text class='share' style='line-height:17px;'>获得方式：{{item.mark}}</text>
+              <text class='time' >有效期：{{item.useendtime}}</text>
+            </view>
+            <view class='rule' wx:if='{{item.run_type==0}}'>通用劵</view>
+            <view class='rule' wx:if='{{item.run_type==1}}'>仅用于快递跑腿</view>
+            <view class='rule' wx:if='{{item.run_type==2}}'>仅用于餐饮外卖跑腿</view>
+            <view class='rule' wx:if='{{item.run_type==3}}'>仅用于超市代购</view>
+          </view>
+        </view>
+    </block>
+  </view>
+</template>
+
+<!-- 红包领取 -->
+<template name="public-hb">
+  <view class='hb_section section' animation="{{hb_animationData}}">
+    <block wx:for="{{hb_list}}" wx:key="{{index}}">
+        <!-- <image src="/images/hb.png"></image> -->
+        <view class="section_item {{hb_index==index?'selected':''}}" bindtap='receive_hb' data-id='{{item.bonus_id}}' data-money='{{item.type_money}}'   data-index='{{index}}'>
+          <view class='first_floor'>
+            <text>{{item.type_name}}</text>
+            <text>{{item.bonus_money_formated}}</text>
+          </view>
+          <view class='second_floor'>
+            <text>有效期至{{item.use_end_date_formated}}</text>
+            <text>{{item.label_min_amount}}</text>
+          </view>
+        </view>
+    </block>
+  </view>
+</template>
+<!-- 领劵 -->
+<template name="public-lj">
+  <view class='voucher' wx:if="{{hasvoucher}}">
+    <image src='/images/close.png' class='close' catchtap='closevoucher'></image>
+    <view class='voucherTitle'>恭喜您收到一个代跑劵</view>
+    <view class='contentWrap flex-x'>
+      <view class='flex-y  tro'>
+        <text>{{voucher.name}}</text>
+        <text wx:if="{{voucher.is_type==0}}">无时间限制</text>
+        <text wx:if="{{voucher.is_type==1}}">有限期：{{voucher.useendtime}}</text>
+        <text wx:if="{{voucher.run_type==0}}">无限制，可通用</text>
+        <text wx:if="{{voucher.run_type==3}}">仅限于超市代购</text>
+        <text wx:if="{{voucher.run_type==1}}">仅用于快递跑腿</text>
+        <text wx:if="{{voucher.run_type==2}}">仅用于餐饮外卖跑腿</text>
+
+      </view>
+    </view>
+    <navigator class='lookMore' url='../per_cen/dpj/index'>查看领取记录>></navigator>
+  </view>
+</template>
+
+<!-- 右下角控件 -->
+<template name="public-ctrl">
+  <movable-area style="position:fixed;right:20rpx;top:45%;width:80rpx;height:100rpx;">
+    <movable-view style='display:inline-block;top:88rpx;left:0px;position:relative;height: 600rpx;width:82rpx;' direction="all">
+      <view class='footer flex-y'>
+        <view animation="{{opt_animationData}}" class='opt' >
+          <navigator hover-class='none' url="../index/index"><image src='/images/icon_main_08.png' ></image></navigator>
+          <navigator hover-class='none' url="../per_cen/per_cen"><image src='/images/icon_main_05.png' ></image></navigator>
+          <navigator hover-class='none' url="../order/index"><image src='/images/icon_main_06.png'></image></navigator>
+        </view>
+        <image src='/images/more_opt.png' style='margin-top:20rpx;height:72rpx;width:72rpx;' bindtap='lookMore' ></image>
+      </view >
+    </movable-view>
+  </movable-area>
+</template>
+<!-- <movable-view style="height: 50px; width: 50px; background: blue;" x="{{x}}" y="{{y}}" direction="all">
+    </movable-view> -->

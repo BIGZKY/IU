@@ -1,0 +1,75 @@
+<view class='table'>
+  <view class='tr title'>
+    近邻宝财大寄件价目表
+  </view>
+  <view class='tr flex-x header' style='height:{{24*1}}px'>
+    <view class='td' style='line-height:{{24*1}}px'>区域</view>
+    <view class='td'>城市</view>
+    <view class='td' style='line-height:{{24*1}}px'>首重(元/kg)</view>
+    <view class='td' style='line-height:{{24*1}}px'>续重(元/kg)</view>
+  </view>
+  <view class='tr flex-x' style='height:{{24*1}}px'>
+    <view class='td' style='line-height:{{24*1}}px'>一区</view>
+    <view class='td'>河南</view>
+    <view class='td' style='line-height:{{24*1}}px'>10</view>
+    <view class='td'style='line-height:{{24*1}}px'>4</view>
+  </view>
+  <view class='tr flex-x' style='height:{{24*15}}px'>
+    <view class='td' style='line-height:{{24*15}}px'>二区</view>
+    <view class='td multi-td'>
+      <view>江苏</view>
+      <view>山东</view>
+      <view>湖南</view>
+      <view>湖北</view>
+      <view>北京</view>
+      <view>天津</view>
+      <view>上海</view>
+      <view>浙江</view>
+      <view>安徽</view>
+      <view>广东</view>
+      <view>福建</view>
+      <view>江西</view>
+      <view>山西</view>
+      <view>陕北</view>
+      <view>河北</view>
+    </view>
+    <view class='td' style='line-height:{{24*15}}px'>12</view>
+    <view class='td' style='line-height:{{24*15}}px'>5</view>
+  </view>
+  <view class='tr flex-x' style='height:{{24*7}}px'>
+    <view class='td' style='line-height:{{24*7}}px'>三区</view>
+    <view class='td multi-td'>
+      <view>贵州</view>
+      <view>四川</view>
+      <view>重庆</view>
+      <view>云南</view>
+      <view>辽宁</view>
+      <view>黑龙江</view>
+      <view>吉林</view>
+    </view>
+    <view class='td' style='line-height:{{24*7}}px'>15</view>
+    <view class='td' style='line-height:{{24*7}}px'>6</view>
+  </view>
+  <view class='tr flex-x' style='height:{{24*6}}px'>
+    <view class='td' style='line-height:{{24*6}}px'>四区</view>
+    <view class='td multi-td'>
+      <view>广西</view>
+      <view>海南</view>
+      <view>青海</view>
+      <view>甘肃</view>
+      <view>宁夏</view>
+      <view>内蒙古</view>
+    </view>
+    <view class='td' style='line-height:{{24*6}}px'>18</view>
+    <view class='td' style='line-height:{{24*6}}px'>7</view>
+  </view>
+  <view class='tr flex-x' style='height:{{24*2}}px'>
+    <view class='td' style='line-height:{{24*2}}px'>五区</view>
+    <view class='td multi-td'>
+      <view>新疆</view>
+      <view>西藏</view>
+    </view>
+    <view class='td' style='line-height:{{24*2}}px'>30</view>
+    <view class='td' style='line-height:{{24*2}}px'>20</view>
+  </view>
+</view>

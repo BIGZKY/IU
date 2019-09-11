@@ -1,0 +1,156 @@
+<view class='container'>
+  <view class='header flex-x'>
+    <view>
+      <image src='{{avatarUrl}}'></image>
+    </view>
+    <view class='font-size:30rpx;'>
+      <text>{{nickName}}</text>
+    </view>
+    <view class='chooseType flex-x' style='padding-right:35rpx;'>
+      <view class='flex-x' bindtap='showTypeList'>
+        <text>{{!chooseType?"帮我送":"帮我取"}}</text>
+        <view class='chooseTypeRow'></view>
+      </view>
+      <view class='typeList flex-y' wx:if="{{showTypeList}}">
+        <text data-s_type='{{0}}' bindtap='chooseType'>帮我送</text>
+        <text data-s_type='{{1}}' bindtap='chooseType'>帮我取</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class='' style='height:15rpx;background:#f2f2f2;'></view>
+
+  <!-- 商品类别 -->
+  <view class='flex-x' style='flex-wrap:wrap'>
+    <view class='item-goodsType flex-y' wx:for="{{goodsTypeList}}" wx:key="{{index}}" data-index='{{index}}' bindtap='choose_goods_type' data-goods='{{item.className}}'>
+      <view class='mark {{goodsIndex == index ? "show" :"hidden"}}' ></view>
+      <image src='{{item.imgSrc}}'></image>
+      <text>{{item.className}}</text>
+    </view>
+  </view>
+
+  <view class='' style='height:15rpx;background:#f2f2f2;'></view>
+  <!-- 帮我送 -->
+  <view class='main_body flex-x' wx:if="{{chooseType == 0}}" bindtap='navigator' data-i='{{0}}'>
+
+    <!-- 提示语 -->
+    <view class='adddrTip flex-between' catchtap='assign' wx:if="{{showTip && chooseType == 0 && defaultAddr}}">
+      <view class='topRow'></view>
+      <view class='flex-y tipContent' style='flex:1'>
+        <text>{{tip.content}}</text>
+        <text>{{tip.phone}}</text>
+      </view>
+      <view class='closeTip flex-center' catchtap='coloseTip'>
+        <image src='/images/close.png'></image>
+      </view>
+    </view>
+
+    <view class='takeGoods' style='margin:20rpx 20rpx 0 20rpx;'>
+      <image src='/images/song.png'></image>
+    </view>
+    <view class='main_body_content' hover-class='none'>     
+      <view class='floor flex-x addr'>
+        <view class='flex-x '>
+          <text>发货地址</text>
+        </view>
+        <view class='text_color flex-y' style='flex:1;margin-left:30rpx;'>
+          <view class='flex-between' style='width:100%;text-align:left;align-items:flex-start' wx:if="{{originAddr}}" >
+            <text>{{originAddr}}</text><text>{{originPhone}}</text>
+          </view>
+          <view class='text_color' style='width:100%;text-align:left'wx:else>选择发货地址</view>
+          <view class='detailAddr'wx:if="{{originDetailAddr}}">{{originDetailAddr}}</view>
+          <view class='detailAddr text_color' wx:else>详细发货地址(如: 楼层门牌号)</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <!-- 帮我取 -->
+   <view class='main_body flex-x' wx:if="{{chooseType == 1}}" bindtap='navigator' data-i='{{0}}'>
+  
+    <view class='takeGoods' style='margin:20rpx 20rpx 0 20rpx;'>
+      <image src='/images/qu.png'></image>
+    </view>
+    <view class='main_body_content' hover-class='none'>     
+      <view class='floor flex-x addr'>
+        <view class='flex-x '>
+          <text>取货地址</text>
+        </view>
+        <view class='text_color flex-y' style='flex:1;margin-left:30rpx;'>
+          <view class='flex-between' style='width:100%;text-align:left;align-items:flex-start' wx:if="{{originAddr}}" >
+            <text>{{originAddr}}</text><text>{{originPhone}}</text>
+          </view>
+          <view class='text_color' style='width:100%;text-align:left' wx:else>选择取货地址</view>
+
+          <view class='detailAddr' wx:if="{{originDetailAddr}}">{{originDetailAddr}}</view>
+          <view class='detailAddr text_color' wx:else>详细取货地址(如: 楼层门牌号)</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='height:5rpx;background:#f2f2f2'></view>
+    
+    <!-- 收货 -->
+  <view class='main_body flex-x' bindtap='navigator' data-i='{{1}}'>
+    <!-- 提示语 ------------start -->
+    <view class='adddrTip flex-between' bindtap='assign' wx:if="{{showTip && chooseType == 1}}">
+      <view class='topRow'></view>
+      <view class='flex-y tipContent' style='flex:1'>
+        <text>{{tip.content}}</text>
+        <text>{{tip.phone}}</text>
+      </view>
+      <view class='closeTip flex-center' catchtap='coloseTip'>
+        <image src='/images/close.png'></image>
+      </view>
+    </view>
+    <!-- 提示语 ------------end -->
+    <view class='takeGoods' style='margin:20rpx 20rpx 0 20rpx;'>
+      <image src='/images/shou.png'></image>
+    </view>
+    <view class='main_body_content'>
+      
+      <view class='floor flex-x addr'>
+        <view class='flex-x '>
+          <text>收货地址</text>
+        </view>
+        <view class='text_color flex-y' style='flex:1;margin-left:30rpx;'>
+          <view  class='flex-between' style='width:100%;text-align:left;align-items:flex-start;' wx:if="{{receiveAddr}}">
+            <text>{{receiveAddr}}</text><text>{{receivePhone}}</text>
+          </view>
+          <view class='text_color' style='width:100%;text-align:left' wx:else>选择收货地址</view>
+          <view class='detailAddr' wx:if="{{receiveDetailAddr}}">{{receiveDetailAddr}}</view>
+          <view class='detailAddr text_color' wx:else>详细收货地址(如: 楼层门牌号)</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view style='height:7px;background:#f2f2f2'></view>
+  <view class='main_body'>
+    <view class='note flex-between'>
+      <view class='icon_title flex-x' style='margin:6px 23rpx;'>
+        <image src='/images/service_content.png'></image>
+      <text style='margin-left:20rpx;width:52px;' class='flex-between' space="emsp">备  注</text>
+      </view>
+      <view class='service_content'>
+        <textarea placeholder='填写备注信息' bindinput='dispatch_note'></textarea>
+      </view>
+    </view>
+  </view>
+  <view class='flex-between fee_section'>
+    <view class='flex-x' wx:if="{{isCompuute}}">
+      <text style='color:#06BEBC'>正在计算费用...</text>
+    </view>
+    <view class='flex-x' wx:else>
+      <image src='/images/paotui.png' style='margin:0 20rpx 0 0'></image>
+      <view style='color:#222'>跑腿费 <text class="price">￥</text><text class="price" style='flex:1;font-size:40rpx;' >{{price || 0}}</text><text class='distance' style='margin-left:20rpx' wx:if="{{distance}}">{{distance}}km</text></view>
+    </view>
+    <view class='robbing' wx:if="{{paying}}" style='color:#fff;background:#ccc;'>
+      派单中
+    </view>  
+    <view class='robbing' catchtap='dispatch' wx:else>
+      我要派单
+    </view>
+  </view>
+
+</view>

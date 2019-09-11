@@ -1,0 +1,76 @@
+page{
+  background: #f2f2f2;
+  font-size: 30rpx;
+  font-family: "微软雅黑"
+}
+.list{
+  background: #fff;
+  padding: 15rpx 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.info{
+  line-height: 1.6;
+  color:#555;
+
+}
+.address_detail{
+  font-size: 28rpx;
+  line-height: 1.6;
+  margin-top: 30rpx;
+  color:#555;
+
+}
+.address_detail text:last-child{
+  color: #06bebc;
+}
+
+.btn{
+  width: 100%;
+  padding: 20rpx 0;
+  background: #fff;
+  position: fixed;
+
+  left: 0;
+  bottom: 0;
+}
+.add_address{
+  width: 90%;
+  background:#06bebc;
+  color: #fff;
+  font-size: 30rpx;
+}
+.options{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  width: 100%;
+  z-index: 100;
+}
+.options view{
+  line-height: 90rpx;
+  text-align: center;
+  color:#555;
+  font-size: 28rpx;
+}
+.update{
+  border-bottom:10rpx solid #f2f2f2;
+
+}
+.default{
+  margin-right:12px;
+  background:#1296DB;
+  color:#fff;
+  font-size:8pt;
+  text-align:center;
+  display:inline-block;
+  padding:2rpx 15rpx;
+
+}

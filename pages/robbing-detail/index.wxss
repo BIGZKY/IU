@@ -1,0 +1,210 @@
+/* pages/robbing/index.wxss */
+.container>view{
+  width: 100%;
+
+}
+.container{
+    background: #fff;
+    padding-bottom:100rpx; 
+}
+.header{
+  height:110rpx;
+
+}
+.header image{
+  border-radius: 50%;
+  margin: 0 20rpx 0 30rpx;
+  height: 75rpx;
+  width: 75rpx;
+}
+.robbing{
+  height: 100rpx;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #06bebc;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+}
+.line-progress{
+  position: absolute;
+  width: 75%;
+  left: 12.5%;
+  background: #f2f2f2;
+  height: 10rpx;
+  z-index: 1;
+  bottom:50rpx;
+}
+.task-progress{
+  position: relative;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #e2e2e2;
+}
+.progress-status-item{
+  width: 25%;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+.progress-status-pic{
+  border: 2px solid #cecccc;
+  border-radius: 50%;
+
+  margin:8rpx 0;
+  height: 45rpx;
+  width: 45rpx;
+  overflow: hidden;
+}
+.progress-status-pic image{
+  height: 45rpx;
+  width: 45rpx;
+
+}
+.high-line-progress{
+  height: 100%;
+  width: 100%;
+  background: #06bebc;
+  
+}
+.f-j{
+  margin: 10rpx 0;
+}
+.f-j>view{
+  width: 50%;
+  padding: 15rpx 0;
+
+}
+.f-j>view:nth-child(1){
+  border-right:1px solid #e2e2e2;
+}
+.f-j>view>text:nth-child(1){
+  font-size: 36rpx;
+  margin-bottom: 5rpx;
+}
+.order-addr-info image{
+  height: 45rpx;
+  width: 45rpx;
+}
+.order-addr-info{
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  height: 162px;
+  margin: 25rpx 0;
+}
+.left-tagging{
+  height: 100%;
+}
+.distance{
+  margin: 30rpx 0;
+    
+}
+.addr-info{
+  max-width: 250px;
+  height: 34px;
+  margin-right: 25rpx;
+  /* margin-bottom:10rpx; */
+
+}
+.link-line{
+  flex: 1;
+  border-left: 2px dotted #cecccc
+}
+.link-line>view{
+  height: 15rpx;
+  width: 15rpx;
+  border-radius: 50%;
+  background: #06bebc;
+  justify-content: center;
+  margin-left: -4px;
+}
+.right-info{
+  justify-content: space-between;
+  margin-left: 25rpx;
+  height: 100%;
+  align-items: flex-start;
+}
+.s-addr,.e-addr{
+  align-items: flex-start;
+  height: 56px;
+  justify-content: space-between;
+}
+.info-floor{
+  padding: 13px 0;
+  border-bottom: 1px solid #e2e2e2; 
+  align-items:flex-start;
+
+}
+.info-floor:last-of-type{
+  border-bottom: none;
+}
+.order-info-section{
+  box-sizing: border-box;
+  padding-left: 30rpx;
+}
+.info-floor>text:nth-child(1){
+  width:18%
+
+}
+.info-floor>text:nth-child(2){
+  max-width:75%
+
+}
+.high-color{
+  color: #06bebc;
+}
+.inputModel{
+  height:346rpx;
+  width:580rpx;
+  position:fixed;
+  left:50%;
+  top:50%;
+  background:#fff;
+  margin-left:-290rpx;
+  margin-top:-173rpx;
+  z-index:100;
+  border-radius: 25rpx; 
+}
+.model-title{
+  line-height: 120rpx;
+  text-align: center;
+  display: block;
+  font-size:32rpx;
+
+}
+.model-body{
+  height: 75rpx;
+  width: 77%;
+  margin: 0 auto;
+  border: 1px solid #e2e2e2;
+  padding-left: 20rpx;
+}
+.model-footer{
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid #e2e2e2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.model-footer text{
+  width: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 95rpx;
+  text-align: center;
+  font-size:30rpx;
+
+}
+.model-footer text:nth-child(1){
+  border-right: 1px solid #e2e2e2;
+}
+.runManInfo{
+  height:90rpx;
+  border-top:1px solid #e2e2e2;
+  box-shadow:0px 2px 5px 3px #e2e2e2;
+  margin:10rpx 0;
+
+}

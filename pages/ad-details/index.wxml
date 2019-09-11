@@ -1,0 +1,15 @@
+
+<import src="../../wxParse/wxParse.wxml" />
+
+<view class='word'>
+
+  <view class="wxParse">
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+  </view>
+</view>
+<navigator class='footer' url='../ad-info/index?id={{adInfo.adver_id}}' wx:if="{{!adInfo.shop_correlation_id}}">
+    <view>我要报名</view>
+</navigator>
+<navigator class='footer' url='../cgList/index?shop_id={{adInfo.shop_correlation_id}}&type=2' wx:else>
+    <view>我要购买</view>
+</navigator>

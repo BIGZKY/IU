@@ -1,0 +1,47 @@
+page{
+  background: #fff;
+  font-size: 30rpx;
+  font-family: "微软雅黑";
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.pay{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #f2f2f2;
+  color: #333;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+.radio{
+  padding: 20rpx;
+  box-sizing: border-box;
+  
+}
+
+.readio text{
+  font-size: 32rpx;
+  line-height: 2;
+}
+.shifu{
+  padding: 40rpx 20rpx;
+  box-sizing: border-box;
+}
+.shifu text{
+  color: #06bebc;
+}
+.btn button{
+  background: #06bebc;
+  color: #fff;
+  width: 90%;
+  margin-top: 20rpx;
+}
+.radio image{
+  width: 70rpx;
+  height: 70rpx;
+}

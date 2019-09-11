@@ -1,0 +1,128 @@
+<!--pages/order_detail/index.wxml-->
+<import src="../public-section/public-section.wxml"/>
+<view class='container'>
+  <view class='seller flex-x'>
+    <image src='/images/chaoshi_icon.png'></image>
+    <text >{{seller_name}}</text>
+    <text class='order_sn'>订单号码：{{order_sn}}</text>
+  </view>
+  <!-- 商品列表 -->
+  <view style='margin-top:10rpx;' class='goods_section {{goods_list.length>2?"height":"auto"}}' animation="{{animationData}}">
+    <block wx:for="{{goods_list}}">
+      <view class='order_item flex-x'>
+        <view class='goods_pic'>
+          <image src='{{item.img.thumb}}'></image>
+        </view>
+        <view class='goods_tro flex-y'>
+          <view class='first_floor flex-between'>
+            <text>{{item.name}}</text>
+          </view>
+          <view class='price flex-between'>
+            <view class='show_price'>单价：<text>{{item.subtotal}}</text></view>
+            <view class='show_price good_num'>数量：<text class=''>x{{item.goods_number}}</text></view>
+            
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 价格计算 -->
+  <view class='price_section flex-y'>
+    <view class='look_more {{is_more?"hidden":"show"}}' catchtap='look_more' wx:if="{{goods_list.length>2}}" data-gnum="{{goods_list.length}}">查看更多</view>
+    <view class='look_more {{is_more?"":"hidden"}}' catchtap='shouqi' wx:if="{{goods_list.length>2}}" data-gnum="{{item.goods_list.length}}">收起</view>
+    <view class='tip flex-between' style='margin-top:25rpx;' wx:if="{{goods_list.length}}">
+      <text>商品总价</text>
+      <text>￥{{goods_amount}}</text>
+    </view>
+    <view class='tip flex-between'  wx:if="{{goods_list.length}}">
+      <text>配送费</text>
+      <text>￥{{shipping_fee}}</text>
+    </view>
+    <view class='tip spec_tip flex-between' style='margin-top:{{goods_list.length?0:25}}rpx'>
+      <text>订单总价</text>
+      <text>￥{{total_fee}}</text>
+    </view>
+  </view>
+  <!-- 优惠 -->
+  <view class='discont' wx:if="{{use_dp || use_hb || use_yueka}}">
+    <view class='paotui  flex-x' wx:if="{{use_dp}}">
+      <image src='/images/paotui.png'></image>
+      <text style='margin-left:15rpx'>代跑卷</text>
+      <text class='discont_tip flex-end' >已使用</text>
+    </view>
+    <view class='hb  flex-x' wx:if="{{use_hb}}">
+      <image src='/images/hb.png'></image>
+      <text style='margin-left:15rpx'>￥{{bouns}}优惠红包</text>
+      <text class='discont_tip '>已领取</text>
+    </view>
+    <view class='hb  flex-x' wx:if="{{use_yueka}}">
+      <text class='discont_tip '>已享受会员卡减免</text>
+    </view>
+  </view>
+
+  <!-- 实际付款 -->
+  <view class='real_pay spec_tip flex-x'>
+    <text class='youhui' wx:if="{{youhui}}">已优惠￥{{youhui}}</text>
+    <text style='color:#222;margin-right:10rpx;'>实付</text>
+    <text class='real_pay_money'>￥</text>
+    <text class='real_pay_money' style='font-size:15pt;line-height:32px;'>{{total_fee}}</text>
+    <!-- <view class='top_row'><image src='/images/top_row.png'></image></view> -->
+  </view>
+  
+  <!-- 配送 -->
+  <view class='order_section'>
+    <view class='tip flex-x'>
+      <text>下单时间</text>
+      <text class='order_tip'>{{shipping_time==''?'立即配送':shipping_time}}</text>
+    </view>
+    <view class='flex-x tip' style='align-items:flex-start;'>
+      <text>配送地址</text>
+      <view class='addr_section'>
+        <view class='flex-x'>
+          <text style='color:#222'>{{consignee}}</text>
+          <text style='margin-left:20rpx;' class='order_tip'>{{mobile}}</text>
+        </view>
+        <text style='color:#222'>{{address}}</text>
+      </view>
+    </view>
+    <view class='flex-x tip'>
+      <text>配送方式</text>
+      <text class=' order_tip'>{{shipping_name}}</text>
+    </view>
+     <view class='tip flex-x'>
+      <text>配送时间</text>
+      <text class='order_tip' wx:if="{{shipping_id==8}}">即刻配送</text>
+      <text class='order_tip' wx:else>{{select_time_tip==''?'立即配送':select_time_tip}}</text>
+    </view>
+  </view>
+
+  <!-- 订单号 订单时间 -->
+  <view class='order_section'>
+    <view class='tip flex-x'>
+      <text>订单号码</text>
+      <text class=' order_tip'>{{order_sn}}</text>
+    </view>
+    <view class='flex-x tip'>
+      <text>订单时间</text>
+      <text class=' order_tip'>{{formated_add_time}}</text>
+    </view>
+    <view class='flex-x tip'>
+      <text>支付方式</text>
+      <text class=' order_tip'>在线支付</text>
+    </view>
+    <view class='flex-x tip'>
+      <text>订单状态</text>
+      <text class=' order_tip'>{{label_order_status}}</text>
+    </view>
+    <view class='flex-x tip'>
+      <text space="ensp">备    注</text>
+      <text class=' order_tip'>{{pay_note? pay_note :"无信息"}}</text>
+    </view>
+  </view>
+</view>
+
+<template is="public-ctrl" data="{{opt_animationData,o_animationData}}"/>
+
+<view class='save' bindtap='back_index' wx:if='{{pay_status==2}}'>返回首页</view>
+<view class='save' bindtap='go_pay' wx:if='{{pay_status==0}}'>继续支付</view>
+

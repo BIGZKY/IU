@@ -1,0 +1,209 @@
+/* pages/mine/mine.wxss */
+page{
+  background: #f2f2f2;
+  font-family: "微软雅黑";
+}
+.top{
+  width: 100%;
+  height: 180px;
+  overflow:hidden;
+
+}
+.tx{
+  width:160rpx;
+  height:160rpx;
+  border-radius:50%;
+}
+.tx image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+.name{
+  text-align: center;
+  margin: 30rpx 0;
+  font-family: "微软雅黑";
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.section{
+  /* margin-top: 20rpx; */
+  color: #222;
+  font-size: 30rpx;
+}
+.section .section_content{
+  font-size: 34rpx;
+  color: #e82324;
+  padding-top: 26rpx;
+}
+.section .section_title{
+  font-size: 24rpx;
+  margin-top:10rpx;
+  color: #555;
+}
+.flex-wrp{
+  display: flex;
+  width: 100%;
+  height:140rpx;
+  background: #fff;
+}
+.flex-item{
+  width: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  border-right:1px solid #f2f2f2;
+}
+.flex-item text{
+  font-size:28rpx; 
+  display: inline-block;
+  line-height: 80rpx;
+}
+
+.info{
+  height: 95rpx;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 2rpx;
+  font-size: 30rpx;
+}
+.info text{
+  margin-left: 25rpx;
+  font-size:30rpx; 
+}
+.fr{
+  margin-right: 30rpx;
+
+  color: #888;
+}
+.bianji{
+  padding-left: 30rpx;
+  font-size: 30rpx;
+  height:95rpx;
+}
+.bianji image{
+  margin-right: 25rpx;
+}
+.inputModel{
+  height:369rpx;
+  width:580rpx;
+  position:fixed;
+  left:50%;
+  top:50%;
+  background:#fff;
+  margin-left:-290rpx;
+  margin-top:-173rpx;
+  z-index:100;
+  border-radius: 20rpx; 
+}
+.model-title{
+  line-height: 120rpx;
+  text-align: center;
+  display: block;
+  font-size:32rpx;
+
+}
+.model-body{
+  height: 75rpx;
+  width: 77%;
+  margin: 10px auto;
+  border: 1px solid #e2e2e2;
+  padding-left: 20rpx;
+
+}
+.model-footer{
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid #e2e2e2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.model-footer button{
+  width: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 85rpx;
+  text-align: center;
+  font-size:30rpx;
+  background: #fff;
+  border: none;
+  height: 100%;
+}
+button::after{
+border:none;
+}
+.model-footer button:nth-child(1){
+  border-right: 1px solid #e2e2e2;
+}
+.top{
+  width: 100%;
+  height: 135px;
+  overflow:hidden;
+  padding-left: 25rpx;
+  box-sizing: border-box;
+}
+.tx{
+  width:105rpx;
+  height:105rpx;
+  border-radius:50%;
+
+}
+.tx image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+.name{
+  text-align: left;
+  margin-left: 40rpx;
+
+}
+.name text{
+  font-family: "微软雅黑";
+
+  font-size: 32rpx;
+  color: #fff;
+}
+.userType{
+  height:38rpx;
+  background:#000;
+  margin-top:20rpx;
+  width:168rpx;
+  padding-right:20rpx;
+  box-sizing:border-box;
+  border-radius:25rpx;
+}
+.userType text{
+  font-size: 8pt;
+  color: #fff;
+}
+.userType  image{
+  width:54rpx;
+  height:54rpx;
+  margin-left:-10rpx;
+
+}
+.dpj image{
+  height:50rpx;
+  width:50rpx;
+
+}
+
+.dpj navigator{
+  float: right;
+  height: 70rpx;
+  width: 180rpx;
+  background: #ff5703;
+  text-align: center;
+  line-height: 70rpx;
+  border-top-left-radius: 70rpx;
+  border-bottom-left-radius: 70rpx;
+  justify-content: space-around;
+}
+.dpj navigator text{
+  color: #fff;
+  
+}

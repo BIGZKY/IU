@@ -1,0 +1,78 @@
+/* pages/per_cen/dpj/index.wxss */
+page{
+  height: 100%;
+}
+.container{
+  padding: 25rpx;
+  overflow: scroll;
+  display: block
+}
+.header{
+  height: 100rpx;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 0 25rpx;
+  border-radius: 10rpx;
+}
+.container>view{
+  width: 100%;
+}
+.header-left imgage{
+  height: 54rpx;
+  width: 54rpx;
+}
+.header-left text{
+  margin-left: 20rpx;
+}
+.header-right button{
+  background: #fff;
+  font-size: 26rpx;
+  color: #06bebc;
+  padding: 0;
+}
+.header-right button::after{
+  border: none;
+}
+.header-right image{
+  height:26rpx;
+  width:16rpx;
+  margin-left: 18rpx;
+}
+.item{
+  height: 190rpx;
+  background: #fff;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 0px 7rpx 4rpx #e2e2e2;
+}
+.item-left{
+  width:28%;
+  line-height:152rpx;
+  text-align:left;
+  color:#06bebc;
+  font-size:32rpx;
+  padding-left:35rpx;
+  box-sizing:border-box;
+}
+.item-right{
+  box-sizing: border-box;
+  flex: 1;
+  height: 100%;
+  padding: 25rpx 25rpx 25rpx 0;
+}
+.share,.time{
+  font-size: 26rpx;
+}
+.time{
+  color: #fe753e;
+  line-height:66rpx;
+}
+.item-right-t{
+  align-items: flex-start;
+}
+.rule{
+  border-top: 1px solid  #e2e2e2;
+  line-height: 62rpx;
+  font-size: 24rpx;
+  color: #888;
+}

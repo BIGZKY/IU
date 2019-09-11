@@ -1,0 +1,61 @@
+<view class='navClass flex-x'>
+  <view class='{{navIndex==0 ? "navOn" : ""}}' bindtap='navClick' data-index='{{0}}'>待接单</view>
+  <view class='{{navIndex==1 ? "navOn" : ""}}' bindtap='navClick' data-index='{{1}}'>已接单</view>
+  <view class='{{navIndex==2 ? "navOn" : ""}}' bindtap='navClick' data-index='{{2}}'>已完成</view>
+</view>
+<view class='deliveryWrap' hidden="{{deliveryList_child.length==0}}">
+  <view class='delivery'  wx:for="{{deliveryList_child}}" wx:key="{{index}}">
+    <view class='snInfo flex-between' >
+      <view>订单号：<text class='text_color'>{{item.order_sn}}</text> </view>
+      <text class='text_color'>{{item.add_time}}</text>
+    </view>
+    <view class='flex-x orderWrap'>
+      <!-- <view class='userInfo flex-y'>
+        <image src='/images/icon_main_05.png'></image>
+        <text>{{item.shipper_name}}</text>
+      </view> -->
+      <view class='orderInfo flex-y'>  
+        <view class='flex-between infoItem'>
+          <text>寄件信息:</text>
+          <view class='flex-y info'>
+            <view class='flex-x'>
+              <text>{{item.shipper_name}}</text>
+              <text>{{item.shipper_phone}}</text>
+            </view>
+            <text>{{item.shipper_address}}</text>
+          </view>
+        </view>
+        <view class='flex-between infoItem'>
+          <text>收件信息:</text>
+          <view class='flex-y info'>
+            <view class='flex-x'>
+              <text>{{item.receiver_name}}</text>
+              <text>{{item.receiver_phone}}</text>
+            </view>
+            <text>{{item.receiver_address}}</text>
+          </view>
+        </view>
+        <view class='flex-between infoItem'>
+          <text>预约时间:</text>
+          <text class='text_color'>{{item.time}}</text>
+        </view>
+        <view class='flex-between infoItem'>
+          <text>所选快递:</text>
+          <text class='text_color'>{{item.delivery_name}}</text>
+        </view>
+        <view class='flex-between infoItem'>
+          <text>备注信息:</text>
+          <text class='text_color'>{{item.remarks || "无备注信息"}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='receiveOrder flex-x'>
+      <text style='background: #06bebc'  wx:if="{{item.status==0}}" bindtap='robbing' data-index='{{index}}'>接单</text>
+      <text style='background: #33B7EB;' wx:if="{{item.status==1}}" bindtap="complete" data-index='{{index}}'>完成</text>
+      <text style='background: #00C777;' wx:if="{{item.status==2}}">已完成</text>
+    </view>
+  </view>
+</view>
+<view class='noData_tip' hidden='{{deliveryList_child.length!=0}}'>
+  暂无订单
+</view>

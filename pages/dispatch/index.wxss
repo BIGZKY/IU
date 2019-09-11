@@ -1,0 +1,225 @@
+/* pages/robbing/index.wxss */
+.container{
+  padding: 110rpx 0;
+  background: #fff;
+}
+.container>view{
+  width: 100%;
+  background: #fff;
+}
+.header{
+  height:110rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: 100;
+  border-bottom: 1rpx solid #e2e2e2;
+}
+.header image{
+  border-radius: 50%;
+  margin: 0 35rpx;
+  height: 75rpx;
+  width: 75rpx;
+  border:2px solid #e2e2e2;
+}
+.fee_section{
+  height: 100rpx;
+  padding: 0 20rpx; 
+  padding-right: 0;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #f2f2f2;
+  background: #fff;
+  z-index: 1000;
+}
+.partition{
+  height: 20rpx;
+  background: #f2f2f2;
+
+}
+.main_body{
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  position: relative;
+}
+
+.service_content{
+  height: 85px;
+  flex: 1;
+  background: #f2f2f2;
+  border-radius: 15rpx;
+  padding:15rpx;
+
+}
+.service_content textarea{
+  height: 100%;
+  width: 100%;
+  line-height: 36rpx;
+}
+.robbing{
+  width: 180rpx;
+  height: 100%;
+  text-align: center;
+  background: #06bebc;
+  color: #fff;
+  line-height: 100rpx;
+}
+.addr{
+  align-items: flex-start;
+}
+
+
+.floor-content{
+  margin-left: 35rpx;
+}
+.placeholder-class{
+  font-size:8pt;
+
+}
+.input-style{
+  text-align:left;
+  width:100%;
+  color:#222;
+  flex: 1;
+}
+
+.goods_type{
+  line-height: 65rpx; 
+  text-align: left;
+  width: 100%;
+  padding-left: 75rpx; 
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.goods_type:last-of-type{
+  border-bottom: none;
+}
+.goodsTypeList{
+  border-top: 5rpx solid #f2f2f2;
+  height: 0
+}
+.item-goodsType{
+  width: 33.33%;
+  padding:20rpx 0;
+  box-sizing: border-box;
+  border-right: 1rpx solid #e2e2e2;
+  border-bottom: 1rpx solid #e2e2e2;
+  position: relative;
+}
+.item-goodsType:nth-of-type(3),.item-goodsType:nth-of-type(6){
+  border-right: none
+}
+.item-goodsType text{
+  margin-top: 15rpx;
+}
+.mark{
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-color: transparent #1296db; 
+  border-width: 0px  16px 16px 0px;
+  border-style: solid;
+  top: 0;
+  right: 0;
+}
+.item-goodsType image{
+  height: 42rpx;
+  width: 42rpx;
+}
+.main_body_content{
+  flex: 1;
+  padding: 20rpx 25rpx;
+}
+.takeGoods image{
+  height: 54rpx;
+  width: 54rpx;
+}
+.note{
+  align-items: flex-start;
+}
+.icon_title{
+  height: 65rpx;
+  margin: 20rpx 0;
+}
+.icon_title>image{
+  height: 54rpx;
+  width: 54rpx;
+}
+.chooseType{
+  flex: 1;
+  text-align: right;
+  height: 100%;
+
+  justify-content: flex-end;
+  position: relative;
+}
+.chooseTypeRow{
+  width: 0;
+  height: 0;
+  border-color:  #222 transparent;
+  border-width:7px 7px 0px 7px;
+  border-style: solid; 
+  margin-left: 15rpx;
+  
+}
+.typeList{
+  position:absolute;
+  top:54px;
+  right:12px;
+  width:75px;
+  background:rgba(0, 0, 0, 0.8);
+  padding:10rpx
+}
+.typeList>text{
+  color: #fff;
+  line-height: 65rpx;
+}
+.typeList>text:first-child{
+  border-bottom: 1px solid #fff;
+}
+/* //提示语 */
+.adddrTip{
+  height:75rpx;
+  width:135px;
+  background:#222;
+  padding:5rpx 10rpx;
+  position:absolute;
+  top:37px;
+  left:139px;
+  z-index: 1000;
+} 
+.adddrTip text{
+  color: #fff;
+  font-size: 9pt;
+}
+.adddrTip image{
+  height: 36rpx;
+  width: 36rpx;
+}
+.closeTip{
+  width: 52rpx;
+  height: 100%;
+}
+
+.tipContent > text:first-child{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1; 
+}
+.tipContent{
+  align-items: flex-start;
+}
+.topRow{
+  width: 0;
+  height: 0;
+  border-color:transparent transparent #222 transparent;
+  border-style: solid;
+  border-width:8px;
+  position: absolute;
+  top: -14px;
+  left: 5px; 
+}

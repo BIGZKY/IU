@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class='top_images'>
+  <image src='/images/hzsbanner.png' mode='aspectFill' style='height:150px;'></image>
+</view>
+
+<view class='lists'>
+    <navigator class='list' url='../ad-details/index'>
+      <view class='fl tx'>
+        <image src="/images/logo1.png" mode='aspectFill' ></image>
+      </view>
+      <view class='fl word'>
+        <text class='title'>顺安驾校</text>
+        <text class='word_ins'>地址：郑州市金水区花园路136号</text>
+        <text class='word_ins lianghang'>服务宗旨：让学员更好地掌握驾车技巧，顺利拿到驾驶证！</text>
+      </view>
+      <view style='clear:both'></view>
+    </navigator>
+    <navigator class='list' url='../ad-details/index'>
+      <view class='fl tx'>
+        <image src="/images/logo2.png" mode='aspectFill'></image>
+      </view>
+      <view class='fl word'>
+        <text class='title'>郑州丰泽教育有限公司</text>
+        <text class='word_ins'>地址：郑州市金水区文化路89号</text>
+        <text class='word_ins lianghang'>服务宗旨：培训机构传道授业，让学员他通过学习互联网知识，更好地找到工作！</text>
+      </view>
+      <view style='clear:both'></view>
+    </navigator>
+</view>

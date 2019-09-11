@@ -1,0 +1,87 @@
+<!--pages/coupons/coupons.wxml-->
+<import src="../public-section/public-section.wxml"/>
+
+<view class='daipaoka'>
+  <image src='/images/daipaoka.png'></image>
+</view>
+
+<!-- <view class='flex-between time' wx:if="{{isvip }}">
+  <text>快递可使用次数</text>
+  <text style='color:#e84f32'>{{coupon_list[0].express_day}}次</text>
+</view>
+<view class='flex-between time' wx:if="{{isvip}}">
+  <text>超市可使用次数</text>
+  <text style='color:#e84f32'>{{coupon_list[0].supermarket_day}}次</text>
+</view>
+<view class='flex-between time' wx:if="{{isvip}}">
+  <text>餐饮可使用次数</text>
+  <text style='color:#e84f32'>{{coupon_list[0].merchant_shop_day}}次</text>
+</view>
+<view class='flex-between time' wx:if="{{isvip}}">
+  <text>店铺街可使用次数</text>
+  <text style='color:#e84f32'>{{coupon_list[0].merchant_shop_day}}次</text>
+</view> -->
+<view class='flex-between time' wx:if="{{isvip}}">
+  <text>会员到期时间</text>
+  <text>{{monthly_card_end}}</text>
+</view>
+<view class='youhui flex-between' wx:if="{{!isvip}}">
+
+  <block wx:for="{{coupon_list}}" wx:key="{{index}}">
+    <view class='coupon {{coupon==index?"active":""}}' bindtap='select_coupon' data-money="{{item.discount_price}}" data-index='{{index}}' data-id='{{item.id}}'>
+      <view class='floor'>
+        <text class='price'>{{item.discount_price}}元</text>
+        <text class='prev'>{{item.original_price}}元</text>
+      </view>
+      <text class='days'>{{item.name}}</text>
+      <text class='disc'>{{item.discount}}折</text>
+      <!-- <text catchtap='showGG' class='zf'>资费说明?</text> -->
+      <image src='/images/icon_selected.png' class='icon_selected'></image>
+    </view>
+  </block>
+</view>
+
+<view class='desc' wx:if="{{!isvip}}">
+  <view class='title'>会员卡使用说明</view>
+  <view class='text'>1，IU校园配送服务，设有包月活动，办理VIP会员，享受低价配送服务。</view>
+  <view class='text'>2，活动期内，仅学生享受低折办理VIP会员。活动期后，VIP自动调升至原始价格。</view>
+  <view class='text'>3，办理VIP包月，可享受校内快递代取代送，校内超市代购代送，校内餐饮代买代送，三大代劳需求免费服务。</view>
+  <view class='text'>4，VIP会员卡设有固定有效期，过有效期，会员卡将自动失效。</view>
+  <view class='text'>5，VIP会员卡只限本人专用，不得转借，若他人使用，系统将自动冻结该会员卡。</view>
+  <view class='text'>6，VIP会员卡适用预约配送，有效期内无限次数。</view>
+  <view class='text'>7，针对快递代取代送，VIP会员卡只限校区内快递点，不支持校外活动。</view>
+  <view class='text'>8，针对超市代购代送，VIP会员卡只限校区内商超购物，不支持校外活动。</view>
+  <view class='text'>9，配送至指定范围，VIP会员卡只限校区内场所，或学生固定宿舍，不支持校外地址。</view>
+</view>
+ <view class='footer' bindtap='buy_coupon' wx:if="{{!isvip}}">
+  购买
+</view> 
+<!-- 灰色背景 -->
+<view class='bg' wx:if="{{showGG || hasvoucher}}" bindtap='bg_click'></view>
+ 
+<!-- 弹出领劵 -->
+<template is="public-lj" data="{{hasvoucher,voucher}}"/> 
+
+<!-- 公告显示 -->
+<view class='showGG' wx:if='{{showGG}}' animation="{{animationData}}">
+  <image src='/images/close_1.png' class='closeGG' bindtap='close'></image>
+  <text class='troGG'>资费说明</text>
+  <view class='troGG-contentWrap'>
+    <view class='flex-x'>
+      <text>快递可使用次数</text>
+      <text style='color:#e84f32'>{{coupon_list[0].express_day}}次</text>
+    </view>
+    <view class='flex-x'>
+      <text>超市可使用次数</text>
+      <text style='color:#e84f32'>{{coupon_list[0].supermarket_day}}次</text>
+    </view>
+    <view class='flex-x'>
+      <text>餐饮可使用次数</text>
+      <text style='color:#e84f32'>{{coupon_list[0].merchant_shop_day}}次</text>
+    </view>
+    <view class='flex-x'>
+      <text>店铺街可使用次数</text>
+      <text style='color:#e84f32'>{{coupon_list[0].merchant_shop_day}}次</text>
+    </view>
+  </view>
+</view>

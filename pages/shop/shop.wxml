@@ -1,0 +1,145 @@
+<!--pages/shop/shop.wxml-->
+<import src="../public-section/public-section.wxml"/>
+<web-view src="{{httpLink}}" wx:if="{{isHide}}"></web-view>
+<view class='container'>
+  <!-- banner -->
+  <view class='banner'>
+    <swiper indicator-dots="{{indicatorDots}}"autoplay="true" interval="5000" duration="500" style='height:120px;width:100%'>
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{rootUrl+item.ad_code}}" class="slide-image" data-url='{{item.ad_link}}' data-type='{{item.method_type}}' />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  
+  <!-- menu list -->
+  <view class='goods flex-x'>
+    <view class='goods-list' style='height:{{windowHeight-220}}px'>
+      <view wx:for="{{specal_menu}}" wx:key="{{index}}" class='goods-kinds {{nav_index==item.index?"active":""}} flex-x' data-index='{{item.index}}' data-type='{{item.id}}' bindtap='switch_nav' >
+        <image src='/images/icon_hot.png' wx:if="{{index==0}}"></image>
+        <image src='/images/icon_new.png' wx:if="{{index==1}}"></image>
+        <image src='/images/icon_jing.png' wx:if="{{index==2}}"></image>
+        <text class='menu_{{index}}'>{{item.cat_name}}</text>
+        <view class='show_mark' wx:if="{{nav_index==item.index}}"></view>
+      </view>
+      <view wx:for="{{first_menu}}" wx:key="{{index}}" class='goods-kinds {{nav_index==index?"active":""}}' data-index='{{index}}' bindtap='switch_nav'>
+        <text>{{item.cat_name}}</text>
+        <view class='show_mark' wx:if="{{nav_index==index}}"></view>
+        <view  class='child' animation="{{animationList[index]}}" data-a="{{'menuAm_'+index}}">
+            <view wx:for="{{second_menu}}" class='second_menu {{second_nav==index?"second_color":""}}' catchtap='switch_scond_nav' data-index='{{index}}' data-types='{{item.cat_id}}' wx:key="{{index}}">
+              {{item.cat_name}}
+            </view>
+        </view>
+      </view>
+      
+    </view>
+
+  <!-- goods-list -->
+    <view class='goods-desc flex-y'>
+      <view class='goods-kind'>{{title}} <text wx:if="{{!second_title=='' && second_title}}" style='color:#fff;font-weight: bolder;' space="ensp">•</text> {{second_title}}</view> 
+      <scroll-view style='height:{{windowHeight-43-130}}px;overflow-y:scroll;width:100%;box-sizing:border-box;padding-bottom:60px;'  scroll-y="true">
+        <view class='desc flex-x' wx:for='{{goods_menu}}' wx:key="{{index}}">
+          <view class='goods-img'>
+            <image src='{{item.goods_thumb || "/images/goods01.png"}}' style='width:160rpx; height:150rpx;' mode="aspectFit" bindtap='previewImage' data-url='{{item.goods_thumb}}' lazy-load="true"></image>
+          </view> 
+          <view class='goods-details flex-y'>
+            <view class='goods-title'>{{item.goods_name}}</view>
+            <view wx:if="{{item.discount !=1}}">
+              <!-- <text style='font-size:26rpx;color:#888;' >原价</text> -->
+              <text style='font-size:26rpx;color:#888;text-decoration:line-through'>￥{{item.market_price||'0'}}</text>
+              <view class='flex-x;'style="display:inline-block;margin-left:20rpx" wx:if="{{item.discount !=1}}">
+                <image src='/images/icon_zhekou.png' style='height:24rpx;width:24rpx;display:inline-block;' ></image>
+                <text style='color:#ff4544;margin-left:8rpx'>{{item.discount}}折</text>
+              </view>
+            </view>
+            <view class='item_bottom flex-between'>
+              <view class='prices flex-x'>
+                <text style='font-size:26rpx;color:#ff4544'>￥</text>
+                <text style='font-size:18px;color:#ff4544'>{{item.shop_price||'0'}}</text>
+                
+              </view>
+              <view class='more flex-x'>
+                <image src='/images/jian.png' style='width:24px; height:24px;' bindtap='jian' data-id='{{item.goods_id}}' data-index='{{index}}' data-rec='{{item.rec_id}}' wx:if="{{item.num}}"></image>
+                <text class='goods_num' wx:if="{{item.num}}">{{item.num || 0}}</text>
+                <image src='/images/more.png' style='width:22px; height:22px;' bindtap='jia' data-id='{{item.goods_id}}' data-index='{{index}}' data-sn='{{item.goods_sn}}' data-rec='{{item.rec_id}}'></image>
+              </view>
+            </view> 
+          </view>
+        </view>
+
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- footer -->
+  <view class='shopfooter'>
+    <view class='num' wx:if="{{car_goods_num>0}}">{{car_goods_num}}</view>
+    <image src='/images/shopcar.png' style='width:84rpx;height:84rpx;' bindtap='show_car'></image>
+    <view class='total'>
+      <view>合计 : <text style='color:#ff4544;font-size:12pt;'>{{all_price || '￥0'}}</text></view>
+    </view>
+    <view class='pay' bindtap='submit_order' style='color:#fff'>
+      提交订单
+      <!-- <image src='/images/pay.png' style='width:142rpx; height:82rpx;'></image> -->
+    </view>
+  </view>
+  <!-- footer完成 -->
+  
+  <!-- 购物车 -->
+  <view class='carList flex-y'  animation="{{animationData}}">
+    <view class='header flex-between'>
+      <view class='flex-x'>
+        <view>
+          <image src='/images/checked-s.png' wx:if="{{slected_all}}" class='radio' bindtap='slected_all'></image>
+          <image src='/images/radio.png' wx:else class='radio' bindtap='slected_all'></image>
+        </view>
+        <text style='margin-left:5rpx;color:#222;'>全部</text>
+        <text style='margin-left:30rpx;'>(已选{{car_goods_num || 0}}件)</text>
+      </view>
+      <view class='flex-x' bindtap='cleanCar'>
+        <image src='/images/clean.png' class='radio'></image>
+        <text style='margin-left:3rpx;'>清空购物车</text>
+      </view>
+    </view>
+    <view class='car_goods_list' style='height:240px'  wx:if="{{car_goods_list.length!=0}}">
+      <view class='desc flex-x' wx:for='{{car_goods_list}}' wx:key="{{index}}">
+        <view>
+          <image src='/images/checked-s.png' wx:if="{{item.is_checked==1}}" bindtap='no_slecte' class='radio' data-index='{{index}}' data-rec='{{item.rec_id}}'></image>
+          <image src='/images/radio.png' wx:else class='radio' bindtap='slecte' data-index='{{index}}' data-rec='{{item.rec_id}}'></image>
+        </view>
+        <view class='goods-img'>
+          <image src='{{item.img.small}}' style='width:160rpx; height:150rpx;' mode="aspectFit" bindtap='previewImage' data-url='{{item.img.small}}'></image>
+        </view> 
+        <view class='goods-details flex-y'>
+          <view class='goods-title'>{{item.goods_name}}</view>
+          <!-- <view class=''>{{}}</view> -->
+          <view class='item_bottom flex-between'>
+            <view class='prices'>
+                <text style='font-size:26rpx;color:#ff4544'>￥</text>
+                <text style='font-size:18px;color:#ff4544'>{{item.goods_price}}</text>
+            </view>
+            <view class='more flex-x'>
+              <image src='/images/jian.png' style='width:24px; height:24px;' bindtap='car_jian' data-id='{{item.goods_id}}' data-index='{{index}}' data-rec='{{item.rec_id}}'></image>
+              <text class='goods_num'>{{item.goods_number}}</text>
+              <image src='/images/more.png' style='width:22px; height:22px;' bindtap='car_jia' data-id='{{item.goods_id}}' data-index='{{index}}' data-sn='{{item.goods_sn}}' data-rec='{{item.rec_id}}'></image>
+            </view>
+          </view> 
+        </view>
+      </view>
+    </view>
+    <view class='no_carData' wx:if="{{!car_goods_list.length}}" style='margin-top:45px;'>
+      <view><image src='/images/icon_bg_car.png' style='width:128rpx;height:128rpx;margin:0 auto;'></image></view>
+      <view style='text-align:center;margin-top:20rpx;color:#888;'>购物车空空如也~</view>
+    </view>
+  </view>
+  
+</view>
+<view class='bg' wx:if="{{is_show}}" bindtap='bg_click'></view>
+ <view animation="{{animationY}}" style="position:fixed;top:{{ballY}}px;" hidden="{{!showBall}}"> 
+    <view class="ball" animation="{{animationX}}" style="position:fixed;left:{{ballX}}px;">1</view>
+ </view> 
+<!-- 弹出领劵 -->
+<template is="public-lj" data="{{hasvoucher,voucher}}"/> 
+<!-- 灰色背景 -->
+<view class='bg' wx:if="{{is_show || hasvoucher}}" bindtap='bg_click'></view>

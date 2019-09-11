@@ -1,0 +1,44 @@
+/* pages/note/index.wxss */
+.textarea{
+  box-sizing: border-box;
+  height: 100px;
+  width: 92%;
+  border: 1px solid #ccc;
+  font-size: 10pt;
+  padding: 20rpx;
+  display: block;
+  margin: 25rpx auto;
+}
+.text_num{
+  font-size: 9pt;
+  color: #888;
+  position: absolute;
+  top:88px;
+  right:30px;
+
+}
+.note_title{
+  padding-left: 25rpx;
+  font-size:9pt;
+  color:#888;
+}
+.note_section{
+  height: auto;
+  padding:15rpx 25rpx;
+}
+.note_section text{
+  display:inline-block;
+  font-size:8pt;
+  color:#222;
+  padding:8rpx 10rpx;
+  border: 1px solid #e5e5e5;
+  margin-right:20rpx;
+  margin-bottom: 20rpx;
+}
+
+.note_section .active{
+  background: #ffeedd;
+  color: #ffbb77;
+  border: 1px solid #ffbb77;
+}
+

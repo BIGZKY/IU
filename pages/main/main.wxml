@@ -1,0 +1,89 @@
+<import src="../public-section/public-section.wxml"/>
+<web-view src="{{httpLink}}" wx:if="{{isHide}}"></web-view>
+<view class="container"> 
+  <view class='news flex-x'> 
+    <view class='news-img'>
+      <image src='/images/icon_main_07.png' style='width:81px;height:42px;'></image>
+    </view>
+    <view class='text'> 
+      <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000" style='height:75rpx;'  >
+        <block wx:for="{{msgList}}"  wx:key="msgList">
+          <swiper-item>
+            <view class="swiper_item word" data-url='{{item.link}}' data-article_id='{{item.article_id}}' data-type='{{item.method_type}}' bindtap='link'>{{item.title}}</view>
+          </swiper-item>   
+        </block>
+      </swiper>
+    </view> 
+    <image src='/images/icon_main_row.png' style='height:28rpx;width:16rpx;'></image>
+  </view>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="19" show-location markers="{{markers}}" style="width: 100%; " style='flex:1' bindregionchange="bindregionchange" ></map>  
+  <cover-image src='/images/icon_main_06.png' class='order' bindtap='order'></cover-image>
+  <cover-image src='/images/icon_main_05.png' class='center' bindtap='center'></cover-image >
+  <cover-image src='/images/youhui.png' class='youhui' bindtap='youhui'wx:if="{{is_lingka}}"></cover-image >
+  <cover-image src='/images/icon_main_09.png' class='yd' bindtap='yd'></cover-image >
+
+  <cover-view class='showAddr flex-y'>
+      <cover-view class="showAddrInfo">{{addrInfo ?addrInfo :'正在加载……'}}</cover-view>
+      <cover-image src='/images/icon_addr.png' class='center_icon' bindtap='center'></cover-image >  
+  </cover-view>
+  <view class='footers flex-x'>  
+    <view class='item flex-y' bindtap='openSecond'  wx:if="{{showModel.model4 || showModel.model5}}">
+      <image src='/images/icon_main_02.png'></image>
+      <text>快递取送</text>
+    </view>
+    <view class='item flex-y' data-index='{{2}}' bindtap='navSwitch' wx:if="{{showModel.model1}}">
+      <image src='/images/icon_main_03.png'></image>
+      <text>超市代购</text>
+    </view>
+    <view class='item flex-y' data-index='{{3}}' bindtap='navSwitch' wx:if="{{showModel.model2}}">
+      <image src='/images/icon_main_01.png'></image>
+      <text>餐饮外卖</text>
+    </view>
+    <view class='item flex-y' data-index='{{1}}'  bindtap='navSwitch' wx:if="{{showModel.model3}}">
+      <image src='/images/shop.png'></image>
+      <text>店铺街</text>
+    </view>
+    <view class='secondNav flex-x' animation="{{animationData}}">
+      <view class='item flex-y' data-index='{{4}}' bindtap='navSwitch' wx:if="{{showModel.model4}}">
+        <image src='/images/icon_qq.png'></image>
+        <text>取快递</text>
+      </view>
+      <view class='item flex-y' data-index='{{5}}' bindtap='navSwitch' >
+        <image src='/images/icon_jq.png'></image>
+        <text>寄快递</text>
+      </view>
+      <view class='item flex-y' bindtap='closeSccond'>
+        <image src='/images/icon_closeRow.png'></image>
+      </view>
+    </view>
+  </view>
+  
+</view>
+<!-- 灰色背景 -->
+<cover-view class='bg' wx:if="{{hasvoucher}}"></cover-view>
+<!-- 弹出领劵 -->
+  <cover-view class='dpjWrap' wx:if="{{hasvoucher}}">
+    <cover-view  class='close'>
+        <cover-image src='/images/close.png' catchtap='closevoucher'/>
+      </cover-view>
+    <cover-view class='voucher' >
+      <cover-view class='voucherTitle'>恭喜您收到一个代跑劵</cover-view>
+      <cover-view class='contentWrap flex-x'>
+        <cover-view class='flex-y  tro'>
+          <cover-view>{{voucher.name}}</cover-view>
+          <cover-view wx:if="{{voucher.is_type==0}}">无时间限制</cover-view>
+          <cover-view wx:if="{{voucher.is_type==1}}">有限期：{{voucher.useendtime}}</cover-view>
+          <cover-view wx:if="{{voucher.run_type==0}}">无限制，可通用</cover-view>
+          <cover-view wx:if="{{voucher.run_type==3}}">仅限于超市代购</cover-view>
+          <cover-view wx:if="{{voucher.run_type==1}}">仅用于快递跑腿</cover-view>
+          <cover-view wx:if="{{voucher.run_type==2}}">仅用于餐饮外卖跑腿</cover-view>
+
+        </cover-view>
+      </cover-view>
+      <cover-view class='lookMore'  bindtap='viewJl'>查看领取记录>></cover-view>
+    </cover-view>
+  </cover-view>
+
+
+
+<!-- <template is="public-lj" data="{{hasvoucher,voucher}}"/>  -->

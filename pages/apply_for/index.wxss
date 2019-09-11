@@ -1,0 +1,63 @@
+.lists{
+  width: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.list{
+  color: #333;
+  padding-bottom: 8rpx;
+  font-size: 32rpx;
+  height:80rpx;
+  line-height:80rpx; 
+  box-sizing: border-box;
+  border-bottom: 1px solid #f2f2f2;
+}
+.fl{
+  float: left;
+}
+input{
+  margin-left: 20rpx;
+  position: relative;
+  top: 16rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  width: 200px;
+}
+.word{
+  color: #333;
+  font-size: 32rpx;
+  line-height: 2;
+  display: block;
+  margin: 20rpx 0 10rpx 0;
+}
+.zheng{
+  width: 95%;
+  height: 360rpx;
+  border: 1px solid #ccc;
+  border-radius: 20rpx;
+  margin:0 auto;
+  overflow: hidden;
+}
+.zheng .jia{
+  width: 120rpx;
+  height: 120rpx;
+  display: block;
+  margin: 80rpx auto 20rpx;
+}
+.zheng text{
+  width: 100%;
+  font-size: 40rpx;
+  color: #ccc;
+  display: block;
+  text-align: center;
+}
+.mart{
+  margin-top: 20rpx;
+}
+.btn{
+  margin: 40rpx auto;
+}
+.btn button{
+  background: #06bebc;
+  color: #fff;
+}

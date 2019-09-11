@@ -19,17 +19,18 @@
 <template name="public-footer">
   <view class='bottom_pay flex-between'>
     <view>
-      <text class=''>配送费：</text>
+      <text class=''>总计：</text>
       <text class='price'>￥</text>
       <!-- 快递 -->
-      <text class='fee price' wx:if="{{footerType==0 && num ==1 && able_isvip}}">{{fee}}</text>  
+      <!-- <text class='fee price' wx:if="{{footerType==0 && num ==1 && able_isvip}}">{{fee}}</text>  
       <text class='fee price' wx:elif="{{footerType==0 && num ==1}}">{{fee * hasdiscount}}</text>  
       <text class='fee price' wx:elif="{{footerType==0 && num >1}}">{{ money }}</text>  
       <text class='fee price' wx:elif="{{footerType==1 && able_isvip}}">{{addMoney + fee || 0}}</text>
-      <text class='fee price' wx:else="{{footerType==1}}">{{addMoney + fee * hasdiscount || 0}}</text>
+      <text class='fee price' wx:else="{{footerType==1}}">{{addMoney + fee * hasdiscount || 0}}</text> -->
+      <text class='fee price' wx:if="{{isvip==0}}">{{(fee * hasdiscount) + (addMoney || 0)}}</text> 
+      <text class='fee price' wx:else>{{fee + (addMoney || 0)}}</text> 
       <text wx:if="{{run_id}}" class='price' style='font-size:9pt;margin-left:30rpx;'>已使用代跑劵</text>
-      <!-- <text wx:if="{{able_isvip}}" class='price' style='font-size:9pt;margin-left:30rpx;'>会员折扣价</text> -->
-      <text wx:if="{{(!run_id || !able_isvip) && !isvip && hasdiscount && hasdiscount != 1}}" class='price' style='font-size:9pt;margin-left:30rpx;'>配送费{{hasdiscount *10 }}折</text>
+      <!-- <text wx:if="{{(!run_id || !able_isvip) && !isvip && hasdiscount && hasdiscount != 1}}" class='price' style='font-size:9pt;margin-left:30rpx;'>配送费{{hasdiscount *10 }}折</text> -->
     </view>
     <view class='go_pay flex-center' wx:if="{{paying}}" style='color:#fff;background:#ccc;'>
       支付中

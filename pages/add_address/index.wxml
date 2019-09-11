@@ -1,0 +1,40 @@
+<view class='userinfo'>
+  <label class='yiban felx-x'>
+    <text class='fl' space="ensp">联 系 人：</text>
+    <input type='text' class='text_input' placeholder='请输入联系人姓名' bindinput='input_consignee' value='{{consignee || ""}}'/>
+  </label>
+  <label class='yiban felx-x'>
+    <text class='fl'>联系电话：</text>
+    <input type='text' class='text_input' placeholder='请输入联系人电话' bindinput='input_mobile' type='number' value='{{mobile || ""}}'/>
+  </label>
+  <label class='xuanze'>
+    <view >
+      <text class='fl'>所在地址：</text>
+      <view class="tui-picker-content flex-x">
+        <picker bindchange="changeMultiPicker" mode = "multiSelector" bindcolumnchange="bindcolumnchange" value="{{multiIndex}}"range="{{multiArray}}" style='flex:1'>
+          <view class="tui-picker-detail" style='padding-left:10rpx;' wx:if="{{address}}">
+            {{address}}
+          </view>
+          <view class="tui-picker-detail" style='color:#888;padding-left:10rpx;' wx:else>
+            <!-- {{p_region_name|| ''}} {{s_region_name || ''}} -->
+            请选择地址
+          </view>
+        </picker>
+        <image src='/images/icon-jiantou-r.png' class='rightRow'></image>
+      </view>
+      
+    </view>
+    
+  </label>
+  <label class='detail felx-x'>
+    <text class='fl' space="ensp">门 牌 号：</text>
+    <input type='text' placeholder='例:12号楼12107室' class='text_input' bindinput='input_address_info' value='{{address_info || ""}}' style='padding-left:10rpx;'/>
+  </label>
+  <label class='yiban_bottom'>
+    设置为默认地址<switch checked="{{default_address}}" bindchange="switchChange" style='float:right;'/>
+  </label>
+</view>
+<view class='save' bindtap='add_addr' url="/pages/address_list/index">保存</view>
+
+
+

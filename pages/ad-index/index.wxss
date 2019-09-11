@@ -1,0 +1,62 @@
+/**index.wxss**/
+page{
+  background: #f2f2f2;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right
+}
+.top_images{
+  width: 100%;
+}
+.top_images image{
+  width: 100%;
+}
+.list{
+  margin:5rpx 15rpx;
+  box-sizing: border-box;
+}
+.list{
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin-bottom: 10rpx;
+  box-sizing: border-box;
+}
+.tx{
+  width: 140rpx;
+  height: 140rpx;
+  background: #fff;
+}
+.tx image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3rpx solid #ccc;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.word{
+  margin-left: 20rpx;
+  width: 520rpx;
+}
+.title{
+  font-size: 34rpx;
+  color: #333;
+  line-height: 1.4;
+}
+.word_ins{
+  display: block;
+  color: #666;
+  font-size: 26rpx;
+  line-height: 1.4;
+}
+.lianghang{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  overflow: hidden;
+}

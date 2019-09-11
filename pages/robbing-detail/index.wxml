@@ -1,0 +1,145 @@
+<import src="../public-section/public-section.wxml"/>
+<view class='container'>
+  <view class='header flex-x'>
+    <view>
+      <image src='{{taskObj.headimgurl}}'></image>
+    </view>
+    <view class='font-size:30rpx;'>
+      <text>{{taskObj.nickname}}</text>
+    </view>
+    <view style='flex:1;text-align:right;padding-right:30rpx;'>
+        <text wx:if="{{taskObj.order_type==0}}">帮送</text>
+        <text wx:if="{{taskObj.order_type==1}}">帮取</text>
+        <text style='margin-left:15rpx;color:#F76E36'>{{taskObj.goods_type}}</text>
+    </view>
+  </view>
+  <!-- 跑腿人员的联系方式 -->
+  <view class='runManInfo flex-x' wx:if="{{types =='is_my' && taskObj.express_user}}">
+    <image src='/images/icon_paotui.png' style='margin-left:35rpx;'></image>
+    <text style='margin-left:20rpx;'>{{taskObj.express_user}}</text>
+    <text style='flex:1;text-align:right;margin-right:35rpx;' bindtap='callMe'>联系电话：{{taskObj.express_mobile}}</text>
+  </view>
+
+  <view style='height:15rpx;background:#f2f2f2' wx:if="{{types!='is_my' || status<1}}"></view>
+  <!-- 进度 -->
+  <view class='task-progress flex-x'>
+    <view class='line-progress'>
+      <view class='high-line-progress' animation="{{animationData}}"></view>
+    </view>
+    <block wx:for="{{progress_status}}" wx:key="{{index}}">
+      <view class='progress-status-item flex-y'>
+        <text class='progress-status-title text_color {{index <= status ? "high-color" :"" }}'>{{item.title}}</text>
+        <view class='progress-status-pic'>
+          <image src='/images/progress_icon_01.jpg' wx:if="{{index <= status}}"></image>
+          <image src='/images/progress_iocn_02.jpg' wx:else></image>
+        </view>
+        <!-- <text class='progress-status-title text_color {{index <= status ? "high-color" :"" }}'>{{item.time}}</text> -->
+      </view>
+    </block>
+    
+  </view>
+  <!-- 费用&&距离 -->
+  <view class='f-j flex-x'>
+    <view class='j-section flex-y'>
+      <text class=''>{{taskObj.distance_detail}}km</text>
+      <text class='text_color'>此单路程</text>
+    </view>
+
+    <view class='f-section flex-y'>
+      <text class='price'>￥{{taskObj.shipping_fee}}</text>
+      <text class='text_color'>配送费</text>
+    </view>
+  </view>
+  <view style='height:15rpx;background:#f2f2f2'></view>
+  <!-- 订单配送信息 -->
+    <view class='order-addr-info flex-x'>
+    <view class='left-tagging flex-y' >
+      <image src='/images/qu.png'></image>
+      <view class='link-line flex-x' >
+        <view></view>      
+      </view>
+      <image src='/images/song.png'></image>
+    </view>
+    <view class='right-info flex-y'>
+      <view class='s-addr flex-y'>
+        <view class='flex-x'>
+          <view class='addr-info'>{{taskObj.shipment_address+taskObj.shipment_detail_address}}</view>
+          <image src='/images/icon_go_addr.png' bindtap='go_addr' data-addr='{{taskObj.shipment_address_longlat}}'></image>
+          <image src='/images/contactPhone.png' bindtap='callPhone' data-phone='{{taskObj.shipment_phone}}' style='margin-left:25rpx'></image>
+        </view>
+        <view class='flex-x'>
+          <text style='margin-right:15rpx'>{{taskObj.shipment_name}}</text>
+          <text>{{taskObj.shipment_phone}}</text>
+        </view>
+      </view>    
+      <view class='distance text_color'>路程{{taskObj.distance_detail}}km</view>
+      <view class='e-addr flex-y'>
+        <view class='flex-x'>
+          <view class='addr-info flex-x' ><text>{{taskObj.service_address+taskObj.service_detail_address}}</text></view>
+          <image src='/images/icon_go_addr.png' bindtap='go_addr' data-addr='{{taskObj.service_address_longlat}}'></image>
+          <image src='/images/contactPhone.png' bindtap='callPhone' data-phone='{{taskObj.delivery_phone}}' style='margin-left:25rpx'></image>
+        </view>
+        <view class='flex-x'>
+          <text style='margin-right:15rpx'>{{taskObj.delivery_name}}</text>
+          <text>{{taskObj.delivery_phone}}</text>
+
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='height:15rpx;background:#f2f2f2'></view>
+  <!-- 订单信息 -->
+  <view class='order-info-section'>
+    <view class='info-floor flex-x'>
+      <text class='text_color'>订单号</text>
+      <text>{{taskObj.order_sn}}</text>
+    </view>
+    <view class='info-floor flex-x'>
+      <text class='text_color'>下单时间</text>
+      <text>{{taskObj.add_time}}</text>
+    </view>
+    <view class='info-floor flex-x'>
+      <text class='text_color'>订单状态</text>
+      <text>{{taskObj.status==5?"已完成":taskObj.status==0? "待接单":taskObj.status==1?"已接单":taskObj.status==2?"已取货":"进行中"}}</text>
+    </view>
+    <view class='info-floor flex-x'>
+      <text class='text_color'>服务要求</text>
+      <text class='text_color' wx:if="{{!taskObj.remark}}">无要求</text>
+      <text wx:else>{{taskObj.remark}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- //判断是 “我的” 的订单  --- 是否显示底部 -->
+<view wx:if="{{types == 'myrobbing'}}">  
+  <view class='robbing' bindtap='takeGoods' wx:if="{{status==1}}">
+    确认取货
+  </view>
+  <view class='robbing' bindtap='showModel' wx:if="{{status==2}}">
+    确认完成
+  </view>
+</view>
+
+<view wx:if="{{types == 'list'}}">
+  <view class='robbing' bindtap='robbing' wx:if="{{taskObj.status==0}}">
+    {{tip?tip:"立即抢单"}}
+  </view>
+  <view class='robbing' wx:if="{{taskObj.status==1 || taskObj.status==2}}">
+    进行中
+  </view>
+  <view class='robbing' wx:if="{{taskObj.status==5}}">
+    已完成
+  </view>
+</view>
+
+<view class='inputModel' wx:if='{{showModel}}'>
+  <text class='model-title'>输入完成验证码</text>
+  <input class='model-body' placeholder='输入验证码' value='{{receipt_code}}' bindinput='receipt_code' type='number'></input>
+  <view class='model-footer'>
+    <text class='text_color' bindtap='cancle'>取消</text>
+    <text class='price' bindtap='complete'>完成</text>
+  </view>
+</view>
+<view class='bg' wx:if='{{showModel}}'></view>
+
+<import src="../public-section/public-section.wxml"/>

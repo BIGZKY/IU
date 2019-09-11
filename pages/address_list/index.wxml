@@ -1,0 +1,33 @@
+
+<block wx:for="{{addr_list}}" wx:key="{{index}}">
+  <view class='list' bindtap='select' data-id='{{item.id}}' data-index='{{index}}'>
+    <view class='info'>
+      <view class='fl'>{{item.consignee}}</view>
+      <view class='fr'>{{item.mobile}}</view>
+      <view style='clear:both'></view>
+    </view>
+    <view class='address_detail flex-x'>
+      <text class='default' wx:if="{{item.default_address==1}}">默认</text>
+      <!-- <image src='/images/default.png' wx:if="{{item.default_address==1}}" style='height:14px;width:28px;margin-right:25rpx;'></image> -->
+      <text style='flex:1;'>{{item.address+item.address_info}}</text>
+      
+      <text style='float:right' data-id='{{item.id}}' catchtap='show_option'>编辑</text>
+    </view>
+  </view>
+</block>
+
+<!-- <view class='btn'>
+  <button class='add_address'>添加新地址</button>
+</view> -->
+
+<navigator class='save' url="../add_address/index">
+  新增地址
+</navigator>
+<view class='options' wx:if="{{is_show}}">
+  <view bindtap='update' class='update'>更新</view>
+  <view bindtap='addr_delete'>删除</view>
+</view>
+<view class='bg' wx:if="{{is_show}}" bindtap='bg_click'></view>
+<view wx:if="{{no_data}}" class='noData_tip'>
+  还没有地址信息，快去添加吧^__^
+</view>

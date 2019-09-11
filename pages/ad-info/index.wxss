@@ -1,0 +1,65 @@
+/**index.wxss**/
+page{
+  background: #fff;
+}
+.fl{
+  float: left;
+}
+
+.top_images{
+  width: 100%;
+}
+.top_images image{
+  width: 100%;
+}
+.lists{
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+}
+
+.title{
+  font-size: 34rpx;
+  color: #333;
+  line-height: 1.6;
+  margin-top: 40rpx;
+  display: block;
+}
+.word_ins{
+  display: block;
+  color: #666;
+  font-size:28rpx;
+  line-height: 1.6;
+}
+
+.footer{
+  width: 100%;
+  height: 100rpx;
+  background: #06bebc;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+.footer .sbt{
+  text-align: center;
+  line-height: 100rpx;
+  border: none;
+  background: #06bebc;
+  font-size: 30rpx;
+  color: #fff;
+  height: 100%;
+}
+.section{
+  border-bottom:1px solid #ccc;
+  height:95rpx;
+
+}
+.section input,.section .enroll_money{
+  margin-left: 20rpx;
+  flex: 1;
+  text-align: right;
+}
+
+radio{
+  margin-left: 20rpx;
+}

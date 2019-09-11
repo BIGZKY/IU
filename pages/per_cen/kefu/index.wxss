@@ -1,0 +1,34 @@
+/* pages/per_cen/kefu/index.wxss */
+.wrap,page{
+  background: #f2f2f2;
+}
+.title{
+  color: #888;
+  padding: 25rpx;
+
+}
+.floor{
+  color: #555;
+  height: 43px;
+  padding:0 20rpx;
+  background: #fff;
+  margin-bottom: 25rpx;
+}
+.floor image{
+  width:46rpx;
+  height:46rpx;
+  
+}
+.floor view text,.floor button text{
+  margin-right: 35rpx;
+  color: #888;
+}
+button{
+  padding: 0;
+  background: #fff;
+  margin:0;
+  display: inherit;
+}
+button::after{
+  border: none;
+}

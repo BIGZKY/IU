@@ -1,0 +1,74 @@
+/* pages/per_cen/delivery_list/index.wxss */
+.navClass{
+  width: 80%;
+  background: #fff;
+  height: 65rpx;
+  justify-content: space-around;
+  margin:15px auto;
+  /* box-shadow: 0px 0px 8rpx 2rpx #ff5703; */
+} 
+.navClass view{
+  flex: 1 0 33.333%;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 65rpx;
+  color:#555;
+  border:3rpx solid #06BEBC;
+  background: #fff
+}
+.navClass view:nth-child(2){
+  border-left: none;
+  border-right: none;
+}
+.navClass view.navOn{
+  color: #fff;
+  background: #06BEBC;
+}
+
+
+.deliveryWrap{
+  box-sizing: border-box;
+  padding: 0 25rpx;
+  margin-bottom:30rpx;
+
+}
+.delivery{
+  margin-top: 30rpx;
+  box-shadow: 0 0 15rpx 6rpx #e2e2e2;
+
+}
+.floor{
+  margin-bottom:25rpx;
+}
+.wrapTitle{
+  border-bottom: 1rpx solid #e2e2e2;
+  padding:20rpx 0;
+
+}
+.orderInfoWrap{
+  padding:0 20rpx;
+  
+}
+.courierInfoWrap{
+  padding:0 20rpx;
+  box-shadow: 0 -3rpx 15rpx 6rpx #e2e2e2;
+  margin-top:15rpx;
+  padding-bottom: 5rpx;
+}
+.info{
+  flex: 1;
+  align-items: flex-end;
+  
+}
+.info>view text:last-child{
+   margin-left: 20rpx;
+}
+.delivery .orderInfo{
+  align-items: flex-start;
+}
+.info>text{
+  margin-top: 10rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,17 @@
+<view class='pay'>
+  支付方式
+</view>
+<view class='readio' style='border-bottom:1px solid #f2f2f2;'>
+  <radio class="radio">
+  <image src="/images/pay2.png" style='width:46rpx;height:46rpx;margin-left:20rpx;margin-right:10rpx;position:relative;top:10rpx;'></image>
+      <text>微信支付</text>
+  </radio>
+</view>
+
+<view class='shifu'>
+  实付金额 <text>￥299.0</text>
+</view>
+
+<view class='btn'>
+  <button>立即支付</button>
+</view>

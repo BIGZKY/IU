@@ -1,0 +1,50 @@
+.container{
+  background: #fff;
+}
+.headerTitle{
+  font-size: 36rpx;
+  font-weight: 800;
+  margin:30rpx;
+  margin-left:42px;
+
+}
+.floor{
+  height: 100rpx;
+  border-bottom: 1px solid #f2f2f2;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  width: 96%;
+  margin: 0 auto;
+}
+.addr{
+  flex: 1;
+}
+.rightRow image{
+  height:28rpx;
+  width:18rpx;
+  
+}
+.confirm{
+  width: 90%;
+  height: 85rpx;
+  background: #06BEBC;
+  color: #fff;
+  text-align: center;
+  line-height: 85rpx;
+  border-radius: 10rpx;
+  margin: 0 auto;
+  margin-top:80rpx;
+  font-size:28rpx;
+
+}
+.imgWrap{
+  width: 32px;
+}
+.img{
+  height:45rpx;
+  width:45rpx;
+
+}
+.inputWrap{
+  width: 100%;
+}

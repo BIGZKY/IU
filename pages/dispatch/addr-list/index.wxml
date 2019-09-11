@@ -1,0 +1,17 @@
+<view class="container">
+  <view class='search-wrap flex-x'>
+    <image src="/images/icon_search.png" class='search-icon'></image>
+    <input class='search-input' placeholder='输入关键字' placeholder-style='color:#888;' bindinput='bindinput'></input>
+  </view>
+  <view class='addr-list-wrap'>
+    <view class='title'>请从下方列表选择</view>
+    <view class='addr-list'>
+      <view wx:for="{{addrList}}" wx:key="{{index}}" class='item' bindtap='chooseAddr' data-info="{{item.title}}" data-location="{{item.location}}" data-city='{{item.ad_info}}'>
+        <view class='item_title'>{{item.title}}</view>
+        <view class='item_detail'>
+          <text>{{item.ad_info.city}}</text>-<text>{{item.ad_info.district}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

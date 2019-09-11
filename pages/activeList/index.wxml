@@ -1,0 +1,13 @@
+<view>
+  <navigator class='item flex-x' wx:for="{{activeList}}" wx:key="{{index}}" data-id='{{item.adver_id}}' url='../ad-details/index?id={{item.adver_id}}'>
+    <view class='pic'>
+      <image src='{{rootUrl}}{{item.shop_img}}' catchtap='lookImage'  data-img='{{rootUrl+item.shop_img}}'></image>
+    </view>
+    <view class='describe flex-y'>
+      <view class='title'>{{item.adver_name}}({{item.adver_address}})</view>
+      <view class='detail' wx:if="{{item.shop_correlation_id!=0}}">购买成功即送 <text style='color:#06bebc;font-size:36rpx'>{{item.adver_preferential}}</text> 天预约配送服务</view>
+      <view class='detail' wx:if="{{item.shop_correlation_id==0}}">报名成功即送 <text style='color:#06bebc;font-size:36rpx'>{{item.adver_preferential}}</text> 天预约配送服务</view>
+      <view class='time'>{{item.adver_time}}</view>
+    </view>
+  </navigator>
+</view>

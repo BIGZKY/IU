@@ -1,0 +1,123 @@
+<!--pages/order-management/order-management.wxml-->
+<view style='background:#f2f2f2;' class='container'>
+  <view class="swiper-tab flex-x">
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="tabNav" >自由单</view>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}} " data-current="1" bindtap="tabNav">宿舍单</view>
+  </view>
+
+  <!-- 实时 -->
+  <scroll-view class='free_delivery_wrap' style='flex:1' scroll-y="true" bindscrolltolower="bindscrolltolower" wx:if="{{currentTab==0}}">
+    <view class='content-wrap'>
+      <block wx:for="{{taskList}}" wx:key="{{index}}">
+        <!-- item start -->
+        <view class='task-item'>
+          <!-- item头部 -->
+          <view class='task-item-header flex-between'>
+            <view class='publish-info flex-x'>
+              <view><text>订单编号: </text><text style='margin-left:10rpx;'>{{item.order_sn}}</text></view>
+            </view>
+            <view><text style='color:#888'>{{item.add_time}}</text></view>
+            <!-- task 状态 -->
+          </view>
+          <!-- task 内容 -->
+          <view class='task-info flex-x'>
+            <view class='task-pic flex-y'>
+              <image src='{{item.avatar_img}}'></image>
+              <text>{{item.user_name}}</text>
+            </view>
+            <!-- task 详细内容 -->
+            <view class='task-detail-info flex-y'>
+              <view class='flex-x'>
+                <text>任务: </text>
+                <text style='margin-left:10rpx;'>送{{item.goods_type}}</text>
+              </view>
+              <view class='flex-x'>
+                <text>服务要求: </text>
+                <text style='margin-left:10rpx;' class='note' wx:if="{{item.remark}}">{{item.remark}}</text>
+                <text style='margin-left:10rpx;color:#888' wx:else>无信息</text>
+              </view>
+              <view class='flex-x'>
+                <text>佣金: </text> 
+                <text style='margin-left:10rpx;'>￥{{item.shipping_fee}}</text>
+              </view>
+            </view>
+
+          </view>
+          <!-- 距离显示 -->
+          <view class='distance-wrap flex-between'>
+            <!-- 起点 -->
+            <view class='startAddr flex-y' bindtap='mapView' data-loglat='{{item.shipment_address_longlat}}'>
+              <view class='flex-x'>
+                <image src='/images/icon_addr.png' class='distance-icon'></image>
+                <text class='addr'>{{item.shipment_address+item.shipment_detail_address}}</text>
+              </view>
+              <!-- <view class='distance'>距您{{item.d}}km</view> -->
+            </view>
+            <!-- 链接线 -->
+            <view class='link flex-center'>
+              <view class='line'></view>
+              <image src='/images/icon-riding.png'></image>
+              <view class='line'></view>
+            </view>
+            <!-- 终点 -->
+            <view class='endAddr flex-y' bindtap='mapView' data-loglat='{{item.service_address_longlat}}'>
+              <view class='flex-x'>
+                <image src='/images/icon-endAddr.png' class='distance-icon'></image>
+                <text class='addr'>{{item.service_address+item.service_detail_address}}</text>
+              </view>
+              <!-- <view class='distance'>距取件地{{item.distance_detail}}km</view> -->
+            </view>
+          </view>
+          <!-- task  操作 -->
+          <navigator class='opreation flex-x' url='../robbing-detail/index?id={{item.order_id}}&express_id={{item.express_id}}&types=list'>
+            <text class='robbing' wx:if="{{item.status == 0}}" style='background:#06bebc'>去抢单</text>
+            <text class='robbing' wx:if="{{item.status == 1 || item.status == 2}}" style=''>进行中</text>
+            <text class='robbing' wx:if="{{item.status == 5}}" style='background:#41B035'>已完成</text>
+          </navigator>
+        </view>
+        <!-- item over -->
+      </block>
+      
+    </view>
+   
+    <view class='moreDataTip {{hasMoreData?"":"hidden"}}' wx:if="{{moreDataTip}}">上拉加载更多数据……</view>
+    <view class='noMoreDataTip {{hasMoreData?"hidden":""}}' wx:if="{{moreDataTip}}" >—  没有了哦^_^  —</view>
+    <view class='noDataSection flex-y' wx:if="{{taskList.length==0}}" >
+      <image src='/images/79994968817713663.png'></image>
+      <text>暂无相关数据</text>
+    </view>
+  </scroll-view>
+    <!-- 专送 --> 
+  <scroll-view class='free_delivery_wrap' style='flex:1' scroll-y="true"  wx:if="{{currentTab==1}}"> 
+    <view class='spec_delivery_wrap flex-x' >
+      <block wx:for="{{spec_delivery_list}}" wx:key="{{index}}">
+        <navigator class='spec_delivery_item' url='./spec-detail/index?id={{item.region_id}}&zs_type={{currentTab}}'>
+          <view class='flex-x'>
+            <image src='/images/icon_go_addr.png'></image>
+            <text>{{item.region_name}}</text>
+          </view>
+          <view class='flex-x'>
+            <image src='/images/icon_wait_receive.png'></image>
+            <text>{{item.nums}}单待配送</text>
+          </view>
+        </navigator>
+      </block>
+      <!-- <view class='noData_tip' wx:if="{{noData}}">
+        还没有订单哦^_^
+      </view> -->
+    </view>
+    <view class='noDataSection flex-y' wx:if="{{spec_delivery_list.length==0}}" >
+      <image src='/images/79994968817713663.png'></image>
+      <text>暂无相关数据</text>
+    </view>
+  </scroll-view>
+
+
+</view>
+
+
+
+
+
+
+

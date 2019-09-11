@@ -1,0 +1,39 @@
+<view>
+    <view class='pinList' autoplay interval="3000" >
+      <block  wx:for="{{tjShop}}" wx:key="{{index}}" >
+          <view data-id='{{item.id}}' data-name='{{item.shop_name}}' bindtap='enterShop'  class="swiperItem">
+            <view class=''>{{item.shop_name}}</view>
+            <view class=''>{{item.shop_dec}}</view>
+            <view class='yybtn' bindtap='yy' data-type='{{1}}' data-id='{{item.id}}' data-index='{{index}}' wx:if="{{!item.hasyy}}">预约</view>
+            <view class='yybtn_ed' bindtap='yy' data-type='{{2}}' data-id='{{item.id}}' data-index='{{index}}' wx:else>已预约</view>
+            <view class='pruduct-list flex-x'>
+              <view class='product flex-y' wx:for="{{item.food}}" wx:key="{{index}}" wx:for-item="_item">          
+                <view class='product-img' style='margin-bottom:5rpx;'>
+                  <image src='{{rootUrl+_item.food_logo}}' lazy-load='true'></image>
+                </view>
+                <view class='name ' style='width:100%'>
+                  <text class='note'>{{_item.food_name}}</text>
+                </view>
+              </view>
+
+            </view>
+          </view>
+      </block>
+      
+    </view>
+</view>
+
+<!-- 填写联系方式 -->
+<view class='inputModel' wx:if='{{showModel}}'>
+  <form bindsubmit="formSubmit">
+    <text class='model-title'>编辑资料</text>
+    <input class='model-body' placeholder='输入姓名' value='{{}}' name="name"></input>
+    <input class='model-body' placeholder='输入手机号' value='{{}}' name="phone"></input>
+    <input class='model-body' placeholder='输入预约时间(例：11-12)' value='{{}}' name="time"></input>
+    <view class='model-footer'>
+      <button class='text_color' bindtap='cancle'>取消</button>
+      <button class='price' formType="submit">完成</button>
+    </view>
+  </form>
+</view>
+<view class='bg'  wx:if='{{showModel}}'></view>

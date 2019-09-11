@@ -1,0 +1,132 @@
+.top_nav{
+  width:100%;
+  justify-content:space-between;
+  padding: 20rpx 30rpx;
+  box-sizing:border-box;
+  background: #fff;
+}
+
+.nav_text{
+  font-size: 24rpx;
+  margin-top:5rpx; 
+}
+
+
+.section{
+  position: fixed;
+  left: 0;
+  bottom: 0px;
+  z-index: 200;
+  width: 100%;
+  height: 325px;
+  opacity:1;
+  box-sizing:border-box;
+  padding:20rpx;
+  background: #f4f4f4;
+  transform: translateY(345px);
+  overflow-y: scroll;
+
+}
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+.able_text{
+  color: #eb3546;
+  width: 100%;
+}
+.tip_text{
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+.methods .selected{
+  background: #06bebc;
+  color: #fff;
+  border-color: #06bebc;
+}
+.bottom_pay{
+  width: 100%;
+  position: fixed;
+  height: 100rpx;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  padding-left: 20rpx;
+}
+.fee{
+  font-size: 42rpx;
+}
+.go_pay{
+  background: #06bebc;
+  color:#fff;
+  height: 100%;
+  width: 200rpx;
+  font-size:28rpx;
+}
+.floor{
+  height: 95rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+  background: #fff;
+  padding: 0 20rpx;
+}
+
+.dpitem{
+  height: 190rpx;
+  background: #fff;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 0px 7rpx 4rpx #e2e2e2;
+  color: #fe753e;
+  line-height:66rpx;
+}
+.dpitem:first-of-type{
+  margin-top: 0px;
+}
+.dpitem-left{
+  width: 28%;
+  line-height: 152rpx;
+  text-align: left;
+  color: #06bebc;
+  font-size: 30rpx;
+  padding-left: 40rpx;
+  box-sizing: border-box;
+}
+.dpitem-right{
+  box-sizing: border-box;
+  width: 72%;
+  height: 100%;
+  padding: 25rpx 25rpx 25rpx 0;
+}
+.share,.time{
+  font-size: 26rpx;
+}
+
+.dpitem-right-t{
+  align-items: flex-start;
+}
+.dpitem .rule{
+  border-top: 1px solid  #e2e2e2;
+  line-height: 62rpx;
+  font-size: 24rpx;
+  color: #888;
+}
+
+.dpSelected{
+  background: #06bebc;
+}
+.dpSelected .dpitem-left{
+  color: #fff;
+
+}
+.dpSelected .time,.dpSelected .share{
+  color: #fff;
+}
+.tip{
+  flex: 1;
+  float: right;
+}
+

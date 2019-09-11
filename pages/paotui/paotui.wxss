@@ -1,0 +1,52 @@
+/* pages/paotui/paotui.wxss */
+.all{
+  font-size: 28rpx;
+  color: #222;
+}
+.finish{
+  width: 100%;
+  height: 60rpx;
+  padding: 24rpx;
+ 
+}
+.finish-img{
+  float: left;
+}
+.finish-test{
+  float: left;
+  margin-left: 20rpx;
+}
+.title{
+  line-height: 75rpx;
+  height: 75rpx;
+  padding-left:25rpx; 
+  vertical-align: middle;
+  background: #f2f2f2;
+}
+.wenjian{
+  padding: 20rpx 25rpx;
+}
+.xinxi{
+  margin-left: 25rpx;
+  height: 80rpx;
+  margin-bottom: 20rpx;
+}
+.xinxi image{
+  float: left;
+}
+.xinxi .fl{
+  margin-left: 20rpx;
+  padding-bottom: 16rpx;
+  float: left;
+  border-bottom: 1rpx solid #f2f2f2;
+  width: 620rpx;
+}
+.fee{
+  padding: 23rpx 0;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.fr{
+  float: right;
+}

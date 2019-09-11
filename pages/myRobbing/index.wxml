@@ -1,0 +1,68 @@
+<view class="container">
+
+  <view wx:if="{{types=='myrobbing'}}" style='width:100%;'>
+    <!-- 导航 --> 
+    <view class='navType flex-x'>
+      <view class='ongoing {{nav==1?"on":""}}' bindtap='switch' data-index='{{1}}'>自由单</view>
+      <view class='completed {{nav==5?"on":""}}' bindtap='switch' data-index='{{5}}'>宿舍单</view>
+    </view>
+    <!-- 分类 -->
+    <view class='navClass flex-x'>
+      <view class='ongoing {{navType==1?"navOn":""}}' bindtap='switchNav' data-index='{{1}}'>进行中</view>
+      <view class='completed {{navType==5?"navOn":""}}' bindtap='switchNav' data-index='{{5}}'>已完成</view>
+    </view>
+  </view>
+
+  <view wx:if="{{types=='is_my'}}" style='width:100%;margin-bottom:15px;'>
+    <view class='navType flex-x'>
+      <view class='ongoing {{navType==1?"on":""}}' bindtap='switchNav' data-index='{{1}}'>进行中</view>
+      <view class='completed {{navType==5?"on":""}}' bindtap='switchNav' data-index='{{5}}'>已完成</view>
+    </view>
+  </view>
+
+  <!-- 订单列表 -->
+  <scroll-view class='listWrap' scroll-y="true" bindscrolltolower="bindscrolltolower">
+    <view class='order-item' wx:for="{{order_list}}" wx:key="{{index}}">
+      <view class='item-header flex-x'>
+        <!-- <text wx:if="{{item.order_type==0}}" style='background:#ff5703'>帮送</text>
+        <text wx:else>帮买</text> -->
+        <text style='background:#ff5703'>{{item.goods_type}}</text>
+        <view class='flex-x'>
+          <text>{{item.order_sn}}</text>
+          <text class='price'>￥{{item.shipping_fee}}</text>
+        </view>
+      </view>
+      <view class='item-body'>
+        <view class='s-addr-section flex-x'>
+          <text>取:</text>
+          <text class='addr text_color'>{{item.service_address + item.service_detail_address}}</text>
+        </view>
+        <view class='e-addr-section flex-x'>
+          <text>送:</text>
+          <text class='addr text_color'>{{item.shipment_address + item.shipment_detail_address}}</text>
+        </view>
+      </view> 
+      <view class='item-footer flex-center'>
+        <navigator class='item-status' url='../robbing-detail/index?id={{item.order_id}}&express_id={{item.express_id}}&types={{types}}&status=1' hover-class='none'  wx:if="{{navType==1 && item.status == 0}}">
+          待接单
+        </navigator>
+        <navigator class='item-status' url='../robbing-detail/index?id={{item.order_id}}&express_id={{item.express_id}}&types={{types}}&status=1' hover-class='none'  wx:if="{{navType==1 && item.status == 1}}">
+          已接单
+        </navigator>
+        <navigator class='item-status' url='../robbing-detail/index?id={{item.order_id}}&express_id={{item.express_id}}&types={{types}}&status=1' hover-class='none'  wx:if="{{navType==1 && item.status == 2}}">
+          已取货
+        </navigator>
+        <navigator  wx:if="{{navType==5}}" class='item-status-completed' url='../robbing-detail/index?id={{item.order_id}}&express_id={{item.express_id}}&types={{types}}&status=5' hover-class='none'>
+          已完成
+        </navigator>
+      </view>
+    </view>
+    <view class='noDataSection flex-y' wx:if="{{noData}}">
+      <image src='/images/79994968817713663.png'></image>
+      <text>暂无相关数据</text>
+    </view>
+    <view class='moreDataTip {{hasMoreData?"":"hidden"}}' wx:if="{{moreDataTip}}">上拉加载更多数据……</view>
+    <view class='noMoreDataTip {{hasMoreData?"hidden":""}}' wx:if="{{moreDataTip}}" >—  没有了哦^_^  —</view>
+  </scroll-view>
+  <!-- <view class='footer'></view> -->
+</view>

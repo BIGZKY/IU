@@ -1,0 +1,49 @@
+page{
+  background: #f2f2f2;
+}
+.container{
+  background: #f2f2f2;
+}
+.search-wrap{
+  height: 65rpx;
+  margin: 20rpx auto;
+  width:92%;
+  background: #fff;
+}
+.search-icon{
+  height: 65rpx;
+  width: 65rpx;
+}
+.search-input{
+  font-size:10pt;
+  height:100%;
+  flex:1;
+}
+.title{
+  color: #ccc;
+  font-size: 8pt;
+  padding:30rpx;
+
+}
+.addr-list-wrap{
+  background: #fff;
+  width: 100%;
+  flex: 1;
+}
+.item_title{
+  color: #222;
+  font-size:9pt;
+}
+.item_detail{
+  margin-top: 15rpx;
+}
+.item_detail{
+  color: #888;
+}
+.item_detail text{
+  color: #888;
+  font-size:9pt;
+}
+.item{
+  padding: 15rpx 30rpx;
+}

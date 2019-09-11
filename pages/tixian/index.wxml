@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<view class="app">
+ 
+  <view class="paycons">
+
+    <view class="receivables">
+      <view class="title"><text>可提现金额</text><text style='margin:0 10rpx 0 10rpx;color:#EB3941'>{{userInfo.user_money || 0}}</text>元 <text class='all_pay' style='color:#71C671;text-align:right;flex:1;' bindtap='all_pay'>全部提现</text></view>
+      <view class="receinput">
+        <text>¥</text>
+        <input bindinput='money' value="{{money}}" type="digit" />
+      </view>
+    </view>
+    <!-- <view class='col'>
+      <text>提现银行：</text>
+      <input bindinput='bank_name' value="{{bank_name}}" type="text" />
+    </view> -->
+    <view class='col flex-x'>
+      <text>支付宝账号：</text>
+       <input bindinput='kahao' value="{{kahao}}" type="number" />
+    </view>
+    <view class="line"></view>
+    <button bindtap='payment'>提交申请</button>
+    <view class="kongbai"></view>
+  </view>
+  
+</view>

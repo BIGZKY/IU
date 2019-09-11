@@ -1,0 +1,63 @@
+/**index.wxss**/
+@import "/wxParse/wxParse.wxss";
+page{
+  background: #fff;
+}
+
+.fl{
+  float: left;
+}
+
+.top_images{
+  width: 100%;
+}
+.top_images image{
+  width: 100%;
+}
+.lists{
+  margin:5rpx 15rpx 150rpx;
+  box-sizing: border-box;
+}
+.word{
+  padding: 0 20rpx;
+  padding-bottom: 100rpx;
+}
+.floor{
+  
+  color: #222;
+  display: block;
+  margin-bottom: 25rpx;
+}
+.floor text{
+  font-size: 32rpx;
+}
+.word_ins{
+  display: block;
+  color: #666;
+  font-size:28rpx;
+  line-height: 1.6;
+}
+
+.footer{
+  width: 100%;
+  height: 100rpx;
+  background: #06bebc;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+.footer view{
+  text-align: center;
+  color: #fff;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  height: 100%;
+}
+.wxParse-p{
+  margin: 18rpx 0;
+  overflow: hidden;
+}
+.wxParse-inline {
+  color: #888;
+  
+}

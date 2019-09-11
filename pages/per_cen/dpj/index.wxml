@@ -1,0 +1,38 @@
+<import src="../../public-section/public-section.wxml"/>
+<view class="container">
+  <view class='header flex-between'>
+    <view class='flex-x header-left' >
+      <image src='/images/icon_gits.png'></image>
+      <text>推荐有奖</text>
+    </view>
+    <view class='flex-x header-right' >
+      <button open-type="share">分享可得代跑劵哟</button>
+    </view>
+    
+  </view>
+  <block wx:for="{{runList}}" wx:key="{{index}}">
+    <view class='item flex-x'>
+      <view class='item-left'>
+        {{item.name}}
+      </view>
+      <view class='item-right'>
+        <view class='flex-y item-right-t'>
+          <text class='share'>获得方式：{{item.mark}}</text>
+          <text class='time' >有效期：{{item.useendtime}}</text>
+        </view>
+        <view class='rule' wx:if='{{item.run_type==0}}'>通用劵</view>
+        <view class='rule' wx:if='{{item.run_type==1}}'>仅用于快递</view>
+        <view class='rule' wx:if='{{item.run_type==2}}'>仅用于餐饮外卖</view>
+        <view class='rule' wx:if='{{item.run_type==3}}'>仅用于超市代购</view>
+
+      </view>
+    </view>
+  </block>
+  <view wx:if="{{!runList.length}}" class='noData_tip'>暂无代跑劵</view>
+</view>
+
+<!-- 灰色背景 -->
+<view class='bg' wx:if="{{hasvoucher}}"></view>
+
+<!-- 弹出领劵 -->
+<template is="public-lj" data="{{hasvoucher,voucher}}"/> 

@@ -1,0 +1,17 @@
+<view class='wrap'>
+  <view class='title '>IU科技客服</view>
+  <view class='floor flex-between'>
+    <text>在线客服</text>
+    <button class='flex-x' hover-class='none' open-type="contact">
+      <text>点击图片发起会话</text>
+      <image src='/images/icon_huihua.png'></image>
+    </button>
+  </view>
+  <view class='floor flex-between'>
+    <text>客服热线</text>
+    <view class='flex-x' bindtap='call'>
+      <text>{{telephone}}</text>
+      <image src='/images/icon_zuoji.png'></image>
+    </view>
+  </view>
+</view>

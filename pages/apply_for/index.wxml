@@ -1,0 +1,38 @@
+<!--pages/shop_street/index.wxml-->
+<view class='lists'>
+  <form bindsubmit="formSubmit">
+    <view class='list'>
+        <text class='fl'>姓名：</text> <input placeholder="输入您的姓名" class='fl' name="name" />
+        <view style='clear:both'></view>
+    </view>
+      <view class='list'>
+        <text class='fl'>电话：</text> <input placeholder="输入您的手机号" class='fl' name="phone"  type='number'/>
+        <view style='clear:both'></view>
+    </view>
+    <view class='zhengjian'>
+        <text class='word'>身份证拍照</text>
+        <view class='zheng' bindtap='uploadPic' data-index="{{1}}">
+            <image src='{{img_01}}' wx:if="{{img_01}}" style='height:100%;width:100%;'></image>
+            <image src="/images/jia.png" wx:if="{{!img_01}}" class='jia'></image>
+            <text wx:if="{{!img_01}}">正面照</text>
+        </view>
+        <view class='zheng mart' bindtap='uploadPic' data-index="{{2}}">
+            <image src='{{img_02}}' wx:if="{{img_02}}" style='height:100%;width:100%;'></image>
+            <image src="/images/jia.png" wx:if="{{!img_02}}" class='jia'></image>
+            <text wx:if="{{!img_02}}">反面照</text>
+        </view>
+    </view>
+    <view class='zhengjian'>
+        <text class='word'>学生证拍照</text>
+        <view class='zheng' bindtap='uploadPic' data-index="{{3}}">
+            <image src='{{img_03}}' wx:if="{{img_03}}" style='height:100%;width:100%;'></image>
+            <image src="/images/jia.png" wx:if="{{!img_03}}" class='jia'></image>
+            <text wx:if="{{!img_03}}">有效页</text>
+        </view>
+    </view>
+    <view class='btn'>
+        <button  hover-class="other-button-hover" formType="submit"> 提交申请 </button>
+    </view>  
+  </form>
+</view>
+

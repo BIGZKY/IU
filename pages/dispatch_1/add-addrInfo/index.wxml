@@ -1,0 +1,48 @@
+<form bindsubmit='sbt'>
+  <view class='headerTitle'>
+    请补充完整地址信息
+  </view>
+  <view class='floor flex-x' style='border-bottom:none;'>
+    <view class='imgWrap'>
+      <image src='/images/dispatch_addr.png' class='img'></image>
+    </view>
+    <navigator class='flex-x' style='flex:1;height:100%;border-bottom:1px solid #f2f2f2' hover-class='none' url='../addr-list/index' >
+      <view class='addr' wx:if="{{floor}}">
+        <view>{{floor}}</view>
+        <view style='color:#888'>{{city}}</view>
+      </view>
+      <view class='addr' wx:else>
+        <view style='color:#888'>请选择地址</view>
+      </view>
+      <view class='rightRow'>
+        <image src='/images/icon-jiantou-r.png'></image>
+      </view>
+    </navigator>
+    
+  </view>
+  <view class='floor flex-x'>
+    <view class='imgWrap'>
+      <image ></image>
+    </view>
+    <view class='inputWrap'>
+      <input type='text' placeholder='请输入具体的楼层牌号' placeholder-style='color:#888' value='{{detailAddr}}' name="detailAddr"></input>
+    </view>
+  </view>
+  <view class='floor flex-x'>
+    <view class='imgWrap'>
+      <image src='/images/dispatch_phone.png' class='img'></image>
+    </view>
+    <view class='inputWrap'>
+      <input type='number' placeholder='请输入电话号码' placeholder-style='color:#888' value='{{tel}}' name="tel"></input>
+    </view>
+  </view>
+  <view class='floor flex-x'>
+    <view class='imgWrap'>
+      <image src='/images/dispatch_ren.png' class='img'></image>
+    </view>
+    <view class='inputWrap'>
+      <input type='text' placeholder='请输入姓名' placeholder-style='color:#888' value='{{name}}' name="name"></input>
+    </view>
+  </view>
+  <button formType="submit" hover-class='none' class='confirm'>确认</button>
+</form>

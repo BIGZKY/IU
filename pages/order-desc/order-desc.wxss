@@ -1,0 +1,194 @@
+/* pages/order-desc/order-desc.wxss */
+@import "../public-css/public-css.wxss";
+page{
+  height: auto;
+  background:#f2f2f2;
+  /* overflow: hidden; */
+  
+}
+.container{
+  height: auto;
+  background:#f2f2f2;
+
+}
+view{
+  color: #222;
+  font-size: 26rpx;
+  width: 100%;
+}
+.goods{
+  /* padding: 25rpx 0; */
+  /* flex:1; */
+  white-space: nowrap;
+  width: 80%;
+}
+.goods_list{
+  width:100%;
+  margin-bottom: 15rpx;
+  background: #fff;
+}
+.goods image{
+  display: inline-block;
+  border: 1px solid #c4c4c4; 
+  margin-left: 20rpx;
+  width:160rpx;
+  height:144rpx;
+}
+.jianshu{
+  width: 20%;
+  justify-content: center;
+}
+.hang{
+  height: 95rpx;
+  border-bottom:1px solid #f2f2f2;
+  /* box-sizing:border-box; */
+  width:100%;
+  background:#fff;
+  /* padding:0 20rpx; */
+}
+.go_pay{
+  background:#06bebc;
+  width:90%;
+  margin:30rpx auto;
+  color:white;
+  height:50px;
+  text-align:center;
+  line-height:50px;
+  font-size:30rpx;
+  border-radius:10rpx;
+}
+
+.tip_text{
+  color: #888;
+}
+.able_text{
+  color: #eb3546;
+  width: 100%;
+  text-align: right;
+}
+.item{
+  position: relative;
+  width:inherit;
+  display:inline-block;
+  margin-top: 10px;
+  margin-bottom:5px;
+
+}
+.tip_num{
+  width:18px;
+  height:18px;
+  background:red;
+  border-radius:50%;
+  text-align:center;
+  color:#fff;
+  position:absolute;
+  right:0;
+  top:-9px;
+}
+.carList{
+  width:100%;
+  height: 325px;
+  position: fixed;
+  transform: translateY(345px);
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 99;
+}
+.header{
+  height: 80rpx;
+  padding: 0 20rpx;
+  border-bottom: 1px solid #e3e3e3;
+  box-sizing:border-box;
+
+}
+.header text{
+  color: #9d9d9e;
+}
+.carList text{
+  font-size: 12pt;
+
+}
+.radio{
+  height: 52rpx;
+  width: 52rpx;
+}
+.car_goods_list{
+  flex:1;
+  overflow-y: scroll;
+  padding-bottom: 118rpx;
+  padding: 25rpx;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+.car_goods_list .goods-img{
+  width: 82px;
+}
+.carList>view{
+  width: 100%;
+}
+.goods_num{
+  display:block;
+  width:24px;
+  text-align:center;
+}
+.desc{
+  margin-top: 25rpx;
+  align-items:flex-start;
+  height: 74px;
+}
+.goods-details{
+  height: 100%;
+  margin-left:12px;
+  justify-content:space-between;
+  flex: 1;
+}
+.more{
+  justify-content:flex-end;
+  margin-top:52rpx;
+  width: 24px;
+}
+.item_bottom{
+
+}
+.ship_section>.section_item{
+  padding: 25rpx;
+}
+
+.text{
+  color: #888;
+  font-size: 10pt;
+  font-weight:500;
+  margin-top: 0
+}
+.time_wrap{
+  /* padding:30px 0; */
+  box-sizing:border-box;
+  background:#fff;
+  height:180rpx;
+  overflow-y: scroll;
+}
+.time_wrap>view{
+  height: 60rpx;
+}
+
+.hang{
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.hang:last-child{
+  border-bottom:none;
+}
+/* //配送方式 */
+.methods{
+  margin-bottom: 0;
+  border-bottom:1px solid #f2f2f2;
+
+}
+.section-title{
+  padding:20rpx;
+}

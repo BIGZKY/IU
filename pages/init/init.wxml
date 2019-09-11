@@ -1,0 +1,19 @@
+<!--pages/init/init.wxml-->
+<view class='content'>
+  <view class='logo'>
+    <image src='/images/mt.gif'></image>
+  </view>
+  <view class='btn school_btn' bindtap='chooseSchool'>选择学校</view>
+  <!-- <view class='btn '>授权登录</view> -->
+  <view class='school_Wrap' animation="{{an}}">
+    <view class='header flex-x'>
+      <view class='flex-x city-btn'>
+        <image src='/images/dispatch_addr.png'></image>
+        <text>选择学校</text>
+      </view>
+      <view>
+        <input></input>
+      </view>
+    </view>
+  </view>
+</view>

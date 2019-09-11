@@ -1,0 +1,23 @@
+/* pages/news/news.wxss */
+@import "/wxParse/wxParse.wxss";
+.wxParse-p view{
+  font-size: 28rpx;
+}
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.title{
+  font-size: 36rpx;
+  color: #222;
+  margin: 25rpx;
+  text-align:center;
+
+}
+.content{
+  padding: 0 20rpx;
+}
+.wxParse-p{
+  color: #555;
+}

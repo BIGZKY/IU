@@ -170,7 +170,6 @@ Page({
   }, 
 
   go_pay() {
-    console.log(this.data.type);
     var n = public_js.check_shop_time();
     if (n) {
       return false;
@@ -234,8 +233,6 @@ Page({
       shop_id: this.data.shop_id,
       type: this.data.type || 0
     }
-    // console.log(data);
-    // return false;
     wx.request({
       url: api.delivery.delivery,
       data: data,

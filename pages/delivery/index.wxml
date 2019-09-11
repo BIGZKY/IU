@@ -73,7 +73,7 @@
     </view> -->
   </view>
   <!-- 底部 -->
-  <template is="public-footer" data="{{fee,money,run_id,able_isvip,paying,hasdiscount,footerType,num,isvip}}"/>
+  <template is="public-footer" data="{{fee,addMoney,run_id,able_isvip,paying,hasdiscount,footerType,num,isvip}}"/>
 </view>
 
 <!-- 代跑卷 -->

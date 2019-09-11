@@ -310,6 +310,10 @@ Page({
 
   // 打开二级导航
   openSecond() {
+    var n = public_js.check_shop_time();
+    if (n) {
+      return false;
+    }
     animation.left(0).step();
     that.setData({
       animationData: animation.export()

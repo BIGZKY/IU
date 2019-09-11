@@ -97,15 +97,22 @@ Page({
     var moneyObj = moneyList.find(function(item){
       return item.express_distance == val;
     })
-    var f = that.data.fee;
+    // var f = that.data.fee;
+    // if(that.data.isvip){
+    //   var a = (f + parseFloat(moneyObj.express_money)).toFixed(2);
+    // }else{
+    //   var a = ((f + parseFloat(moneyObj.express_money)) * that.data.hasdiscount).toFixed(2);
+    // }
+
     if(that.data.isvip){
-      var a = (f + parseFloat(moneyObj.express_money)).toFixed(2);
+      var a = parseFloat(moneyObj.express_money).toFixed(2);
     }else{
-      var a = ((f + parseFloat(moneyObj.express_money)) * that.data.hasdiscount).toFixed(2);
+      var a = (parseFloat(moneyObj.express_money) * that.data.hasdiscount).toFixed(2);
     }
+
     that.setData({
       multiIndex,
-      money : parseFloat(a),
+      addMoney : parseFloat(a),
       num: val
     }) 
     
@@ -229,6 +236,16 @@ Page({
           that.setData({
             order_id
           })
+          if (res.data.data.order_info.order_status == 1){
+            that.setData({
+              paying: false
+            })
+            wx.reLaunch({
+              url: '../order_detail/index?order_id=' + order_id + '',
+            })
+            
+            return false;
+          }
           // if (res.data.data.order_info.order_status == 1) {
 
           //   wx.hideToast();

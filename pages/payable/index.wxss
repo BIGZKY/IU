@@ -119,7 +119,7 @@ page,.containers{
   width: 100%;
 }
 .food_name{
-  max-width: 100px;
+  width: 100px;
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;

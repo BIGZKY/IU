@@ -243,10 +243,10 @@ Page({
   //加入订单
   go_pay() {
     //检查营业时间
-    var n = public_js.check_shop_time();
-    if (n) {
-      return false;
-    }
+    // var n = public_js.check_shop_time();
+    // if (n) {
+    //   return false;
+    // }
 
     //检查最低金额不低于10元
     var minShopMoney = wx.getStorageSync('minShopMoney');

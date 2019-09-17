@@ -33,8 +33,7 @@
       <cover-image src='/images/icon_addr.png' class='center_icon' bindtap='center'></cover-image >  
     </cover-view>
 
-    <!-- 优选店铺 -->
-    <view style='background:#fff'>
+    <view style='background:#fff' wx:if="{{showModel.model5 && version}}">
       <view class='title'><view class=''>优选店铺</view></view>
       <view class='shopList flex-x' >
 
@@ -52,8 +51,9 @@
         </view>
       </view>
     </view>
-    <!-- iu窝趣 -->
-    <view style='background:#fff;margin-top:20rpx' wx:if="{{isFlod && isShowWq}}">
+
+
+    <view style='background:#fff;margin-top:20rpx' wx:if="{{showModel.model7 && isFlod && version}}">
       <view class='title'><view class='flex-x'><text>IU窝趣</text><text>MORE ></text></view></view>
       <view class='shopList ww flex-x' >
         <view class='shop-item flex-y' wx:for="{{s_typeList}}" wx:key="index" data-id='{{item.id}}' data-name='{{item.shop_name}}' bindtap='enterShop'>
@@ -64,8 +64,8 @@
         </view>
       </view>
     </view>
-    <!-- 店铺推荐 -->
-    <swiper class='pinList {{largeScreen?"largeScreen":"smallScreen"}}' autoplay interval="3000" wx:if="{{isFlod && version}}">
+
+    <swiper class='pinList {{largeScreen?"largeScreen":"smallScreen"}}' autoplay interval="3000" wx:if="{{isFlod && showModel.model6 && version}}">
       <block  wx:for="{{tjShop}}" wx:key="{{index}}" >
         <swiper-item>
           <view data-id='{{item.id}}' data-name='{{item.shop_name}}' bindtap='enterShop'  class="swiperItem">
@@ -79,6 +79,7 @@
                   <image src='{{rootUrl+_item.food_logo}}' lazy-load='true' data-src='{{rootUrl + _item.food_logo}}' catchtap='previewImage'></image>
                 </view>
                 <view class='name ' style='width:100%'>
+                  <!-- <text>{{item.}}</text> -->
                   <text class='note'>{{_item.food_name}}</text>
                 </view>
               </view>
@@ -94,24 +95,48 @@
   
   <!-- footer -->
   <view class='footers flex-x'>  
-
-    <view class='item flex-y' data-index='{{1}}' bindtap='navSwitch'>
-        <image src='/images/icon_qq.png'></image>
-        <text>代取快递</text>
+    <view class='item flex-y' bindtap='openSecond' wx:if="{{version==1}}">
+      <image src='/images/icon_main_02.png'></image>
+      <text>快递取送</text>
     </view>
-
-    <view class='item flex-y' data-index='{{2}}' bindtap='navSwitch'>
+    <view class='item flex-y' data-index='{{4}}' bindtap='navSwitch' wx:if="{{version==0}}">
+        <image src='/images/icon_qq.png'></image>
+        <text>取快递</text>
+      </view>
+    <view class='item flex-y' data-index='{{6}}' bindtap='navSwitch' wx:if="{{version==0}}">
+      <image src='/images/icon_main_01.png'></image>
+      <text>餐厅预约</text>
+    </view>
+    <view class='item flex-y' data-index='{{2}}' bindtap='navSwitch' wx:if="{{showModel.model1 && version==1}}">
       <image src='/images/icon_main_03.png'></image>
       <text>超市代购</text>
     </view>
-
-    <view class='item flex-y' data-index='{{3}}' bindtap='navSwitch'>
+    <view class='item flex-y' data-index='{{7}}' bindtap='navSwitch' wx:if="{{version==0}}">
+      <image src='/images/icon_main_04.png'></image>
+      <text>跑腿</text>
+    </view>
+    <view class='item flex-y' data-index='{{3}}' bindtap='navSwitch' wx:if="{{showModel.model2 && version==1}}">
       <image src='/images/icon_main_01.png'></image>
       <text>校内餐厅</text>
+    </view>
+    <view class='secondNav flex-x' animation="{{animationData}}">
+      <view class='item flex-y' data-index='{{4}}' bindtap='navSwitch'>
+        <image src='/images/icon_qq.png'></image>
+        <text>取快递</text>
+      </view>
+      <view class='item flex-y' data-index='{{5}}' bindtap='navSwitch' >
+        <image src='/images/icon_jq.png'></image>
+        <text>寄快递</text>
+      </view>
+      <view class='item flex-y' bindtap='closeSccond'>
+        <image src='/images/icon_closeRow.png'></image>
+      </view>
     </view>
   </view>
   
 </view>
+
+<image src='/images/index_order.png' class='order' catchtap='order' wx:if="{{version==1}}"></image>
 <image src='/images/index_center.png' class='center' catchtap='center'></image >
 <image src='/images/youhui.png' class='youhui' catchtap='youhui'wx:if="{{is_lingka}}"></image >
 

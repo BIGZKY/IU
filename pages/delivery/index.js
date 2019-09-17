@@ -5,6 +5,7 @@ const app = getApp();
 var token = '';
 var user_id = '';
 var that = '';
+
 Page({
   data: {
     nav_list: [
@@ -37,21 +38,21 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-    user_id = wx.getStorageSync('user_id');
-    token = wx.getStorageSync("token");
     
-    that.setData({
-      isvip: wx.getStorageSync('isvip')
-    })
     
-    this.getData();
-   
   },
 
   onShow: function () {
-    public_js.getAddressData(that);
-    // var addr_id = that.data.address || '';
-    
+    public_js.getAddressData(that); 
+    user_id = wx.getStorageSync('user_id');
+    token = wx.getStorageSync("token");
+    if (app.globalData.userInfo_bool) {
+      console.log(45566)
+      that.setData({
+        isvip: wx.getStorageSync('isvip')
+      })
+      this.getData();
+    }
   },
   bindarea(e) {
     var detail_addr = e.detail.value;
@@ -103,7 +104,6 @@ Page({
     // }else{
     //   var a = ((f + parseFloat(moneyObj.express_money)) * that.data.hasdiscount).toFixed(2);
     // }
-
     if(that.data.isvip){
       var a = parseFloat(moneyObj.express_money).toFixed(2);
     }else{
@@ -117,7 +117,6 @@ Page({
     }) 
     
   },
-
   //领取代跑卷
   receive_dp(e) {
     public_js.receive_dp(e, that)
@@ -145,9 +144,23 @@ Page({
   },
   //发起支付
   go_pay(){
-    var that = this;
 
-    //判断账号是否异常 -------------------start
+    var that = this;
+    if (!app.globalData.userInfo_bool){
+      wx.showModal({
+        title: '温馨提示',
+        content: '是否去登录',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/index',
+            })
+          }
+        }
+      })
+      return false;
+    }
+    //判断账号是否异常
     var controll = that.data.controll;
     if (controll == 2) {
       wx.showModal({
@@ -157,13 +170,11 @@ Page({
       })
       return false;
     }
-    //------------------------------------end
-    //判断营业时间 -------------------start
+    //判断营业时间 
     var n = public_js.check_shop_time();
     if (n) {
       return false;
     }
-    //------------------------------------end
     //判断金额
     var n = !this.data.address ? '请填写收货地址' : !this.data.delivery_info ? '请填写快递信息' : !this.data.shipping_id ? '请选择配送方式' : !this.data.address.run_type.includes(this.data.shipping_area_id + '')? "该地址无法使用此配送方式,请重新选择" : !this.data.ship_time && this.data.shipping_id == 7? '请选择配送时间' : '';
     if(n){
@@ -178,7 +189,7 @@ Page({
     //检测是否有其它类型快递；
     that.typeTest(this.data.delivery_info);
 
-    //判断件数 ----------------------start
+    //判断件数
     if (that.data.multiArray[that.data.multiIndex] == 0) {
       wx.showModal({
         title: '温馨提示',
@@ -187,8 +198,7 @@ Page({
       })
       return false
     }
-    // ------------------------------end
-    //判断是否超出当前时间-------------start
+    //判断是否超出当前时间
     if (that.data.ableChooseTime) {
       var current_time = new Date().getHours();
       var current_time_minutes = new Date().getMinutes();
@@ -202,7 +212,6 @@ Page({
         return false;
       }
     }
-    //-------------------------------end
     var user_id = wx.getStorageSync('user_id');
     var data = {
       address_id: this.data.address.id,
@@ -246,13 +255,6 @@ Page({
             
             return false;
           }
-          // if (res.data.data.order_info.order_status == 1) {
-
-          //   wx.hideToast();
-          //   public_js.getdpj(that, 4, order_id)
-
-          //   return false;
-          // }
           wx.request({
             url: api.order.pay,
             data: {

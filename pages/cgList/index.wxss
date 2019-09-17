@@ -168,7 +168,7 @@ page,.container{
   color: #888;
   font-size: 20rpx;
   font-weight:normal;
-  flex:0 0 62px;
+  white-space: nowrap;
 
 }
 

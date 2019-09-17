@@ -9,7 +9,7 @@ var demo = new QQMapWX({
 var animation = wx.createAnimation({
   duration: 300,
   timingFunction: 'ease',
-  initAn: null
+  initAn:null
 })
 Page({
 
@@ -21,7 +21,7 @@ Page({
     typeList: [],
     isFlod: true,
     v_nav: null,
-    init: false
+    init:false
   },
 
   /**
@@ -30,15 +30,21 @@ Page({
   onLoad: function (options) {
     that = this;
 
-    public_js.gettime(that);
-    this.getNewsData();
-    this.getBanner();
-    this.getTypeList();
-    this.getTJShop();
-    // this.per_center();
-    this.checkUpdate();
+    if (!wx.getStorageSync('user_id')) {
+
+      return false
+    } else {
+      
+      public_js.gettime(that);
+      this.getNewsData();
+      this.getBanner();
+      this.getTypeList();
+      this.getTJShop();
+      this.per_center();
+      this.checkUpdate();
+    }
   },
-  previewImage(e) {
+  previewImage(e){
     let src = e.currentTarget.dataset.src;
     wx.previewImage({
       current: src, // 当前显示图片的http链接
@@ -102,11 +108,11 @@ Page({
 
   },
   onShow: function () {
-    if (app.globalData.windowHeight < 603) {
+    if (app.globalData.windowHeight < 603){
       that.setData({
-        largeScreen: false
+        largeScreen:false
       })
-    } else {
+    }else{
       that.setData({
         largeScreen: true
       })
@@ -145,16 +151,16 @@ Page({
   },
   navSwitch(e) {
     var index = e.currentTarget.dataset.index;
-    // if (index == 1 || index == 2 || index == 3) {
-    //   var n = public_js.check_shop_time();
-    //   if (n) {
-    //     return false;
-    //   }
-    // }
+    if (index == 1 || index == 2 || index == 3) {
+      var n = public_js.check_shop_time();
+      if (n) {
+        return false;
+      }
+    }
     switch (index) {
-      case 3:
+      case 1:
         wx.navigateTo({
-          url: '../cgList/index',
+          url: '../shop_street/index',
         })
         break;
       case 2:
@@ -162,14 +168,88 @@ Page({
           url: '../shop/shop',
         })
         break;
-
-      case 1:
+      case 3:
+        if (this.data.showModel.model2) {
+          wx.navigateTo({
+            url: '../cgList/index',
+          })
+        } else {
+          wx.showModal({
+            title: '温馨提示',
+            content: '该功能暂未开放',
+          })
+        }
+        break;
+      case 4:
 
         wx.navigateTo({
           url: '/pages/delivery/index',
         })
+        var closeSccond = setTimeout(function () {
+          that.closeSccond();
+          clearTimeout(closeSccond);
+        }, 600)
         break;
+      case 5:
+        if (!this.data.showModel.model4) {
+          wx.showModal({
+            title: '温馨提示',
+            content: '该功能尚未开放为您带来的不便敬请谅解！',
+            showCancel: false
+          })
+          return false;
+        }
+        // this.paotui();
+        wx.navigateTo({
+          url: '/pages/expressDelivery/index',
+        })
+        var closeSccond = setTimeout(function () {
+          that.closeSccond();
+          clearTimeout(closeSccond);
+        }, 600)
+        break;
+      case 6:
+        wx.navigateTo({
+          url: '/pages/yptj/index',
+        })
+        break;
+      case 7:
+        if (this.data.userInfo.staff_id == 0) {
+          if (this.data.userInfo.apply_for == 0) {
+            wx.showModal({
+              title: '温馨提示',
+              content: '是否申请成为骑手',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: '../apply_for/index',  // 自由人员进入
+                  })
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          } else {
+            if (this.data.userInfo.apply_for.apply_status == 0) {
+              wx.showModal({
+                title: '温馨提示',
+                content: '您已提交审核，正在审核中',
+                showCancel: false,
+                apply_status: true
+              })
+            } else {
+              wx.navigateTo({
+                url: '../mine/mine',  // 自由人员进入
+              })
+            }
+          }
 
+        } else {
+          wx.navigateTo({
+            url: '../mine/mine?staff_id=' + this.data.userInfo.staff_id + '', //专职人员  id
+          })
+        }
+        break;
     }
   },
   order() {
@@ -346,9 +426,9 @@ Page({
 
   },
   onReady() {
-    // this.mapCtx = wx.createMapContext('map');
-    // this.getCenter();
-    // this.getMark();
+    this.mapCtx = wx.createMapContext('map');
+    this.getCenter();
+    this.getMark();
   },
   getMark() {
     wx.request({

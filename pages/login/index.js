@@ -1,6 +1,6 @@
 // pages/login/index.js
-var api = require('../../api.js').api;
-var app = getApp();
+const api = require('../../api.js').api;
+const app = getApp();
 Page({
   data: {
   
@@ -40,9 +40,7 @@ Page({
                   method:"POST",
                   success(res){
                     wx.hideLoading();
-                    console.log(res)
                     if (res.data.status.succeed != 1) {
-
                       var res = JSON.stringify(res)
                       wx.showToast({
                         title: 1+res,
@@ -53,17 +51,11 @@ Page({
                     app.globalData.userInfo_bool = true;
                     var user_id = res.data.data.user.id;
                     var token = res.data.data.token;
-                    var isvip = res.data.data.user.isvip;
-                    var staff_id = res.data.data.user.staff_id;
-                    var monthly_card_end = res.data.data.user.monthly_card_end;
-                    var user_isnew = res.data.data.isnew;
                     wx.setStorageSync('token', token);
                     wx.setStorageSync('user_id', user_id);
-
-                    wx.reLaunch({
-                      url: '/pages/index/index',
-                    })
-                    
+                    wx.navigateBack({
+                      delta: 1
+                    })        
                   }
                 })
               }else{

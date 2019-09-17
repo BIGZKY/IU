@@ -710,7 +710,8 @@ function gettime(that) {
       that.setData({
         is_lingka: res.data.data.is_lingka,
         showModel: res.data.data.showModel,
-        version: res.data.data.version
+        version: res.data.data.version,
+        isShowWq: res.data.data.isShowWq
       })
 
       setTimeout(() => {

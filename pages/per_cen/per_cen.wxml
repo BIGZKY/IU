@@ -1,9 +1,9 @@
 <!--index.wxml-->
 <view class='top flex-x' style='background:#06bebc'>
   <view class='tx'>
-    <image src="{{avatarUrl}}"></image>
+    <image src="{{avatarUrl|| '/images/noLogin.png'}}"></image>
   </view>
-  <view class='name'>
+  <view class='name' wx:if="{{userInfo}}">
     <text>{{nickName}}</text>
     <view class='userType flex-between'>
       <image src='/images/icon_vip.png' wx:if="{{isvip==1}}"></image>
@@ -11,7 +11,9 @@
       <text wx:if="{{isvip==1}}">VIP会员</text>
       <text wx:else>普通用户</text>
     </view>
-
+  </view>
+  <view wx:else bindtap="goLogin">
+    <text class="goLogin">点击登录</text>
   </view>
   <view class='dpj' style='flex:1'>
     <navigator class='flex-x' url='./dpj/index' hover-class='none'>

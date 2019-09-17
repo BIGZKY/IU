@@ -29,10 +29,16 @@ page{
 }
 .name text{
   font-family: "微软雅黑";
-
   font-size: 32rpx;
   color: #fff;
 }
+.goLogin{
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+  margin-left: 15px
+}
+
 .flex-wrp{
   display: flex;
   width: 100%;

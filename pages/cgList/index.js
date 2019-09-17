@@ -149,6 +149,20 @@ Page({
   },
 
   jia(e) {
+    if (!app.globalData.userInfo_bool) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '是否去登录',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/index',
+            })
+          }
+        }
+      })
+      return false;
+    }
     var index = e.currentTarget.dataset.index;
     var num = this.data.goodsArr[index].num || 0;
     num++;

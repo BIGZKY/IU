@@ -73,7 +73,6 @@ Page({
           obj.id = typegoods[value][1];
           specal_menu.push(obj);
         }
-        console.log(first_menu)
         
         first_menu.forEach(function(item){
           item.isClick = false
@@ -114,7 +113,9 @@ Page({
             that.setData({
               goods_menu: res.data.data.goods
             })
-            that.getCarGoodsList()
+            if(app.globalData.userInfo_bool){
+              that.getCarGoodsList()
+            }
           }
         })
       }
@@ -328,6 +329,20 @@ Page({
     this.updateGoods(rec_id, num);
   },
   jia(e) {
+    if (!app.globalData.userInfo_bool) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '是否去登录',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/index',
+            })
+          }
+        }
+      })
+      return false;
+    }
     var index = e.currentTarget.dataset.index;
     var goods_sn = e.currentTarget.dataset.sn;
     var num = this.data.goods_menu[index].num || 0;
@@ -571,7 +586,6 @@ Page({
         user_id: wx.getStorageSync('user_id'),
         goods_sn: goods_sn,
         number: num,
-        user_id
       },
       method: "POST",
       success(res) {
@@ -656,10 +670,10 @@ Page({
   },
   // 提交订单
   submit_order(){
-    var n = public_js.check_shop_time();
-    if (n) {
-      return false;
-    }
+    // var n = public_js.check_shop_time();
+    // if (n) {
+    //   return false;
+    // }
     var arr = [];
     var car_goods_list = that.data.car_goods_list;
     if (!car_goods_list || car_goods_list.length==0){

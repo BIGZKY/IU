@@ -47,7 +47,10 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    this.getData();
+    if (app.globalData.userInfo_bool){
+      this.getData();
+    }
+    
   },
 
 

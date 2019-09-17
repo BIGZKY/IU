@@ -13,7 +13,7 @@
     "pages/activeList/index",
     "pages/delivery/index",
     "pages/cgList/index",
-    "pages/logins/index",
+    "pages/login/index",
     "pages/new_shop_street/index",
     "pages/tixian/index",
     "pages/ad-details/index",

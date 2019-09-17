@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-var api = require('../../api.js').api;
+const api = require('../../api.js').api;
 const app = getApp();
 const public_js = require('../../utils/public.js').public_js;
 var that = '';
@@ -9,15 +9,22 @@ Page({
   },
   onLoad: function () {
     that = this;
-    var userInfo = wx.getStorageSync('userInfo');
-    this.setData({
-      nickName: userInfo.nickName,
-      avatarUrl: userInfo.avatarUrl,
-    })
     
   },
   onShow(){
-    this.per_center();
+    if(app.globalData.userInfo_bool){
+      let userInfo = wx.getStorageSync('userInfo');
+      this.setData({
+        nickName: userInfo.nickName,
+        avatarUrl: userInfo.avatarUrl,
+      })
+      this.per_center();
+    }
+  },
+  goLogin() {
+    wx.navigateTo({
+      url: '/pages/login/index',
+    })
   },
   per_center (){
     wx.request({
@@ -29,6 +36,7 @@ Page({
       success(res){
 
         var userInfo = res.data.data;
+        console.log(userInfo)
         that.setData({
           userInfo,
           isvip: userInfo.isvip
@@ -42,6 +50,12 @@ Page({
   paotui(e) {
     
     public_js.sendFormId(e.detail.formId,0);
+    if(!app.globalData.userInfo_bool){
+      wx.showToast({
+        title: '请先登录',
+      })
+      return false;
+    }
     if (this.data.userInfo.staff_id==0){
       if (this.data.userInfo.apply_for==0){
         wx.showModal({

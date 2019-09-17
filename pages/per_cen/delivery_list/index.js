@@ -1,4 +1,5 @@
 // pages/per_cen/delivery_list/index.js
+const app = getApp();
 var api = require('../../../api.js').api;
 var that = '';
 Page({
@@ -17,6 +18,9 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+    if (!app.globalData.userInfo_bool) {
+      return false;
+    }
     wx.request({
       url: api.delivery.delivery_look,
       data: {

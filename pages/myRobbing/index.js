@@ -1,4 +1,5 @@
 // pages/myRobbing/index.js
+const app = getApp();
 var api = require('../../api.js').api;
 var that = '';
 Page({
@@ -11,7 +12,8 @@ Page({
     order_list:[],
     moreDataTip:false,
     nav:1,
-    skip:0
+    skip:0,
+    noData:true
   },
   
   /**
@@ -19,9 +21,13 @@ Page({
    */
   onLoad: function (options) {
     that = this;
+
     that.setData({
       navType: 1
     })
+    if (!app.globalData.userInfo_bool) {
+      return false;
+    }
     wx.removeStorage({
       key: 'status',
       success: function (res) { },
@@ -106,9 +112,10 @@ Page({
   },
 
   onShow: function () {
-    
+    if (!app.globalData.userInfo_bool) {
+      return false;
+    }
     if (wx.getStorageSync('status')){
-
       var status = parseInt(wx.getStorageSync('status'));
       wx.removeStorage({
         key: 'status',

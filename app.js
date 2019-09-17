@@ -2,7 +2,7 @@
 var api = require('./api.js').api;
 App({
   onLaunch: function () {
-    this.login();
+    // this.login();
     var app = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -20,14 +20,14 @@ App({
     if (!wx.getStorageSync('user_id')){
 
       wx.navigateTo({
-        url: '/pages/logins/index',
+        url: '/pages/login/index',
       })
     }else{
       wx.getSetting({
         success: function (res) {
           if (!res.authSetting['scope.userInfo']) {
             wx.navigateTo({
-              url: '/pages/logins/index',
+              url: '/pages/login/index',
             })
           }
         }
@@ -36,7 +36,7 @@ App({
     wx.hideLoading();
   },
   globalData: {
-    userInfo_bool: false,
+    userInfo_bool: wx.getStorageSync('user_id') ? true : false,
     user_id:null,
     init:null
   },

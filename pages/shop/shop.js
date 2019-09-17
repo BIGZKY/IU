@@ -670,10 +670,10 @@ Page({
   },
   // 提交订单
   submit_order(){
-    // var n = public_js.check_shop_time();
-    // if (n) {
-    //   return false;
-    // }
+    var n = public_js.check_shop_time();
+    if (n) {
+      return false;
+    }
     var arr = [];
     var car_goods_list = that.data.car_goods_list;
     if (!car_goods_list || car_goods_list.length==0){

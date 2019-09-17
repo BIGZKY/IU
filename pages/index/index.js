@@ -35,7 +35,7 @@ Page({
     this.getBanner();
     this.getTypeList();
     this.getTJShop();
-    // this.per_center();
+    this.per_center();
     this.checkUpdate();
   },
   previewImage(e) {
@@ -152,6 +152,48 @@ Page({
     //   }
     // }
     switch (index) {
+      case 5:
+        if (this.data.userInfo.staff_id == 0) {
+          if (this.data.userInfo.apply_for == 0) {
+            wx.showModal({
+              title: '温馨提示',
+              content: '是否申请成为骑手',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: '../apply_for/index',  // 自由人员进入
+                  })
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          } else {
+            if (this.data.userInfo.apply_for.apply_status == 0) {
+              wx.showModal({
+                title: '温馨提示',
+                content: '您已提交审核，正在审核中',
+                showCancel: false,
+                apply_status: true
+              })
+            } else {
+              wx.navigateTo({
+                url: '../mine/mine',  // 自由人员进入
+              })
+            }
+          }
+
+        } else {
+          wx.navigateTo({
+            url: '../mine/mine?staff_id=' + this.data.userInfo.staff_id + '', //专职人员  id
+          })
+        }
+        break;
+      case 4:
+        wx.navigateTo({
+          url: '/pages/yptj/index',
+        })
+        break;
       case 3:
         wx.navigateTo({
           url: '../cgList/index',
@@ -162,9 +204,7 @@ Page({
           url: '../shop/shop',
         })
         break;
-
       case 1:
-
         wx.navigateTo({
           url: '/pages/delivery/index',
         })
@@ -346,9 +386,9 @@ Page({
 
   },
   onReady() {
-    // this.mapCtx = wx.createMapContext('map');
-    // this.getCenter();
-    // this.getMark();
+    this.mapCtx = wx.createMapContext('map');
+    this.getCenter();
+    this.getMark();
   },
   getMark() {
     wx.request({

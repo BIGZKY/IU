@@ -22,7 +22,8 @@ var api = {
     shopdetail: api_root + 'mechshop/shopdetail',
     foodsList: api_root + 'mechshop/foods',
     getTypeList: api_root + 'mechshop/foodscate',
-    getTJShop: api_root + 'adsense/shop'
+    getTJShop: api_root + 'adsense/shop',
+    yy: api_root + 'adsense/kun',
   },
   address:{
     addres_list: api_root + 'address/list'

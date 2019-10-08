@@ -31,12 +31,26 @@ Page({
     that = this;
 
     public_js.gettime(that);
-    this.getNewsData();
-    this.getBanner();
-    this.getTypeList();
-    this.getTJShop();
-    this.per_center();
     this.checkUpdate();
+    if (wx.getStorageSync('user_id')){
+      this.per_center();
+    }else{
+      wx.showModal({
+        title: '温馨提示',
+        content: '未登录将影响您的使用, 是否去登录',
+        confirmText: '登录',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/per_cen/per_cen',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+  
+    }
   },
   previewImage(e) {
     let src = e.currentTarget.dataset.src;
@@ -102,6 +116,10 @@ Page({
 
   },
   onShow: function () {
+    this.getNewsData();
+    this.getBanner();
+    this.getTypeList();
+    this.getTJShop();
     if (app.globalData.windowHeight < 603) {
       that.setData({
         largeScreen: false
@@ -120,6 +138,8 @@ Page({
       },
       success(res) {
         if (res.data.status.succeed == 1 && res.data.data.datas) {
+          console.log(that.data.isFlod)
+          console.log(that.data.isShowWq)
           that.setData({
             typeList: res.data.data.datas,
             s_typeList: res.data.data.datas.slice(0, 9)

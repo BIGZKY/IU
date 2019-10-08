@@ -38,8 +38,6 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-    
-    
   },
 
   onShow: function () {
@@ -47,7 +45,6 @@ Page({
     user_id = wx.getStorageSync('user_id');
     token = wx.getStorageSync("token");
     if (app.globalData.userInfo_bool) {
-      console.log(45566)
       that.setData({
         isvip: wx.getStorageSync('isvip')
       })
@@ -149,7 +146,8 @@ Page({
     if (!app.globalData.userInfo_bool){
       wx.showModal({
         title: '温馨提示',
-        content: '是否去登录',
+        content: '请先登录',
+        confirmText: '登录',
         success(res) {
           if (res.confirm) {
             wx.navigateTo({

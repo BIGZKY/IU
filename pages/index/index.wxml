@@ -34,7 +34,7 @@
     </cover-view>
 
     <!-- 优选店铺 -->
-    <view style='background:#fff' wx:if="{{version==1}}">
+    <view style='background:#fff' wx:if="{{version!=0}}">
       <view class='title'><view class=''>优选店铺</view></view>
       <view class='shopList flex-x' >
 
@@ -53,7 +53,7 @@
       </view>
     </view>
     <!-- iu窝趣 -->
-    <view style='background:#fff;margin-top:20rpx' wx:if="{{isFlod && isShowWq && version==1}}">
+    <view style='background:#fff;margin-top:20rpx' wx:if="{{isFlod && isShowWq && version!=0}}">
       <view class='title'><view class='flex-x'><text>IU窝趣</text><text>MORE ></text></view></view>
       <view class='shopList ww flex-x' >
         <view class='shop-item flex-y' wx:for="{{s_typeList}}" wx:key="index" data-id='{{item.id}}' data-name='{{item.shop_name}}' bindtap='enterShop'>
@@ -100,12 +100,12 @@
         <text>代取快递</text>
     </view>
 
-    <view class='item flex-y' data-index='{{2}}' bindtap='navSwitch' wx:if="{{version==1}}">
+    <view class='item flex-y' data-index='{{2}}' bindtap='navSwitch' wx:if="{{version!=0}}">
       <image src='/images/icon_main_03.png'></image>
       <text>超市代购</text>
     </view>
 
-    <view class='item flex-y' data-index='{{3}}' bindtap='navSwitch' wx:if="{{version==1}}">
+    <view class='item flex-y' data-index='{{3}}' bindtap='navSwitch' wx:if="{{version!=0}}">
       <image src='/images/icon_main_01.png'></image>
       <text>校内餐厅</text>
     </view>

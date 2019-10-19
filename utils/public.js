@@ -697,7 +697,7 @@ function gettime(that) {
   wx.request({
     url: api.main.gettime,
     data: {
-      user_id: wx.getStorageSync('user_id')
+      user_id: wx.getStorageSync('user_id') || ''
     },
     method: "POST",
     success(res) {
@@ -713,7 +713,6 @@ function gettime(that) {
         version: res.data.data.version,
         isShowWq: res.data.data.isShowWq
       })
-
       setTimeout(() => {
         let an = wx.createAnimation({
           duration: 300,
@@ -732,8 +731,6 @@ function gettime(that) {
       wx.setStorageSync('telephone', telephone);
       wx.setStorageSync('shop_time', shop_time);
       wx.setStorageSync('is_kg', is_kg);
-
-
     }
   })
 }

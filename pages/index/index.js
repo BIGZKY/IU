@@ -52,6 +52,21 @@ Page({
   
     }
   },
+  onShow: function () {
+    this.getNewsData();
+    this.getBanner();
+    this.getTypeList();
+    this.getTJShop();
+    if (app.globalData.windowHeight < 603) {
+      that.setData({
+        largeScreen: false
+      })
+    } else {
+      that.setData({
+        largeScreen: true
+      })
+    }
+  },
   previewImage(e) {
     let src = e.currentTarget.dataset.src;
     wx.previewImage({
@@ -115,21 +130,7 @@ Page({
     }
 
   },
-  onShow: function () {
-    this.getNewsData();
-    this.getBanner();
-    this.getTypeList();
-    this.getTJShop();
-    if (app.globalData.windowHeight < 603) {
-      that.setData({
-        largeScreen: false
-      })
-    } else {
-      that.setData({
-        largeScreen: true
-      })
-    }
-  },
+  
   getTypeList() {
     wx.request({
       url: api.shop_street.shopList,
@@ -138,8 +139,6 @@ Page({
       },
       success(res) {
         if (res.data.status.succeed == 1 && res.data.data.datas) {
-          console.log(that.data.isFlod)
-          console.log(that.data.isShowWq)
           that.setData({
             typeList: res.data.data.datas,
             s_typeList: res.data.data.datas.slice(0, 9)

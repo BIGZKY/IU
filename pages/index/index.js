@@ -241,6 +241,7 @@ Page({
       url: '../per_cen/per_cen',
     })
   },
+  // 分享获得短跑卷
   onShareAppMessage: function (res) {
     return {
       title: 'IU科技',
@@ -253,6 +254,7 @@ Page({
       }
     }
   },
+  // 定义获取短跑卷函数
   getdpj(run_type) {
     wx.request({
       url: api.order.getDpj,
@@ -276,6 +278,7 @@ Page({
       }
     })
   },
+  // 关闭短跑卷
   closevoucher() {
     that.setData({
       hasvoucher: false
@@ -325,7 +328,6 @@ Page({
   },
   paotui() {
     if (this.data.userInfo.staff_id == 0) {
-
       if (this.data.userInfo.apply_for == 0) {
         wx.showModal({
           title: '温馨提示',
@@ -472,8 +474,6 @@ Page({
       fail: function (res) {
         console.log(res);
       },
-
-
       complete: function (res) {
         // console.log(res);
       }

@@ -1,0 +1,145 @@
+/* pages/expressDelivery/index.wxss */
+page{
+  background: #f2f2f2;
+}
+/* 选择快递公司 */
+.chooseType{
+  height: 65px;
+  background: #fff;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 25rpx;
+  box-shadow: 0 0 15rpx 6rpx #e2e2e2;
+  box-sizing: border-box;
+  padding: 5rpx 25rpx;
+}
+.chooseType-left>image{
+  height:85rpx;
+  width:85rpx;
+}
+.chooseType-right>image{
+  height:34rpx;
+  width:20rpx;
+}
+.chooseType-left .typeName{
+  margin-left: 25rpx;
+  font-size: 30rpx;
+}
+.chooseType-left .typeTip{
+  margin-left: 25rpx;
+  font-size: 30rpx;
+  color: #555;
+}
+/* 快递员信息 */
+.courierInfo{
+  width:100%;
+  margin:0 auto;
+  margin-top:25rpx;
+  box-shadow:0 0 15rpx 6rpx #e2e2e2;
+  box-sizing:border-box;
+  padding:25rpx 25rpx;
+  background:#fff;
+  transition: all .2s linear;
+}
+.courierInfo image{
+  height:70rpx;
+  width:70rpx;
+  margin-right:15rpx; 
+}
+/* 快递信息 */
+.infoWrap{
+  
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 0 15rpx 6rpx #e2e2e2;
+  box-sizing: border-box;
+  padding:15rpx 25rpx;
+  margin-top: 25rpx;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.info{
+  width: 100%;
+  border-bottom: 1px solid #e2e2e2;
+  padding: 40rpx 0;
+
+}
+.info:last-of-type{
+  border-bottom: none;
+}
+.infoContent{
+  flex: 1;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.infoContent text{
+  color:#555;
+  font-size:28rpx;
+}
+.deliveryIcon{
+  height: 75rpx;
+  flex: 0 0 75rpx;
+
+}
+.addrInfo{
+  height: 100%;
+  width: 120rpx;
+  align-items: center;
+  border-left: 1px solid #e2e2e2;
+  padding:10px 0 10px 10rpx;
+
+}
+.addrInfo text{
+  color: #555;
+  display: inline-block;
+  height: initial;
+  font-size: 28rpx;
+}
+
+/* 期望上门时间 */
+.noteWrap{
+  width: 100%;
+  margin: 0 auto;
+  /* margin-top: 25rpx; */
+  /* box-shadow: 0 0 15rpx 6rpx #e2e2e2; */
+  box-sizing: border-box;
+  padding: 0px 25rpx;
+  background: #fff;
+  height: 50px;
+}
+.goodsName{
+  margin-top: 25rpx;
+  box-shadow: 0 -3rpx 15rpx 6rpx #e2e2e2;
+}
+.noteWrap text{
+  color: #555;
+}
+.noteWrap image{
+  width: 16rpx;
+  height: 26rpx;
+  margin-left: 15rpx;
+}
+.sbt{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 30rpx 25rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background: #06BEBC;
+  text-align: center;
+}
+
+.priceTro{
+  text-align: right;
+  padding: 20rpx;
+  color: #06BEBC;
+  padding-right:25rpx;
+}

@@ -228,7 +228,10 @@ Page({
           url: '/pages/delivery/index',
         })
         break;
-
+      case 0:
+        wx.navigateTo({
+          url: '/pages/expressDelivery/index',
+        })
     }
   },
   order() {

@@ -1,0 +1,86 @@
+<!-- 选择快递公司 -->
+<view class='chooseType flex-between' bindtap='chooseType'>
+  <view class='chooseType-left flex-x' wx:if="{{delivery_company}}">
+    <image src='{{rootUrl + delivery_company.delivery_img}}'></image>
+    <text class='typeName'>{{delivery_company.delivery_name}}</text>
+  </view>
+  <view class='chooseType-left flex-x' wx:else>
+    <image src='/images/default-delivery.png'></image>
+    <text class='typeTip'>请选择快递公司</text>
+  </view>
+  <view class='chooseType-right'>
+    <image src='/images/icon-jiantou-r.png'></image>
+  </view>
+</view>
+<!-- 快递员信息 -->
+<view class='courierInfo flex-between' wx:if="{{showcourier}}">
+  <view class='flex-x'>
+    <image src='/images/icon_courier.png'></image>
+    <text>{{dormitory.student_name}}</text>
+  </view>
+  <view class='flex-x'>
+    <image src='/images/dispatch_phone.png'></image>
+    <text bindtap='call'>{{dormitory.student_phone}}</text>
+  </view>
+</view>
+
+<!-- 填写快递信息 -->
+<view class='infoWrap flex-y'>
+  <!-- 寄件信息 -->
+  <navigator class='info flex-x' url='../address_list/index?type=2' hover-class='none'>
+    <view class='deliveryIcon'>
+      <image src='/images/icon_ji.png'></image>
+    </view>
+    <view class='infoContent'>
+      <text>{{originAddr?originAddr.address+originAddr.address_info : "从哪里寄"}}</text>
+    </view>
+    <view class='addrInfo  flex-center'>
+      <text>选择地址</text>
+    </view>
+  </navigator>
+  <!-- 收件信息 -->
+  <navigator class='info flex-x' url='./editInfo/index' hover-class='none'>
+    <view class='deliveryIcon'>
+      <image src='/images/icon_shou.png'></image>
+    </view>
+    <view class='infoContent'>
+      <text>{{receivAddr.region[0] + receivAddr.region[1] + receivAddr.region[2]+receivAddr.addr || "寄到哪里"}}</text>
+    </view>
+    <view class='addrInfo flex-center'>
+      <text>编辑地址</text>
+    </view>
+  </navigator>
+</view>
+<view class='flex-between noteWrap goodsName'>
+  <text>商品名称</text>
+  <view class='flex-x' style='flex:1'><input placeholder='所寄商品名称（如文件）' style='text-align:right;width:100%;padding-left:30rpx;' bindinput='goodsName'></input></view>
+</view>
+<view class='flex-between noteWrap'>
+  <text>期望上门时间</text>
+  <view class='flex-x'>
+    <text style='color:#888' wx:if="{{!originAddr}}" bindtap='tip'>请先填写寄件地址</text>
+    <picker wx:else bindchange="bindPickerChange" value="{{index}}" range="{{dormitory.time}}" range-key='times'>
+      <text wx:if="{{time}}">{{time}}</text>
+      <text wx:else style='color:#888'>请选择取件时间</text>
+    </picker>
+    <image src='/images/icon-jiantou-r.png'></image>
+  </view>
+</view>
+
+<view class='flex-between noteWrap'>
+  <text>给快递员留言</text>
+  <view class='flex-x' style='flex:1'><input placeholder='在此输入留言' style='text-align:right;width:100%;padding-left:30rpx;' bindinput='note'></input></view>
+</view>
+<navigator class='priceTro' url='./priceTro/index' hover-class='none'>点此了解快递价格?</navigator>
+
+<view class='sbt' bindtap='sbt'>提交</view>
+  <!-- <picker-view
+    indicator-style="height: 50px;"
+    style="width: 100%; height: 300px;"
+    value="{{0}}"
+    bindchange="bindChange"
+  >
+    <picker-view-column>
+      <view wx:for="{{dormitory.time}}" style="line-height: 50px">{{item}}年</view>
+    </picker-view-column>
+  </picker-view> -->

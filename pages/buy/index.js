@@ -77,7 +77,6 @@ Page({
               'paySign': '' + payment.paySign + '',
               'success': function (res) {
                 wx.hideToast();
-                wx.setStorageSync('isvip',1);
                 public_js.getdpj(that, 8, order_id);
                 // wx.navigateBack({
                 //   delta:1

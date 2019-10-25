@@ -95,8 +95,13 @@
   <!-- footer -->
   <view class='footers flex-x'>  
 
+    <view class='item flex-y' data-index='{{0}}' bindtap='navSwitch'>
+        <image src='/images/icon_main_02.png'></image>
+        <text>代寄快递</text>
+    </view>
+
     <view class='item flex-y' data-index='{{1}}' bindtap='navSwitch'>
-        <image src='/images/icon_qq.png'></image>
+        <image src='/images/icon_main_04.png'></image>
         <text>代取快递</text>
     </view>
 

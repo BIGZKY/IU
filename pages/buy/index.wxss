@@ -16,7 +16,7 @@ page{
 .youhui{
   padding: 0 20rpx; 
   box-sizing: border-box;
-  margin-top:30rpx;
+  margin:50rpx 0px 40rpx;
   flex-wrap: wrap;
 }
 

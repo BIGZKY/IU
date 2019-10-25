@@ -1,0 +1,27 @@
+/* pages/expressDelivery/chooseType/index.wxss */
+.delivery{
+  width: 92%;
+  padding:30rpx 25rpx;
+  margin:0 auto;
+  margin-top:25rpx;
+  box-shadow:0 0 15rpx 6rpx #e2e2e2;
+  box-sizing:border-box;
+  background:#fff;
+
+}
+.delivery>view{
+  flex: 0 0 100px;
+}
+.delivery>view text{
+  margin-top:10rpx;
+  color:#555;
+  display:inline-block;
+
+}
+.delivery>text{
+  flex: 1;
+  text-align: right;
+  color:#555;
+  font-size:30rpx;
+
+}

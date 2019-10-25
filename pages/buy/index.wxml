@@ -45,12 +45,10 @@
   <view class='title'>会员卡使用说明</view>
   <view class='text'>1，IU校园配送服务，设有包月活动，办理VIP会员，享受低价配送服务。</view>
   <view class='text'>2，活动期内，仅学生享受低折办理VIP会员。活动期后，VIP自动调升至原始价格。</view>
-  <view class='text'>3，办理VIP包月，可享受校内快递代取代送，校内超市代购代送，校内餐饮代买代送，三大代劳需求免费服务。</view>
   <view class='text'>4，VIP会员卡设有固定有效期，过有效期，会员卡将自动失效。</view>
   <view class='text'>5，VIP会员卡只限本人专用，不得转借，若他人使用，系统将自动冻结该会员卡。</view>
   <view class='text'>6，VIP会员卡适用预约配送，有效期内无限次数。</view>
   <view class='text'>7，针对快递代取代送，VIP会员卡只限校区内快递点，不支持校外活动。</view>
-  <view class='text'>8，针对超市代购代送，VIP会员卡只限校区内商超购物，不支持校外活动。</view>
   <view class='text'>9，配送至指定范围，VIP会员卡只限校区内场所，或学生固定宿舍，不支持校外地址。</view>
 </view>
  <view class='footer' bindtap='buy_coupon' wx:if="{{!isvip}}">

@@ -26,18 +26,23 @@
       </swiper>
   </view>
   <!-- main -->
-  <view class='main {{isFlod?"":"active"}}' animation="{{nav_animation}}">
-    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="19" show-location markers="{{markers}}" style="width: 100%;flex:1;height:100%;width:100% " bindregionchange="bindregionchange" wx:if="{{version==0}}"></map>  
+  <view class='main {{isFlod?"":"active"}}' animation="{{nav_animation}}" style="background:#{{main_bgColor}}">
+    <!-- 宣传海报 -->
+    <view wx:if="{{showModel.model5}}" class="haibao">
+      <image src="/images/IU.png" mode="aspectFit"></image>
+    </view>
+
+    <!-- 地图展示 -->
+    <!-- <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="19" show-location markers="{{markers}}" style="width: 100%;flex:1;height:100%;width:100% " bindregionchange="bindregionchange" wx:if="{{version==0}}"></map>  
     <cover-view class='showAddr flex-y' wx:if="{{version==0}}">
       <cover-view class="showAddrInfo">{{addrInfo ?addrInfo :'正在加载……'}}</cover-view>
       <cover-image src='/images/icon_addr.png' class='center_icon' bindtap='center'></cover-image >  
-    </cover-view>
+    </cover-view> -->
 
     <!-- 优选店铺 -->
-    <view style='background:#fff' wx:if="{{version!=0}}">
+    <view style='background:#fff' wx:if="{{version!=0 && s_typeList.length && !showModel.model5}}">
       <view class='title'><view class=''>优选店铺</view></view>
       <view class='shopList flex-x' >
-
         <view class='shop-item flex-y' wx:for="{{s_typeList}}" wx:key="index" data-id='{{item.id}}' data-name='{{item.shop_name}}' bindtap='enterShop'>
           <view class='shop-pic'>
             <image src='{{rootUrl + item.shop_logo}}' lazy-load='true'></image>
@@ -65,7 +70,7 @@
       </view>
     </view>
     <!-- 店铺推荐 -->
-    <swiper class='pinList {{largeScreen?"largeScreen":"smallScreen"}}' autoplay interval="3000" wx:if="{{isFlod && version}}">
+    <swiper class='pinList {{largeScreen?"largeScreen":"smallScreen"}}' autoplay interval="3000" wx:if="{{isFlod && version!=0 && s_typeList.length && !showModel.model5}}">
       <block  wx:for="{{tjShop}}" wx:key="{{index}}" >
         <swiper-item>
           <view data-id='{{item.id}}' data-name='{{item.shop_name}}' bindtap='enterShop'  class="swiperItem">
@@ -94,23 +99,22 @@
   
   <!-- footer -->
   <view class='footers flex-x'>  
-
-    <view class='item flex-y' data-index='{{0}}' bindtap='navSwitch'>
+    <view class='item flex-y' data-index='{{1}}' bindtap='navSwitch' wx:if="{{showModel.model2}}">
         <image src='/images/icon_main_02.png'></image>
-        <text>代寄快递</text>
-    </view>
-
-    <view class='item flex-y' data-index='{{1}}' bindtap='navSwitch'>
-        <image src='/images/icon_main_04.png'></image>
         <text>代取快递</text>
     </view>
 
-    <view class='item flex-y' data-index='{{2}}' bindtap='navSwitch' wx:if="{{version!=0}}">
+    <view class='item flex-y' data-index='{{0}}' bindtap='navSwitch' wx:if="{{showModel.model1 && version!=0}}">
+        <image src='/images/icon_main_04.png'></image>
+        <text>代寄快递</text>
+    </view>
+
+    <view class='item flex-y' data-index='{{2}}' bindtap='navSwitch' wx:if="{{version!=0 && showModel.model3}}">
       <image src='/images/icon_main_03.png'></image>
       <text>超市代购</text>
     </view>
 
-    <view class='item flex-y' data-index='{{3}}' bindtap='navSwitch' wx:if="{{version!=0}}">
+    <view class='item flex-y' data-index='{{3}}' bindtap='navSwitch' wx:if="{{version!=0 && showModel.model4}}">
       <image src='/images/icon_main_01.png'></image>
       <text>校内餐厅</text>
     </view>

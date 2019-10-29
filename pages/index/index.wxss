@@ -70,6 +70,14 @@
   box-sizing: border-box;
   padding-bottom: 65px;
 }
+.main .haibao{
+  height: 100%;
+  width: 100%;
+}
+.main .haibao image{
+  height: 100%;
+  width: 100%;
+}
 .main.active{
   height: 100%;
   position: absolute;

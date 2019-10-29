@@ -29,7 +29,7 @@
     <button formType="submit" hover-class='none'>
       <view class='info flex-x' style='margin-left:0'>
         <image src="/images/orderList.png" ></image>
-        <text>我的订单</text>
+        <text>我的快递</text>
       </view>
     </button>
   </form>
@@ -37,18 +37,18 @@
     <button formType="submit" hover-class='none'>
       <view class='info flex-x' style='margin-left:0;'>
         <image src="/images/icon_go_addr.png" ></image>
-        <text>快递订单</text>
+        <text>寄快递单</text>
       </view>
     </button>
   </form>
-  <form bind:submit="paotui" report-submit="true">
+  <!-- <form bind:submit="paotui" report-submit="true">
     <button formType="submit" hover-class='none'>
       <view class='info flex-x' style='margin-left:0;'>
         <image src="/images/icon_paotui.png" ></image>
         <text>我要跑腿</text>
       </view>
     </button>
-  </form>
+  </form> -->
   <form bind:submit="dispatch" report-submit="true">
     <button formType="submit" hover-class='none'>
       <view class='info flex-x' style='margin-left:0;'>
@@ -62,14 +62,14 @@
     <image src="/images/icon_dispatch.png"></image>
     <text>我要派单</text> 
   </navigator> -->
-  <form bind:submit="mydispatch" report-submit="true">
+  <!-- <form bind:submit="mydispatch" report-submit="true">
     <button formType="submit" hover-class='none'>
       <view class='info flex-x' style='margin-left:0;'>
         <image src="/images/icon_free_list.png" ></image>
         <text>我的派单</text>
       </view>
     </button>
-  </form>
+  </form> -->
   <!-- <navigator class='info flex-x' url='../myRobbing/index?types=is_my'>
     <image src="/images/icon_free_list.png"></image>
     <text>我的派单</text>

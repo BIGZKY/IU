@@ -308,7 +308,6 @@ function getData(that, run_type) {
     },
     success(res) {
       if (res.data.data.is_new == 1 && run_type == 1){
-        // var n = run_type == 1 ? '快递劵' : run_type == 2 ? '餐饮劵' : run_type == 3 ? '超市代购' : '跑腿劵'
         var voucher = {
           name: res.data.data.marks.name,
           run_type: 1,
@@ -322,7 +321,6 @@ function getData(that, run_type) {
       }
       //判断账号 是否异常 ------------------start
       if(run_type==1){
-        
         var controll = res.data.data.user_info.controll;
         if (controll == 1) {
           wx.showModal({
@@ -330,7 +328,6 @@ function getData(that, run_type) {
             content: '系统检测到您多次为他人代取，请联系客服!',
             showCancel:false
           })
-
         } else if (controll == 2) {
           wx.showModal({
             title: '警告提示',
@@ -338,18 +335,17 @@ function getData(that, run_type) {
             showCancel: false
           })
         }else if (wx.getStorageSync('isvip')) {
-          if (wx.getStorageSync('tan_num')>0){
-            var tan_num = wx.getStorageSync('tan_num');
-            --tan_num;
-            wx.setStorageSync('tan_num', tan_num);
+          if (wx.getStorageSync('tanNum')>0){
+            console.log(222)
+            var tanNum = wx.getStorageSync('tanNum');
+            --tanNum;
+            wx.setStorageSync('tanNum', tanNum);
             wx.showModal({
               title: '温馨提示',
               content: '月卡只可用于本人领取快递，为他人代取快递将会被系统封停该功能!',
               showCancel: false
             })
-            
           }  
-          
         }
         that.setData({
           controll
@@ -703,7 +699,8 @@ function gettime(that) {
     success(res) {
       var is_kg = res.data.data.is_kg;
       var telephone = res.data.data.telephone;
-      var minShopMoney = res.data.data.min_money
+      var minShopMoney = res.data.data.min_money;
+      var setTanNum = res.data.data.setTanNum;
       var shop_time = {};
       shop_time.start = res.data.data.is_shangban.start.replace(':', '.');
       shop_time.end = res.data.data.is_shangban.end.replace(':', '.');
@@ -711,7 +708,8 @@ function gettime(that) {
         is_lingka: res.data.data.is_lingka,
         showModel: res.data.data.showModel,
         version: res.data.data.version,
-        isShowWq: res.data.data.isShowWq
+        isShowWq: res.data.data.isShowWq,
+        main_bgColor: res.data.data.main_bgColor,
       })
       setTimeout(() => {
         let an = wx.createAnimation({
@@ -725,12 +723,14 @@ function gettime(that) {
           init: false
         })
       }, 500)
-      // wx.setStorageSync('version', res.data.data.version);
 
       wx.setStorageSync('minShopMoney', minShopMoney);
       wx.setStorageSync('telephone', telephone);
       wx.setStorageSync('shop_time', shop_time);
       wx.setStorageSync('is_kg', is_kg);
+      if (!setTanNum){
+        wx.setStorageSync('tanNum', 0);
+      }
     }
   })
 }

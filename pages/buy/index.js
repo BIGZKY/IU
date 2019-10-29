@@ -25,7 +25,7 @@ Page({
     wx.request({
       url: api.per_center.coupon,
       data: {
-        // user_id: wx.getStorageSync('user_id')
+        
       },
       method: "POST",
       success(res) {

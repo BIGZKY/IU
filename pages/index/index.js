@@ -21,7 +21,8 @@ Page({
     typeList: [],
     isFlod: true,
     v_nav: null,
-    init: false
+    init: false,
+    main_bgColor: 'F2F2F2',
   },
 
   /**
@@ -29,8 +30,7 @@ Page({
    */
   onLoad: function (options) {
     that = this;
-
-    public_js.gettime(that);
+    wx.setStorageSync('tanNum', 3)
     this.checkUpdate();
     if (wx.getStorageSync('user_id')){
       this.per_center();
@@ -49,10 +49,10 @@ Page({
           }
         }
       })
-  
     }
   },
   onShow: function () {
+    public_js.gettime(that);
     this.getNewsData();
     this.getBanner();
     this.getTypeList();
@@ -410,9 +410,9 @@ Page({
 
   },
   onReady() {
-    this.mapCtx = wx.createMapContext('map');
-    this.getCenter();
-    this.getMark();
+    // this.mapCtx = wx.createMapContext('map');
+    // this.getCenter();
+    // this.getMark();
   },
   getMark() {
     wx.request({

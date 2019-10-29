@@ -47,7 +47,7 @@ Page({
   },
   formsubmit(e){
     console.log(e)
-    var n = !e.detail.value.name ? '请输入姓名' : !e.detail.value.tel ? '请输入联系方式' : !/^1(3|5|6|7|8|)\d{9}$/.test(e.detail.value.tel) ? '请输入正确格式联系方式' : !this.data.region[0] ? '请选择省市区' : !e.detail.value.addr ? '请输入地址信息' : false;
+    var n = !e.detail.value.name ? '请输入姓名' : !e.detail.value.tel ? '请输入联系方式' : !/^1(3|5|6|7|8|9)\d{9}$/.test(e.detail.value.tel) ? '请输入正确格式联系方式' : !this.data.region[0] ? '请选择省市区' : !e.detail.value.addr ? '请输入地址信息' : false;
     if(n){
       wx.showToast({
         title: n,

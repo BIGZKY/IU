@@ -164,12 +164,12 @@ Page({
   },
   navSwitch(e) {
     var index = e.currentTarget.dataset.index;
-    if (index == 1 || index == 2 || index == 3) {
-      var n = public_js.check_shop_time();
-      if (n) {
-        return false;
-      }
-    }
+    // if (index == 0 ||index == 1 || index == 2 || index == 3) {
+    //   var n = public_js.check_shop_time();
+    //   if (n) {
+    //     return false;
+    //   }
+    // }
     switch (index) {
       case 5:
         if (this.data.userInfo.staff_id == 0) {

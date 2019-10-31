@@ -95,12 +95,6 @@ Page({
     var moneyObj = moneyList.find(function(item){
       return item.express_distance == val;
     })
-    // var f = that.data.fee;
-    // if(that.data.isvip){
-    //   var a = (f + parseFloat(moneyObj.express_money)).toFixed(2);
-    // }else{
-    //   var a = ((f + parseFloat(moneyObj.express_money)) * that.data.hasdiscount).toFixed(2);
-    // }
     if(that.data.isvip){
       var a = parseFloat(moneyObj.express_money).toFixed(2);
     }else{
@@ -139,10 +133,28 @@ Page({
       })
     }
   },
+  //判断是几个快递
+  judgeNum() {
+    let info = this.data.delivery_info;
+    let num = this.data.multiArray[this.data.multiIndex];
+    let r = /韵达|近邻宝|中通|顺丰|圆通|京东/g;
+    let n = info.match(r);
+    if (n!==null && n.length !== num) {
+      return false;
+    }
+    return true;
+  },
+
   //发起支付
   go_pay(){
-
     var that = this;
+    if(!this.judgeNum()){
+      wx.showToast({
+        title: '请检查快递件数',
+        icon: 'none'
+      })
+      return false;
+    } 
     if (!app.globalData.userInfo_bool){
       wx.showModal({
         title: '温馨提示',

@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": 4,
@@ -71,6 +71,13 @@
 					"id": -1,
 					"name": "pages/expressDelivery/index",
 					"pathName": "pages/expressDelivery/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/delivery/index",
+					"pathName": "pages/delivery/index",
 					"scene": null
 				}
 			]
